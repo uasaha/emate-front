@@ -41,17 +41,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body style="font-family: 'Nanum Gothic', sans-serif; background-color: #525252">
-<div class="row">
-    <!--header height: 60px-->
-    <th:block th:insert="main/main-header"></th:block>
-</div>
-<div class="row">
-    <!--sidebar-->
-    <th:block th:insert="main/main-sidebar"></th:block>
+<nav class="navbar navbar-expand-md navbar-dark" style="background-color: #525252 !important;">
+    <a class="navbar-brand" href="https://emate.me/">
+        <img src="/static/img/logo_bank.png" style="height: 40px">
+        <img src="/static/img/emate_logo_white.png" style="height: 40px">
+    </a>
 
-    <div class="section" style="margin-top: 70px; color: white">
-        <h1>Hello RY World!</h1>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarCollapse" style="font-size: 25px">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="https://emate.me">Home</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="https://github.com/uasaha">Github</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link disabled" href="#">Contact</a>
+            </li>
+        </ul>
+
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#"><i class="bi bi-pencil my-icons-size"></i></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#"><i class="bi bi-gear-wide-connected my-icons-size"></i></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/login"><i class="bi bi-door-open my-icons-size"></i></a>
+            </li>
+        </ul>
+
+        <!--search 추후 추가-->
+        <!--<form class="form-inline mt-2 mt-md-0">-->
+        <!--<input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">-->
+        <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+        <!--</form>-->
+    </div>
+</nav>
+
+<div class="container-fluid" style="margin-top: 1rem">
+    <div class="row">
+        <div class="col-md-1">
+            <div class="flex-shrink-0 p-3 wd-100" style="background-color: #525252">
+                <ul class="list-unstyled ps-0">
+                    <li class="mb-1">
+                        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true" style="font-size: 1.5rem; color: white">
+                            Categories
+                        </button>
+                        <div class="collapse show" id="home-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small" style="padding-left: 1rem; font-size: 1rem">
+                                <div th:each="category : ${categories}">
+                                    <li><a href="#" class="link-body-emphasis align-items-center d-inline-flex" style="color: white">
+                                        <p th:text="${category.categoryName}"></p><p>(</p><p th:text="${category.contentsCnt}"></p><p>)</p>
+                                    </a></li>
+                                </div>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="mb-1">
+                        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="true" style="font-size: 1.5rem; color: white">
+                            Tags
+                        </button>
+                        <div class="collapse show" id="dashboard-collapse" >
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small" style="padding-left: 1rem; font-size: 1rem">
+                                <div th:each="tag : ${tags}">
+                                    <li><a href="#" class="link-body-emphasis align-items-center d-inline-flex" style="color: white">
+                                        <p th:text="${tag.tagName}"></p>
+                                    </a></li>
+                                </div>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-11">
+            <p style="color: white; font-size: 3rem;">Hello RY World!</p>
+        </div>
     </div>
 </div>
+
 </body>
 </html>

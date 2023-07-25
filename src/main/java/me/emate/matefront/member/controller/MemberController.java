@@ -1,25 +1,20 @@
-package me.emate.matefront.main;
+package me.emate.matefront.member.controller;
 
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import me.emate.matefront.utils.Utils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
 
 @Controller
-@RequestMapping("/")
 @RequiredArgsConstructor
-public class MainController {
+public class MemberController {
     private final Utils utils;
 
-    @GetMapping
-    public String mainView(HttpServletResponse response,
-                           Model model) {
+    @GetMapping("/login")
+    public String loginView(Model model) {
         utils.sidebarInModel(model);
 
-        return "main/main";
+        return "member/login-page";
     }
 }
