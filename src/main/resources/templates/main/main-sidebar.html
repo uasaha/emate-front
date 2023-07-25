@@ -41,6 +41,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body style="font-family: 'Nanum Gothic', sans-serif;">
-
+<main class="d-flex flex-nowrap" style="margin-top: 3rem; height: 100%">
+<div class="flex-shrink-0 p-3" style="width: 200px; background-color: #525252">
+    <ul class="list-unstyled ps-0">
+        <li class="mb-1">
+            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true" style="font-size: 1.5rem; color: white">
+                Categories
+            </button>
+            <div class="collapse show" id="home-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small" style="padding-left: 1rem; font-size: 1rem">
+                    <div th:each="category : ${categories}">
+                        <li><a href="#" class="link-body-emphasis align-items-center d-inline-flex" style="color: white">
+                            <p th:text="${category.categoryName}"></p><p>(</p><p th:text="${category.contentsCnt}"></p><p>)</p>
+                        </a></li>
+                    </div>
+                </ul>
+            </div>
+        </li>
+        <li class="mb-1">
+            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="true" style="font-size: 1.5rem; color: white">
+                Tags
+            </button>
+            <div class="collapse show" id="dashboard-collapse" >
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small" style="padding-left: 1rem; font-size: 1rem">
+                    <div th:each="tag : ${tags}">
+                        <li><a href="#" class="link-body-emphasis align-items-center d-inline-flex" style="color: white">
+                            <p th:text="${tag.tagName}"></p>
+                        </a></li>
+                    </div>
+                </ul>
+            </div>
+        </li>
+    </ul>
+</div>
+<div class="b-example-divider b-example-vr"></div>
+</main>
 </body>
 </html>
