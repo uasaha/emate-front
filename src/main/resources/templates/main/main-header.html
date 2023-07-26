@@ -68,7 +68,7 @@
             </li>
         </ul>
 
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ml-auto" style="float: right">
             <li class="nav-item active">
                 <a class="nav-link" href="#"><i class="bi bi-pencil my-icons-size"></i></a>
             </li>
@@ -88,7 +88,7 @@
     </div>
 </nav>
 
-<div class="container-fluid" style="margin-top: 1rem">
+<div class="container-fluid" style="margin-top: 1rem;">
     <div class="row">
         <div class="col-md-2">
             <div class="flex-shrink-0 p-3 wd-100" style="background-color: #525252">
@@ -98,7 +98,7 @@
                             Categories
                         </button>
                         <div class="collapse show" id="home-collapse">
-                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small" style="padding-left: 1rem; font-size: 1rem">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small" style="font-size: 1rem">
                                 <div th:each="category : ${categories}">
                                     <li><a href="#" class="link-body-emphasis align-items-center d-inline-flex" style="color: white">
                                         <p th:text="${category.categoryName}"></p><p>(</p><p th:text="${category.contentsCnt}"></p><p>)</p>
@@ -112,7 +112,7 @@
                             Tags
                         </button>
                         <div class="collapse show" id="dashboard-collapse" >
-                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small" style="padding-left: 1rem; font-size: 1rem">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small" style="font-size: 1rem">
                                 <div th:each="tag : ${tags}">
                                     <li><a href="#" class="link-body-emphasis align-items-center d-inline-flex" style="color: white">
                                         <p th:text="${tag.tagName}"></p>
@@ -124,9 +124,8 @@
                 </ul>
             </div>
         </div>
-        <!--꾸미는 공간 나머지 고정-->
         <div class="col-md-10">
-            <p style="color: white; font-size: 3rem;">Hello RY World!</p>
+<!--            꾸미는 공간-->
         </div>
     </div>
 </div>

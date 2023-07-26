@@ -118,7 +118,7 @@
                             Categories
                         </button>
                         <div class="collapse show" id="home-collapse">
-                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small" style="padding-left: 1rem; font-size: 1rem">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small" style="font-size: 1rem">
                                 <div th:each="category : ${categories}">
                                     <li><a href="#" class="link-body-emphasis align-items-center d-inline-flex" style="color: white">
                                         <p th:text="${category.categoryName}"></p><p>(</p><p th:text="${category.contentsCnt}"></p><p>)</p>
@@ -132,7 +132,7 @@
                             Tags
                         </button>
                         <div class="collapse show" id="dashboard-collapse" >
-                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small" style="padding-left: 1rem; font-size: 1rem">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small" style="font-size: 1rem">
                                 <div th:each="tag : ${tags}">
                                     <li><a href="#" class="link-body-emphasis align-items-center d-inline-flex" style="color: white">
                                         <p th:text="${tag.tagName}"></p>
