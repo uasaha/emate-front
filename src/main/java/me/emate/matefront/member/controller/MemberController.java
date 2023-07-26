@@ -17,4 +17,11 @@ public class MemberController {
 
         return "member/login-page";
     }
+
+    @GetMapping("/register")
+    public String registerView(Model model) {
+        utils.sidebarInModel(model);
+
+        return "member/register-page";
+    }
 }
