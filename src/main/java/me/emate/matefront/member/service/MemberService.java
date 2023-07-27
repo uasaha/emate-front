@@ -4,4 +4,6 @@ public interface MemberService {
     boolean idConflictCheck(String id);
 
     boolean isNickConflict(String nickname);
+
+    boolean isEmailConflict(String email);
 }

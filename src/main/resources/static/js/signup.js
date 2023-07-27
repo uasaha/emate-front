@@ -52,12 +52,6 @@ function emailPattern() {
         alert('이메일 형식을 갖춰서 생성해주세요');
         return false;
     }
-    emailCheck.value = "1";
-    document.getElementById("email").readOnly = true;
-    alert("확인되었습니다.");
-    if (allCheck()) {
-        $("#submitBtn").removeAttr("disabled");
-    }
     return true;
 }
 
@@ -74,6 +68,7 @@ function pwdCheck() {
             } else {
                 passwordCheck.value = "1";
                 document.getElementById("pwd").readOnly = true;
+                document.getElementById("pwd-check").readOnly = true;
                 alert("확인되었습니다.");
                 if (allCheck()) {
                     $("#submitBtn").removeAttr("disabled");
@@ -96,7 +91,6 @@ function idCheckFunc() {
             data: {"id": id},
             success: function (result) {
                 if (result === false) {
-                    $('.id-ok').css("display", "inline-block");
                     idCheck.value = "1";
                     document.getElementById("memberId").readOnly = true;
                     alert("사용 가능한 아이디 입니다.");
@@ -104,16 +98,12 @@ function idCheckFunc() {
                         $("#submitBtn").removeAttr("disabled");
                     }
                 } else {
-                    $('.id-duplicate').css("display", "inline-block");
-                    $('.id-ok').css("display", "none");
                     alert("이미 사용하는 아이디 입니다.");
                     $('#memberId').val('');
                 }
             },
         })
     } else {
-        $('.id-duplicate').css("display", "inline-block");
-        $('.id-ok').css("display", "none");
         $('#id').val('');
     }
 }
@@ -129,8 +119,6 @@ function nickCheckFunc() {
             data: {"nickname": nickname},
             success: function (result) {
                 if (result === false) {
-                    $('.nick-ok').css("display", "inline-block");
-                    $('.nick-duplicate').css("display", "none");
                     nicknameCheck.value = "1";
                     document.getElementById("nickname").readOnly = true;
                     alert("사용 가능한 닉네임 입니다.");
@@ -138,8 +126,6 @@ function nickCheckFunc() {
                         $("#submitBtn").removeAttr("disabled");
                     }
                 } else {
-                    $('.nick-duplicate').css("display", "inline-block");
-                    $('.nick-ok').css("display", "none");
                     alert("이미 사용하는 닉네임 입니다.");
                     $('#nickname').val('');
                 }
@@ -147,6 +133,33 @@ function nickCheckFunc() {
         })
     }
 }
+
+function emailCheckFunc() {
+    const email = $("#email").val();
+
+    if (emailPattern()) {
+        $jLatest.ajax({
+            type: "post",
+            async: true,
+            url: "/emailcheck",
+            data: {"email": email},
+            success: function (result) {
+                if (result === false) {
+                    emailCheck.value = "1";
+                    document.getElementById("email").readOnly = true;
+                    alert("사용 가능한 이메일 입니다.");
+                    if (allCheck()) {
+                        $("#submitBtn").removeAttr("disabled");
+                    }
+                } else {
+                    alert("이미 사용하는 이메일 입니다.");
+                    $('#email').val('');
+                }
+            },
+        })
+    }
+}
+
 function allCheck() {
     if (idCheck===0) {
         return false;

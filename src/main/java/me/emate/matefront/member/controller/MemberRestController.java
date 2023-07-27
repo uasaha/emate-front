@@ -22,4 +22,9 @@ public class MemberRestController {
     public boolean nickConflictCheck(@RequestBody String nickname) {
         return memberService.isNickConflict(nickname);
     }
+
+    @PostMapping("emailcheck")
+    public boolean emailConflictCheck(@RequestBody String email) {
+        return memberService.isEmailConflict(email);
+    }
 }

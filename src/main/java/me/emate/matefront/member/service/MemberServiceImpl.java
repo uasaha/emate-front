@@ -3,6 +3,7 @@ package me.emate.matefront.member.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.emate.matefront.member.adaptor.MemberAdaptor;
+import me.emate.matefront.member.dto.CheckEmailRequestDto;
 import me.emate.matefront.member.dto.CheckIDRequestDto;
 import me.emate.matefront.member.dto.CheckNicknameRequestDto;
 import org.springframework.stereotype.Service;
@@ -23,5 +24,11 @@ public class MemberServiceImpl implements MemberService {
     public boolean isNickConflict(String nickname) {
         CheckNicknameRequestDto requestDto = new CheckNicknameRequestDto(nickname);
         return Boolean.TRUE.equals(memberAdaptor.nickConflictCheck(requestDto).getBody());
+    }
+
+    @Override
+    public boolean isEmailConflict(String email) {
+        CheckEmailRequestDto requestDto = new CheckEmailRequestDto(email);
+        return Boolean.TRUE.equals(memberAdaptor.emailConflictCheck(requestDto).getBody());
     }
 }
