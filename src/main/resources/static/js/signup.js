@@ -5,8 +5,8 @@ let nickReg = /^[a-zA-Zㄱ-ㅣ가-힣\d]{2,10}$/;
 let emailReg = /^\w+([\\.-]?\w+)*@\w+([\\.-]?\w+)*(\.\w{2,3})+$/;
 const nicknameCheck = $("#nickname-check");
 const idCheck = $("#id-check");
-const passwordCheck = $("password-check");
-const emailCheck = $("email-check");
+const passwordCheck = $("#password-check");
+const emailCheck = $("#email-check");
 
 window.addEventListener('load', () => {
     const forms = document.getElementsByClassName('validation-form');
@@ -90,7 +90,7 @@ function idCheckFunc() {
             url: "/idcheck",
             data: {"id": id},
             success: function (result) {
-                if (result === false) {
+                if (result === true) {
                     idCheck.value = "1";
                     document.getElementById("memberId").readOnly = true;
                     alert("사용 가능한 아이디 입니다.");
@@ -118,7 +118,7 @@ function nickCheckFunc() {
             url: "/nickcheck",
             data: {"nickname": nickname},
             success: function (result) {
-                if (result === false) {
+                if (result === true) {
                     nicknameCheck.value = "1";
                     document.getElementById("nickname").readOnly = true;
                     alert("사용 가능한 닉네임 입니다.");
@@ -144,7 +144,7 @@ function emailCheckFunc() {
             url: "/emailcheck",
             data: {"email": email},
             success: function (result) {
-                if (result === false) {
+                if (result === true) {
                     emailCheck.value = "1";
                     document.getElementById("email").readOnly = true;
                     alert("사용 가능한 이메일 입니다.");

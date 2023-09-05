@@ -19,6 +19,7 @@ public class MainController {
     public String mainView(HttpServletResponse response,
                            Model model) {
         utils.sidebarInModel(model);
+        utils.modelRequestMemberNo(model);
 
         return "main/main";
     }
