@@ -16,7 +16,7 @@ public interface MemberAdaptor {
 
     ResponseEntity<Void> signup(SignupRequestDto requestDto);
 
-    void logout();
+    void logout(String accessToken);
 
     ResponseEntity<Void> tokenReIssueRequest(String accessToken);
 }

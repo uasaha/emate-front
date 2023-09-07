@@ -4,12 +4,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.emate.matefront.config.ToBackConfig;
 import me.emate.matefront.member.dto.*;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
+import java.util.Objects;
 
 import static me.emate.matefront.utils.JwtUtils.AUTH_HEADER;
 import static me.emate.matefront.utils.JwtUtils.TOKEN_TYPE;
@@ -22,6 +22,7 @@ public class MemberAdaptorImpl implements MemberAdaptor {
     private final RestTemplate restTemplate;
     private final ToBackConfig toBackConfig;
     private static final String MEMBER_URL = "/member";
+    private static final String AUTH_URL = "/auth";
 
     @Override
     public MemberDetailResponseDto requestAuthMemberInfo(String accessToken) {
@@ -99,11 +100,19 @@ public class MemberAdaptorImpl implements MemberAdaptor {
     }
 
     @Override
-    public void logout() {
+    public void logout(String accessToken) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setAccept(List.of(MediaType.APPLICATION_JSON));
+        log.info(accessToken);
+        if (Objects.nonNull(accessToken)) {
+            headers.add("Authorization", accessToken);
+        }
+
         restTemplate.exchange(
-                toBackConfig.getBackUrl() + "/logout",
+                toBackConfig.getBackUrl() + AUTH_URL + "/logout",
                 HttpMethod.GET,
-                new HttpEntity<>(makeHeader()),
+                new HttpEntity<>(headers),
                 Void.class
         );
     }

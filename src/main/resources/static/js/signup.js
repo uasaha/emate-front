@@ -90,7 +90,7 @@ function idCheckFunc() {
             url: "/idcheck",
             data: {"id": id},
             success: function (result) {
-                if (result === true) {
+                if (result === false) {
                     idCheck.value = "1";
                     document.getElementById("memberId").readOnly = true;
                     alert("사용 가능한 아이디 입니다.");
@@ -118,7 +118,7 @@ function nickCheckFunc() {
             url: "/nickcheck",
             data: {"nickname": nickname},
             success: function (result) {
-                if (result === true) {
+                if (result === false) {
                     nicknameCheck.value = "1";
                     document.getElementById("nickname").readOnly = true;
                     alert("사용 가능한 닉네임 입니다.");
@@ -144,7 +144,7 @@ function emailCheckFunc() {
             url: "/emailcheck",
             data: {"email": email},
             success: function (result) {
-                if (result === true) {
+                if (result === false) {
                     emailCheck.value = "1";
                     document.getElementById("email").readOnly = true;
                     alert("사용 가능한 이메일 입니다.");

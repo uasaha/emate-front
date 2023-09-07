@@ -35,8 +35,7 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public boolean idConflictCheck(String id) {
         CheckIDRequestDto requestDto = new CheckIDRequestDto(id);
-        boolean a = Boolean.TRUE.equals(memberAdaptor.idConflictCheck(requestDto).getBody());
-        return a;
+        return Boolean.TRUE.equals(memberAdaptor.idConflictCheck(requestDto).getBody());
     }
 
     @Override
@@ -69,6 +68,7 @@ public class MemberServiceImpl implements MemberService {
                 SecurityContextHolder.clearContext();
                 return;
             }
+            String accessToken = jwtCookie.getValue();
 
             Cookie sessionCookie = CookieUtils.findCookie(SESSION_COOKIE);
             jwtCookie.setMaxAge(0);
@@ -82,7 +82,7 @@ public class MemberServiceImpl implements MemberService {
             response.addCookie(sessionCookie);
             SecurityContextHolder.clearContext();
 
-            memberAdaptor.logout();
+//            memberAdaptor.logout(accessToken);
         }
     }
 }

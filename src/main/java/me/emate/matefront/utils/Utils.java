@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import me.emate.matefront.category.dto.CategoryListResponseDto;
 import me.emate.matefront.category.service.CategoryService;
 import me.emate.matefront.member.dto.MemberDetailResponseDto;
@@ -20,7 +21,9 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import java.util.List;
 import java.util.Objects;
 
+
 @Component
+@Slf4j
 @RequiredArgsConstructor
 public class Utils {
     private final TagService tagService;

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>회원가입 완료</title>
@@ -74,8 +75,11 @@
       <li class="nav-item active">
         <a class="nav-link" href="#"><i class="bi bi-gear-wide-connected my-icons-size"></i></a>
       </li>
-      <li class="nav-item active">
+      <li class="nav-item active" sec:authorize="isAnonymous()">
         <a class="nav-link" href="/login"><i class="bi bi-door-open my-icons-size"></i></a>
+      </li>
+      <li class="nav-item active" sec:authorize="isAuthenticated()">
+        <a class="nav-link" href="/logout"><i class="bi bi-door-open-fill my-icons-size"></i></a>
       </li>
     </ul>
 

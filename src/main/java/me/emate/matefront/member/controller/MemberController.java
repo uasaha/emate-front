@@ -22,6 +22,7 @@ public class MemberController {
     @GetMapping("/login")
     public String loginView(Model model) {
         utils.sidebarInModel(model);
+        utils.modelRequestMemberNo(model);
 
         return "member/login-page";
     }
