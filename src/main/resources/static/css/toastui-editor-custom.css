@@ -1,0 +1,23 @@
+.toastui-editor-contents p,
+.toastui-editor-contents h1,
+.toastui-editor-contents h2,
+.toastui-editor-contents h3,
+.toastui-editor-contents h4,
+.toastui-editor-contents h5,
+.toastui-editor-contents h6 {
+    color: white !important;
+}
+
+.toastui-editor-defaultUI .ProseMirror {
+    color: white !important;
+}
+
+.toastui-editor-md-code-block-line-background {
+    background-color: #353535 !important;
+}
+
+.toastui-editor-contents pre {
+    background-color: #353535 !important;
+    color: white !important;
+}
+
