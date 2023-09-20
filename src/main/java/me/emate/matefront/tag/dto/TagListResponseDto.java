@@ -6,5 +6,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 public class TagListResponseDto {
+    private String tagNo;
     private String tagName;
 }

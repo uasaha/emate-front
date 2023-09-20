@@ -71,15 +71,15 @@ public class Utils {
         model.addAttribute("member", member);
     }
 
-    public Long getMemberNo() {
+    public Integer getMemberNo() {
         String principal =
                 (String) SecurityContextHolder.getContext()
                         .getAuthentication().getPrincipal();
 
-        long memberNo = -1L;
+        int memberNo = -1;
 
         if (!principal.equals("anonymousUser")) {
-            memberNo = Long.parseLong(principal);
+            memberNo = Integer.parseInt(principal);
         }
 
         return memberNo;

@@ -1,12 +1,26 @@
-.toastui-editor-contents p,
-.toastui-editor-contents h1,
-.toastui-editor-contents h2,
+.toastui-editor-contents p {
+    color: white !important;
+    font-size: 15px !important;
+}
+
+.toastui-editor-contents h1 {
+    color: white !important;
+    font-size: 30px !important;
+}
+
+.toastui-editor-contents h2 {
+    color: white !important;
+    font-size: 25px !important;
+}
+
 .toastui-editor-contents h3,
 .toastui-editor-contents h4,
 .toastui-editor-contents h5,
 .toastui-editor-contents h6 {
     color: white !important;
+    font-size: 20px !important;
 }
+
 
 .toastui-editor-defaultUI .ProseMirror {
     color: white !important;
@@ -21,3 +35,6 @@
     color: white !important;
 }
 
+.toastui-editor-contents pre code {
+    font-size: 15px !important;
+}
