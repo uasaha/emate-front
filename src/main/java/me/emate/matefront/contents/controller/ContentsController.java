@@ -28,7 +28,7 @@ public class ContentsController {
         utils.sidebarInModel(model);
         utils.modelRequestMemberNo(model);
 
-        return "/contents/register-contents";
+        return "contents/register-contents";
     }
 
     @PostMapping("/register")
@@ -57,6 +57,6 @@ public class ContentsController {
         utils.modelRequestMemberNo(model);
         model.addAttribute("content", responseDto);
 
-        return "/contents/detail-contents";
+        return "contents/detail-contents";
     }
 }
