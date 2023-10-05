@@ -8,8 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.time.LocalDateTime;
-
 
 @Controller
 @RequestMapping("/")
@@ -24,10 +22,5 @@ public class MainController {
         utils.modelRequestMemberNo(model);
 
         return "main/main";
-    }
-
-    @GetMapping("/dGltZXpvbmU=")
-    public String getTime() {
-        return LocalDateTime.now().toString();
     }
 }
