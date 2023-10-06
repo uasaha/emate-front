@@ -48,6 +48,7 @@ public class ContentsController {
     @GetMapping("/{subject}")
     public String contentsDetailView(@PathVariable("subject") String subject,
                                      Model model) {
+
         ContentsDetailResponseDto responseDto =
                 contentsService.viewContentsBySubject(subject);
 
