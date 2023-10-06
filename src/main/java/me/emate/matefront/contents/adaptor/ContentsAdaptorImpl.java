@@ -41,4 +41,26 @@ public class ContentsAdaptorImpl implements ContentsAdaptor {
                 new HttpEntity<>(requestDto, makeHeader()),
                 ContentsDetailResponseDto.class).getBody();
     }
+
+    @Override
+    public ContentsDetailResponseDto requestContentsBySubject(String subject) {
+        HttpHeaders headers = makeHeader();
+
+        return restTemplate.exchange(
+                toBackConfig.getBackUrl() + CONTENTS_URL + "/" + subject,
+                HttpMethod.GET,
+                new HttpEntity<>(headers),
+                ContentsDetailResponseDto.class).getBody();
+    }
+
+    @Override
+    public ContentsDetailResponseDto requestLatestContents() {
+        HttpHeaders headers = makeHeader();
+
+        return restTemplate.exchange(
+                toBackConfig.getBackUrl() + CONTENTS_URL + "/latest",
+                HttpMethod.GET,
+                new HttpEntity<>(headers),
+                ContentsDetailResponseDto.class).getBody();
+    }
 }

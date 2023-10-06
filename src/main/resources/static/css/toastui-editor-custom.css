@@ -38,3 +38,7 @@
 .toastui-editor-contents pre code {
     font-size: 15px !important;
 }
+
+.language-css .token.string, .style .token.string, .token.entity, .token.operator, .token.url {
+    background: #353535 !important;
+}

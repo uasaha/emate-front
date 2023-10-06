@@ -40,14 +40,16 @@ public class ContentsController {
         ContentsDetailResponseDto responseDto =
                 contentsService.registerContents(requestDto);
 
-        return "redirect:/contents/" + responseDto.getContentsNo();
+        String noBlankSubject = responseDto.getSubject().replace(" ", "-");
+
+        return "redirect:/contents/" + noBlankSubject;
     }
 
-    @GetMapping("/{contentsNo}")
-    public String contentsDetailView(@PathVariable("contentsNo") Integer contentsNo,
+    @GetMapping("/{subject}")
+    public String contentsDetailView(@PathVariable("subject") String subject,
                                      Model model) {
         ContentsDetailResponseDto responseDto =
-                contentsService.viewContentsByNo(contentsNo);
+                contentsService.viewContentsBySubject(subject);
 
         if(responseDto.isHidden() || responseDto.isDeleted()) {
             throw new NotAuthorizedException();

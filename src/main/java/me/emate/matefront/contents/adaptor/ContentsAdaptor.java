@@ -7,4 +7,8 @@ public interface ContentsAdaptor {
     ContentsDetailResponseDto requestContentsByNo(Integer contentsNo);
 
     ContentsDetailResponseDto registerContents(CreateContentsRequestDto requestDto);
+
+    ContentsDetailResponseDto requestContentsBySubject(String subject);
+
+    ContentsDetailResponseDto requestLatestContents();
 }

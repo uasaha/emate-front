@@ -20,4 +20,14 @@ public class ContentsServiceImpl implements ContentsService {
     public ContentsDetailResponseDto viewContentsByNo(Integer contentsNo) {
         return contentsAdaptor.requestContentsByNo(contentsNo);
     }
+
+    @Override
+    public ContentsDetailResponseDto viewContentsBySubject(String subject) {
+        return contentsAdaptor.requestContentsBySubject(subject);
+    }
+
+    @Override
+    public ContentsDetailResponseDto viewLatestContents() {
+        return contentsAdaptor.requestLatestContents();
+    }
 }
