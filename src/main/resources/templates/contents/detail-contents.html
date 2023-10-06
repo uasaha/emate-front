@@ -116,45 +116,48 @@
   <div class="row">
     <div class="col-md-3">
       <div class="flex-shrink-0 p-3 wd-100" style="background-color: #252525">
-        <ul class="list-unstyled ps-0">
-          <li class="mb-1">
-            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0"
-                    data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true"
-                    style="font-size: 1.5rem; color: white">
-              Categories
-            </button>
-            <div class="collapse show" id="home-collapse">
-              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small" style="font-size: 1rem">
-                <div th:each="category : ${categories}">
-                  <li><a href="#" class="link-body-emphasis align-items-center d-inline-flex"
-                         style="color: white">
-                    <p th:text="${category.categoryName}"></p>
-                    <p>(</p>
-                    <p th:text="${category.contentsCnt}"></p>
-                    <p>)</p>
-                  </a></li>
+        <section class="btc-accordion">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="accordion mb-2" id="accordionExample">
+                  <div class="card" style="background-color: #303030; color: white; border: 0px solid">
+                    <div class="card-header" id="headingOne">
+                      <a class="accordion-icon" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        <h5 class="py-2"> Category <span class="float-right"><i class="fas fa-angle-down"></i></span></h5>
+                      </a>
+                    </div>
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                      <div class="card-body">
+                        <div th:each="category : ${categories}">
+                          <a href="#" class="link-body-emphasis align-items-center d-inline-flex" style="color: white">
+                            <p th:text="${category.categoryName}"></p><p>(</p><p th:text="${category.contentsCnt}"></p><p>)</p>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card" style="background-color: #303030; color: white; border: 0px solid">
+                    <div class="card-header" id="headingTwo">
+                      <a class="accordion-icon" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        <h5 class="py-2"> Tag <span class="float-right"><i class="fas fa-angle-down"></i></span></h5>
+                      </a>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                      <div class="card-body">
+                        <div th:each="tag : ${tags}">
+                          <a href="#" class="link-body-emphasis align-items-center d-inline-flex" style="color: white">
+                            <p th:text="${tag.tagName}"></p>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </ul>
+              </div>
             </div>
-          </li>
-          <li class="mb-1">
-            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0"
-                    data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="true"
-                    style="font-size: 1.5rem; color: white">
-              Tags
-            </button>
-            <div class="collapse show" id="dashboard-collapse">
-              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small" style="font-size: 1rem">
-                <div th:each="tag : ${tags}">
-                  <li><a href="#" class="link-body-emphasis align-items-center d-inline-flex"
-                         style="color: white">
-                    <p th:text="${tag.tagName}"></p>
-                  </a></li>
-                </div>
-              </ul>
-            </div>
-          </li>
-        </ul>
+          </div>
+        </section>
       </div>
     </div>
     <div class="col-md-9">
