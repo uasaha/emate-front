@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import me.emate.matefront.contents.adaptor.ContentsAdaptor;
 import me.emate.matefront.contents.dto.ContentsDetailResponseDto;
 import me.emate.matefront.contents.dto.CreateContentsRequestDto;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 public class ContentsServiceImpl implements ContentsService {
     private final ContentsAdaptor contentsAdaptor;
 
+    @CacheEvict(value = "categories", allEntries = true)
     @Override
     public ContentsDetailResponseDto registerContents(CreateContentsRequestDto requestDto) {
         return contentsAdaptor.registerContents(requestDto);
