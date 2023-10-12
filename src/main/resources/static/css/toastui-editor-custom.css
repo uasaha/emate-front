@@ -42,3 +42,8 @@
 .language-css .token.string, .style .token.string, .token.entity, .token.operator, .token.url {
     background: #353535 !important;
 }
+
+.toastui-editor-contents table td, .toastui-editor-contents table th {
+    border: 1px solid white !important;
+    color: white !important;
+}

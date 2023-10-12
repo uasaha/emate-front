@@ -8,6 +8,7 @@ import lombok.Getter;
 public class CreateContentsRequestDto {
     private Integer categoryNo;
     private Integer tagNo;
+    private String thumbnail;
     private String subject;
     private String detail;
 }

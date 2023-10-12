@@ -3,10 +3,14 @@ package me.emate.matefront.contents.controller;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.emate.matefront.contents.dto.ContentsDetailResponseDto;
+import me.emate.matefront.contents.dto.ContentsListResponseDto;
 import me.emate.matefront.contents.dto.CreateContentsRequestDto;
 import me.emate.matefront.contents.service.ContentsService;
 import me.emate.matefront.member.NotAuthorizedException;
+import me.emate.matefront.utils.PageableResponse;
 import me.emate.matefront.utils.Utils;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,12 +18,11 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/contents")
 public class ContentsController {
     private final Utils utils;
     private final ContentsService contentsService;
 
-    @GetMapping("/register")
+    @GetMapping("/contents/register")
     public String registerContentsView(Model model) {
         if(!utils.getMemberNo().equals(1)) {
             throw new NotAuthorizedException();
@@ -31,7 +34,7 @@ public class ContentsController {
         return "contents/register-contents";
     }
 
-    @PostMapping("/register")
+    @PostMapping("/contents/register")
     public String registerContents(CreateContentsRequestDto requestDto) {
         if(!utils.getMemberNo().equals(1)) {
             throw new NotAuthorizedException();
@@ -62,4 +65,24 @@ public class ContentsController {
 
         return "contents/detail-contents";
     }
+
+    @GetMapping("/contents/{category}")
+    public String viewContentsByCategory(@PathVariable String category,
+                                         @PageableDefault(size = 9) Pageable pageable,
+                                         Model model) {
+        PageableResponse<ContentsListResponseDto> responses =
+                contentsService.requestContentsByCategory(category, pageable);
+
+        model.addAttribute("contents", responses.getContents());
+        model.addAttribute("total", responses.getTotalPages());
+        model.addAttribute("current", responses.getCurrent());
+        model.addAttribute("hasNext", responses.isHasNext());
+        model.addAttribute("hasPrevious", responses.isHasPrevious());
+        model.addAttribute("pageButton", 5);
+        utils.sidebarInModel(model);
+        utils.modelRequestMemberNo(model);
+
+        return "contents/list-contents";
+    }
+
 }

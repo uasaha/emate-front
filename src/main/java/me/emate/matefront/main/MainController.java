@@ -22,7 +22,7 @@ public class MainController {
                            Model model) {
         utils.sidebarInModel(model);
         utils.modelRequestMemberNo(model);
-        model.addAttribute("content", contentsService.viewLatestContents());
+        model.addAttribute("contents", contentsService.requestLatestContents());
 
         return "main/main";
     }
