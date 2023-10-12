@@ -7,6 +7,7 @@ import me.emate.matefront.contents.dto.ContentsListResponseDto;
 import me.emate.matefront.contents.dto.CreateContentsRequestDto;
 import me.emate.matefront.utils.PageableResponse;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,7 @@ import java.util.List;
 public class ContentsServiceImpl implements ContentsService {
     private final ContentsAdaptor contentsAdaptor;
 
-    @CacheEvict(value = "categories", allEntries = true)
+    @CacheEvict(value = {"categories", "mainContents"}, allEntries = true)
     @Override
     public ContentsDetailResponseDto registerContents(CreateContentsRequestDto requestDto) {
         return contentsAdaptor.registerContents(requestDto);
@@ -43,6 +44,7 @@ public class ContentsServiceImpl implements ContentsService {
         return contentsAdaptor.requestContentsByCategory(category, pageable);
     }
 
+    @Cacheable(value = "mainContents")
     @Override
     public List<ContentsListResponseDto> requestLatestContents() {
         List<ContentsListResponseDto> responses = contentsAdaptor.requestLatestContents();
