@@ -174,10 +174,10 @@
                         <div class="col" th:each="content : ${contents}" style="margin-bottom: 2rem; cursor: pointer" th:data-url="${content.urlPath}" th:onclick="|location.href='/'+this.getAttribute('data-url')|">
                             <div class="card shadow-sm" style="overflow: hidden">
                                 <div th:if="${content.thumbnail == null}">
-                                    <img class="bd-placeholder-img card-img-top" src="https://emate-bucket.s3.ap-northeast-2.amazonaws.com/default_thumbnail.png" alt="thumbnail" width="100%" height="150" style="object-fit: cover"/>
+                                    <img class="bd-placeholder-img card-img-top" src="https://emate-bucket.s3.ap-northeast-2.amazonaws.com/default_thumbnail.png" alt="thumbnail" width="100%" height="250" style="object-fit: cover"/>
                                 </div>
                                 <div th:if="${content.thumbnail != null}">
-                                    <img class="bd-placeholder-img card-img-top" th:src="${content.thumbnail}" alt="thumbnail" width="100%" height="150" style="object-fit: cover"/>
+                                    <img class="bd-placeholder-img card-img-top" th:src="${content.thumbnail}" alt="thumbnail" width="100%" height="250" style="object-fit: cover"/>
                                 </div>
                                 <div class="card-body" style="background-color: #353535">
                                     <p class="card-text" th:text="${content.subject}" style="color: white"></p>
