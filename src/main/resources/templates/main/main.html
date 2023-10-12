@@ -142,22 +142,22 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="card" style="background-color: #303030; color: white; border: 0px solid; cursor : pointer;">
-                                        <div class="card-header" id="headingTwo">
-                                            <a class="accordion-icon" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                <h5 class="py-2"> Tag <span class="float-right"><i class="fas fa-angle-down"></i></span></h5>
-                                            </a>
-                                        </div>
-                                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                                            <div class="card-body">
-                                                <div th:each="tag : ${tags}">
-                                                    <a href="#" class="link-body-emphasis align-items-center d-inline-flex" style="color: white">
-                                                        <p th:text="${tag.tagName}"></p>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+<!--                                    <div class="card" style="background-color: #303030; color: white; border: 0px solid; cursor : pointer;">-->
+<!--                                        <div class="card-header" id="headingTwo">-->
+<!--                                            <a class="accordion-icon" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">-->
+<!--                                                <h5 class="py-2"> Tag <span class="float-right"><i class="fas fa-angle-down"></i></span></h5>-->
+<!--                                            </a>-->
+<!--                                        </div>-->
+<!--                                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">-->
+<!--                                            <div class="card-body">-->
+<!--                                                <div th:each="tag : ${tags}">-->
+<!--                                                    <a href="#" class="link-body-emphasis align-items-center d-inline-flex" style="color: white">-->
+<!--                                                        <p th:text="${tag.tagName}"></p>-->
+<!--                                                    </a>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
                                 </div>
                             </div>
                         </div>
@@ -170,7 +170,7 @@
                 <div class="container">
                     <h2 style="color: white">Posts</h2>
                     <hr style="border: solid 1px white">
-                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-3">
                         <div class="col" th:each="content : ${contents}" style="margin-bottom: 2rem; cursor: pointer" th:data-url="${content.urlPath}" th:onclick="|location.href='/'+this.getAttribute('data-url')|">
                             <div class="card shadow-sm" style="overflow: hidden">
                                 <div th:if="${content.thumbnail == null}">
