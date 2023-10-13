@@ -41,17 +41,24 @@ public class ContentsServiceImpl implements ContentsService {
 
     @Override
     public PageableResponse<ContentsListResponseDto> requestContentsByCategory(String category, Pageable pageable) {
-        return contentsAdaptor.requestContentsByCategory(category, pageable);
+        PageableResponse<ContentsListResponseDto> responses = contentsAdaptor.requestContentsByCategory(category, pageable);
+        setUrlPath(responses.getContents());
+
+        return responses;
     }
 
     @Cacheable(value = "mainContents")
     @Override
     public List<ContentsListResponseDto> requestLatestContents() {
         List<ContentsListResponseDto> responses = contentsAdaptor.requestLatestContents();
+        setUrlPath(responses);
+
+        return responses;
+    }
+
+    private static void setUrlPath(List<ContentsListResponseDto> responses) {
         for (ContentsListResponseDto response : responses) {
             response.setUrlPath(response.getSubject().replace(" ", "-"));
         }
-
-        return responses;
     }
 }

@@ -138,25 +138,9 @@
                     </div>
                     <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                       <div class="card-body">
-                        <div th:each="category : ${categories}">
-                          <a href="#" class="link-body-emphasis align-items-center d-inline-flex" style="color: white">
+                        <div th:each="category : ${categories}" th:data-cateurl="${category.categoryName}" th:onclick="|location.href='/contents/'+this.getAttribute('data-cateurl')|" style="cursor: pointer">
+                          <a class="link-body-emphasis align-items-center d-inline-flex" style="color: white">
                             <p th:text="${category.categoryName}"></p><p>(</p><p th:text="${category.contentsCnt}"></p><p>)</p>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card" style="background-color: #303030; color: white; border: 0px solid; cursor : pointer;">
-                    <div class="card-header" id="headingTwo">
-                      <a class="accordion-icon" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        <h5 class="py-2"> Tag <span class="float-right"><i class="fas fa-angle-down"></i></span></h5>
-                      </a>
-                    </div>
-                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                      <div class="card-body">
-                        <div th:each="tag : ${tags}">
-                          <a href="#" class="link-body-emphasis align-items-center d-inline-flex" style="color: white">
-                            <p th:text="${tag.tagName}"></p>
                           </a>
                         </div>
                       </div>

@@ -73,6 +73,7 @@ public class ContentsController {
         PageableResponse<ContentsListResponseDto> responses =
                 contentsService.requestContentsByCategory(category, pageable);
 
+        model.addAttribute("categoryName", category);
         model.addAttribute("contents", responses.getContents());
         model.addAttribute("total", responses.getTotalPages());
         model.addAttribute("current", responses.getCurrent());
@@ -84,5 +85,4 @@ public class ContentsController {
 
         return "contents/list-contents";
     }
-
 }

@@ -28,6 +28,7 @@ public class ContentsAdaptorImpl implements ContentsAdaptor {
     private final RestTemplate restTemplate;
     private final ToBackConfig toBackConfig;
     private static final String CONTENTS_URL = "/contents";
+    private static final String Category_URL = "/category";
 
     @Override
     public ContentsDetailResponseDto requestContentsByNo(Integer contentsNo) {
@@ -75,9 +76,9 @@ public class ContentsAdaptorImpl implements ContentsAdaptor {
     public PageableResponse<ContentsListResponseDto> requestContentsByCategory(String category, Pageable pageable) {
         HttpHeaders headers = makeHeader();
         String url = UriComponentsBuilder
-                .fromHttpUrl(toBackConfig.getBackUrl() + CONTENTS_URL + "/" + category)
+                .fromHttpUrl(toBackConfig.getBackUrl() + Category_URL + "/" + category)
                 .queryParam("page", pageable.getPageNumber())
-                .queryParam("size", pageable.getPageSize())
+                .queryParam("size", 8L)
                 .encode()
                 .toUriString();
         
