@@ -3,14 +3,12 @@ package me.emate.matefront.contents.dto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class ContentsDetailResponseDto {
     private Integer contentsNo;
     private String category;
@@ -22,4 +20,5 @@ public class ContentsDetailResponseDto {
     private Integer views;
     private Integer loving;
     private LocalDateTime createdAt;
+    private String thumbnail;
 }

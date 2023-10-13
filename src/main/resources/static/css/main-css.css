@@ -31,9 +31,11 @@ my-icons-size {
     border-radius: 50%;
     &:hover{
         background-color: #404040;
+        color: white;
     }
     &.active, &:active{
         background-color: #404040;
+        color: white;
     }
     &.active{  cursor: default;}
     &:active{ outline: none;}

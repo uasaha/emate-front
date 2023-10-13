@@ -154,10 +154,12 @@
       </div>
     </div>
     <div class="col-md-7">
-      <div class="row">
-
+      <div class="row col-12">
+        <h2 class="col-12" style="color: white; text-align: center; padding-top: 1em" th:text="${content.subject}"></h2>
+        <small class="col-12" th:text="${#temporals.format(content.createdAt, 'yyyy.MM.dd')}" style="color: white; text-align: center"></small>
       </div>
-      <div class="row">
+      <hr style="border: solid 1px white">
+      <div class="row col-12">
         <div id="viewer" style="padding-left: 1rem; padding-right: 1rem"></div>
       </div>
     </div>
