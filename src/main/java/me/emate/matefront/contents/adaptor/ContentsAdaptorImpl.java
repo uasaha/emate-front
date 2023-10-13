@@ -102,4 +102,23 @@ public class ContentsAdaptorImpl implements ContentsAdaptor {
                 new ParameterizedTypeReference<List<ContentsListResponseDto>>() {}
         ).getBody();
     }
+
+    @Override
+    public PageableResponse<ContentsListResponseDto> requestContentsTotal(Pageable pageable) {
+        HttpHeaders headers = makeHeader();
+        String url = UriComponentsBuilder
+                .fromHttpUrl(toBackConfig.getBackUrl() + CONTENTS_URL + "/total")
+                .queryParam("page", pageable.getPageNumber())
+                .queryParam("size", 8L)
+                .encode()
+                .toUriString();
+
+        return restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                new HttpEntity<>(headers),
+                new ParameterizedTypeReference<PageableResponse<ContentsListResponseDto>>() {
+                }
+        ).getBody();
+    }
 }

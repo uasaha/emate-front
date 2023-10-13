@@ -68,21 +68,32 @@ public class ContentsController {
 
     @GetMapping("/contents/{category}")
     public String viewContentsByCategory(@PathVariable String category,
-                                         @PageableDefault(size = 9) Pageable pageable,
+                                         @PageableDefault(size = 8) Pageable pageable,
                                          Model model) {
-        PageableResponse<ContentsListResponseDto> responses =
-                contentsService.requestContentsByCategory(category, pageable);
-
+        setContentsInModel(model, contentsService.requestContentsByCategory(category, pageable));
         model.addAttribute("categoryName", category);
+        utils.sidebarInModel(model);
+        utils.modelRequestMemberNo(model);
+
+        return "contents/list-contents";
+    }
+
+    @GetMapping("/contents/total")
+    public String viewTotalContents(@PageableDefault(size = 8) Pageable pageable,
+                                    Model model) {
+        setContentsInModel(model, contentsService.requestContentsTotal(pageable));
+        utils.sidebarInModel(model);
+        utils.modelRequestMemberNo(model);
+
+        return "contents/total-contents";
+    }
+
+    private static void setContentsInModel(Model model, PageableResponse<ContentsListResponseDto> responses) {
         model.addAttribute("contents", responses.getContents());
         model.addAttribute("total", responses.getTotalPages());
         model.addAttribute("current", responses.getCurrent());
         model.addAttribute("hasNext", responses.isHasNext());
         model.addAttribute("hasPrevious", responses.isHasPrevious());
         model.addAttribute("pageButton", 5);
-        utils.sidebarInModel(model);
-        utils.modelRequestMemberNo(model);
-
-        return "contents/list-contents";
     }
 }

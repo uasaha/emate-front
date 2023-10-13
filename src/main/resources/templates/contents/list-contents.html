@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title th:text="${categoryName}"></title>
+    <title th:text="'emate-'+${categoryName}"></title>
 
     <!--  Boot Strap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
@@ -112,7 +112,7 @@
                                     <img src="https://emate-bucket.s3.ap-northeast-2.amazonaws.com/mainthumb.jpeg" class="img-thumbnail">
                                     <p style="color: white">메이트의 개발 블로그입니다.</p>
                                     <div class="card" style="background-color: #303030; color: white; border: 0px solid; cursor : pointer;">
-                                        <div class="card-header" onclick="location.href='#'" >
+                                        <div class="card-header" onclick="location.href='/contents/total'" >
                                             <a class="accordion-icon" data-toggle="collapse">
                                                 <h5 class="py-2"> 전체 글 보기 <span><i class="fas"></i></span></h5>
                                             </a>

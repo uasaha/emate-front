@@ -56,6 +56,14 @@ public class ContentsServiceImpl implements ContentsService {
         return responses;
     }
 
+    @Override
+    public PageableResponse<ContentsListResponseDto> requestContentsTotal(Pageable pageable) {
+        PageableResponse<ContentsListResponseDto> responses = contentsAdaptor.requestContentsTotal(pageable);
+        setUrlPath(responses.getContents());
+
+        return responses;
+    }
+
     private static void setUrlPath(List<ContentsListResponseDto> responses) {
         for (ContentsListResponseDto response : responses) {
             response.setUrlPath(response.getSubject().replace(" ", "-"));

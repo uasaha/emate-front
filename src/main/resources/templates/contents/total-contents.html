@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="UTF-8">
-    <title>emate-회원가입</title>
+    <title>emate-posts</title>
+
     <!--  Boot Strap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -47,30 +47,10 @@
     <!--settings for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <style>
-        .bi {
-            vertical-align: -.125em;
-            fill: currentColor;
-        }
+    <!--custom-->
+    <link rel="stylesheet" href="/static/css/main-css.css">
+    <script src="/static/js/logout.js"></script>
 
-        .nav-scroller .nav {
-            display: flex;
-            flex-wrap: nowrap;
-            padding-bottom: 1rem;
-            margin-top: -1px;
-            overflow-x: auto;
-            text-align: center;
-            white-space: nowrap;
-            -webkit-overflow-scrolling: touch;
-        }
-    </style>
-
-    <!--Jquery-->
-    <script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-    <script>
-        let $jLatest = jQuery.noConflict();
-    </script>
-    <script src="/static/js/signup.js"></script>
 </head>
 <body style="font-family: 'Nanum Gothic', sans-serif; background-color: #252525; max-width: 100em; margin: auto !important;">
 <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #252525 !important;">
@@ -120,7 +100,7 @@
     </div>
 </nav>
 
-<div class="container-fluid" style="margin-top: 1rem; color: white">
+<div class="container-fluid" style="margin-top: 1rem;">
     <div class="row">
         <div class="col-md-3">
             <div class="flex-shrink-0 p-3 wd-100" style="background-color: #252525">
@@ -161,119 +141,45 @@
                 </section>
             </div>
         </div>
-        <div class="col-md-9">
-            <div class="col-md-7 col-lg-8 m-auto" style="max-width: 35em">
-                <h4 class="mb-3">회원가입</h4>
-                <form class="needs-validation" id="signupForm" action="/register" method="post">
-                    <div class="row g-3">
-                        <div class="col-2">
-                            <label for="memberId" class="form-label">아이디</label>
-                        </div>
-                        <div class="col-10">
-                            <div class="input-group has-validation">
-                                <input type="text" class="form-control" name="memberId" id="memberId" placeholder="아이디"
-                                       value="" required>
-                                <div class="invalid-feedback">
-                                    아이디를 입력해주세요.
+        <div class="col-md-7">
+            <!--            꾸미는 공간-->
+            <div class="album py-5 bg-body-tertiary">
+                <div class="container" style="margin-top: -2.5em; padding-right: 0; padding-left: 0;">
+                    <h2 style="color: white">Total Posts</h2>
+                    <hr style="border: solid 1px white">
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-3">
+                        <div class="col" th:each="content : ${contents}" style="margin-bottom: 2rem; cursor: pointer" th:data-url="${content.urlPath}" th:onclick="|location.href='/'+this.getAttribute('data-url')|">
+                            <div class="card shadow-sm" style="overflow: hidden">
+                                <div th:if="${content.thumbnail == null}">
+                                    <p th:text="${content.subject}" style="text-align: center; position: absolute; color: white; transform: translate(-50%, -50%); top: 37%; left: 50%; font-size: 2em"></p>
+                                    <img class="bd-placeholder-img card-img-top" src="https://emate-bucket.s3.ap-northeast-2.amazonaws.com/default_thumbnail.png" alt="thumbnail" width="100%" height="250" style="object-fit: cover"/>
                                 </div>
-                                <input id="id-check" type="hidden" value="0">
-                                <div class="button-box">
-                                    <div class="btn" style="background-color: #525252; color: white;"
-                                         onclick="idCheckFunc()">확인
+                                <div th:if="${content.thumbnail != null}">
+                                    <img class="bd-placeholder-img card-img-top" th:src="${content.thumbnail}" alt="thumbnail" width="100%" height="250" style="object-fit: cover"/>
+                                </div>
+                                <div class="card-body" style="background-color: #353535">
+                                    <p class="card-text" th:text="${content.subject}" style="color: white"></p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-body-secondary" th:text="${#temporals.format(content.createdAt, 'yyyy.MM.dd')}" style="color: white"></small>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12" style="text-align: center">
-                            <span>아이디는 최소 5자, 최대 20자입니다.</span>
-                        </div>
-
-                        <div class="col-2" style="margin-top: 1em;">
-                            <label for="pwd" class="form-label">비밀번호</label>
-                        </div>
-                        <div class="col-10" style="margin-top: 1em;">
-                            <input type="password" class="form-control" name="pwd" id="pwd" placeholder="비밀번호" value=""
-                                   required>
-                            <div class="invalid-feedback">
-                                비밀번호를 입력해주세요.
-                            </div>
-                        </div>
-
-                        <div class="col-2" style="margin-top: 1em;">
-                            <label for="pwd-check" class="form-label">비밀번호 확인</label>
-                        </div>
-                        <div class="col-10" style="margin-top: 1em;">
-                            <div class="input-group has-validation">
-                                <input type="password" class="form-control" id="pwd-check" placeholder="비밀번호" required>
-                                <div class="invalid-feedback">
-                                    비밀번호를 확인해주세요.
-                                </div>
-                                <input id="password-check" type="hidden" value="0">
-                                <div class="btn" style="background-color: #525252; color: white;" onclick="pwdCheck()">
-                                    확인
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12" style="text-align: center">
-                            <span>비밀번호는 특수문자, 영어 소문자, 숫자를 포함한 최소 8자, 최대 20자입니다.</span>
-                        </div>
-
-
-                        <div class="col-2" style="margin-top: 1em;">
-                            <label for="nickname" class="form-label">닉네임</label>
-                        </div>
-                        <div class="col-10" style="margin-top: 1em;">
-                            <div class="input-group has-validation">
-                                <input type="text" class="form-control" name="nickname" id="nickname" placeholder="닉네임"
-                                       required>
-                                <div class="invalid-feedback">
-                                    닉네임을 입력해주세요.
-                                </div>
-                                <input id="nick-check" type="hidden" value="0">
-                                <div class="btn" style="background-color: #525252; color: white;"
-                                     onclick="nickCheckFunc()">확인
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12" style="text-align: center">
-                            <span>닉네임은 최대 10자입니다.</span>
-                        </div>
-
-                        <div class="col-2" style="margin-top: 1em;">
-                            <label for="email" class="form-label">이메일</label>
-                        </div>
-                        <div class="col-10" style="margin-top: 1em;">
-                            <div class="input-group has-validation">
-                                <input type="text" class="form-control" name="email" id="email"
-                                       placeholder="email@email.com">
-                                <div class="invalid-feedback">
-                                    이메일을 입력해주세요.
-                                </div>
-                                <input id="email-check" type="hidden" value="0">
-                                <div class="btn" style="background-color: #525252; color: white;"
-                                     onclick="emailCheckFunc()">확인
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12" style="text-align: center">
-                            <span>이메일은 최대 30자입니다.</span>
-                        </div>
-
-                        <div class="col-2" style="margin-top: 1em;">
-                            <label for="intro" class="form-label">한줄소개</label>
-                        </div>
-                        <div class="col-10" style="margin-top: 1em;">
-                            <input type="text" class="form-control" name="intro" id="intro" placeholder="한줄소개"/>
-                        </div>
-                        <div class="col-12" style="text-align: center">
-                            <span>한줄소개는 최대 200자입니다.</span>
-                        </div>
                     </div>
-                    <button class="w-100 btn btn-lg" type="button" id="submitBtn" disabled="disabled"
-                            style="background-color: #525252; color: white; margin-top: 1em;" onclick="finalCheck()">
-                        가입하기
-                    </button>
-                </form>
+                    <ul class="pagination paging" th:if="${total!=0}">
+                        <li th:if="${hasPrevious==true}" style="cursor: pointer">
+                            <a th:data-cateurl="${categoryName}" th:data-preurl="${current}-1" th:onclick="|location.href='/contents/'+this.getAttribute('data-cateurl')+'?page='+this.getAttribute('data-preurl')|" class="prev">&laquo</a>
+                        </li>
+                        <li th:each="num : ${#numbers.sequence(1,total)}" style="cursor: pointer">
+                            <a class="active" th:if="${current+1==num}" th:text="${num}"></a>
+                            <a th:data-cateurl="${categoryName}" th:data-preurl="${num}-1" th:onclick="|location.href='/contents/'+this.getAttribute('data-cateurl')+'?page='+this.getAttribute('data-preurl')|" th:if="${current+1!=num}" th:text="${num}"></a>
+                        </li>
+                        <li th:if="${hasNext==true}" style="cursor: pointer">
+                            <a th:data-cateurl="${categoryName}" th:data-preurl="${current}+1" th:onclick="|location.href='/contents/'+this.getAttribute('data-cateurl')+'?page='+this.getAttribute('data-preurl')|" class="next">&raquo;</a>
+                        </li>
+                    </ul><br>
+
+                </div>
             </div>
         </div>
     </div>
