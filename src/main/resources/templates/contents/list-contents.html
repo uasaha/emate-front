@@ -165,6 +165,18 @@
                             </div>
                         </div>
                     </div>
+                    <ul class="pagination paging">
+                        <li th:if="${hasPrevious==true}" style="cursor: pointer">
+                            <a th:data-cateurl="${categoryName}" th:data-preurl="${current}-1" th:onclick="|location.href='/contents/'+this.getAttribute('data-cateurl')+'?page='+this.getAttribute('data-preurl')|" class="prev">&laquo</a>
+                        </li>
+                        <li th:each="num : ${#numbers.sequence(1,total)}" style="cursor: pointer">
+                            <a th:data-cateurl="${categoryName}" th:data-preurl="${num}-1" th:onclick="|location.href='/contents/'+this.getAttribute('data-cateurl')+'?page='+this.getAttribute('data-preurl')|" class="active" th:if="${current+1==num}" th:text="${num}"></a>
+                            <a th:data-cateurl="${categoryName}" th:data-preurl="${num}-1" th:onclick="|location.href='/contents/'+this.getAttribute('data-cateurl')+'?page='+this.getAttribute('data-preurl')|" th:if="${current+1!=num}" th:text="${num}"></a>
+                        </li>
+                        <li th:if="${hasNext==true}" style="cursor: pointer">
+                            <a th:data-cateurl="${categoryName}" th:data-preurl="${current}+1" th:onclick="|location.href='/contents/'+this.getAttribute('data-cateurl')+'?page='+this.getAttribute('data-preurl')|" class="next">&raquo;</a>
+                        </li>
+                    </ul><br>
 
                 </div>
             </div>

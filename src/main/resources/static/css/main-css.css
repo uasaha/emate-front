@@ -1,3 +1,40 @@
 my-icons-size {
     font-size: 25px;
 }
+
+.pagination {
+    list-style: none;
+    display: inline-block;
+    padding: 0;
+    margin-top: 10px;
+    box-sizing:border-box;
+    text-align: center;
+}
+
+.pagination li {
+    display: inline;
+    text-align: center;
+}
+
+.pagination a {
+    float: left;
+    display: block;
+    font-size: 14px;
+    text-decoration: none;
+    padding: 5px 12px;
+    color:#fff;
+    border:1px solid transparent;
+    margin-left: 3px;
+    width: 3em;
+    height: 3em;
+    line-height: 30px;
+    border-radius: 50%;
+    &:hover{
+        background-color: #404040;
+    }
+    &.active, &:active{
+        background-color: #404040;
+    }
+    &.active{  cursor: default;}
+    &:active{ outline: none;}
+}
