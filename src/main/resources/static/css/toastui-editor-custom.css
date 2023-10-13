@@ -33,6 +33,7 @@
 .toastui-editor-contents pre {
     background-color: #353535 !important;
     color: white !important;
+    margin-top: 1em;
 }
 
 .toastui-editor-contents pre code {
