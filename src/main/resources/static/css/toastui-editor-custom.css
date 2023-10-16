@@ -64,6 +64,7 @@
 }
 
 .toastui-editor-contents code {
+    font-family: 'Nanum Gothic', sans-serif;
     background-color: #4682B4;
     color: #252525;
 }
