@@ -45,7 +45,7 @@ public class ContentsController {
 
         String noBlankSubject = responseDto.getSubject().replace(" ", "-");
 
-        return "redirect:/contents/" + noBlankSubject;
+        return "redirect:/" + noBlankSubject;
     }
 
     @GetMapping("/{subject}")

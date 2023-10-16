@@ -154,6 +154,9 @@
             </div>
         </div>
         <div class="col-md-9">
+            <div class="col-md-12">
+                <input type="file" accept="image/*" id="file-select">
+            </div>
             <form action="/contents/register" method="post">
                 <div class="col-md-12">
                     <input type="text" class="form-control" id="subject" placeholder="제목" name="subject"
@@ -177,6 +180,7 @@
                             </div>
                         </select>
                 </div>
+                <input type="text" class="form-control" id="thumbnail" placeholder="썸네일" name="thumbnail">
                     <div id="content"></div>
                     <button type="button" class="btn btn-primary"
                             id="detailAdd" onclick="getDescription()">내용 저장</button>
