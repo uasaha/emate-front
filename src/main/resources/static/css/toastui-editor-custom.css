@@ -2,18 +2,21 @@
     font-family: 'Nanum Gothic', sans-serif;
     color: white !important;
     font-size: 15px !important;
+    font-weight: bold;
 }
 
 .toastui-editor-contents h1 {
     font-family: 'Nanum Gothic', sans-serif;
     color: white !important;
     font-size: 30px !important;
+    font-weight: bold;
 }
 
 .toastui-editor-contents h2 {
     font-family: 'Nanum Gothic', sans-serif;
     color: white !important;
     font-size: 25px !important;
+    font-weight: bold;
 }
 
 .toastui-editor-contents h3,
@@ -23,6 +26,7 @@
     font-family: 'Nanum Gothic', sans-serif;
     color: white !important;
     font-size: 20px !important;
+    font-weight: bold;
 }
 
 
