@@ -1,14 +1,17 @@
 .toastui-editor-contents p {
+    font-family: 'Nanum Gothic', sans-serif;
     color: white !important;
     font-size: 15px !important;
 }
 
 .toastui-editor-contents h1 {
+    font-family: 'Nanum Gothic', sans-serif;
     color: white !important;
     font-size: 30px !important;
 }
 
 .toastui-editor-contents h2 {
+    font-family: 'Nanum Gothic', sans-serif;
     color: white !important;
     font-size: 25px !important;
 }
@@ -17,34 +20,46 @@
 .toastui-editor-contents h4,
 .toastui-editor-contents h5,
 .toastui-editor-contents h6 {
+    font-family: 'Nanum Gothic', sans-serif;
     color: white !important;
     font-size: 20px !important;
 }
 
 
 .toastui-editor-defaultUI .ProseMirror {
+    font-family: 'Nanum Gothic', sans-serif;
     color: white !important;
 }
 
 .toastui-editor-md-code-block-line-background {
+    font-family: 'Nanum Gothic', sans-serif;
     background-color: #353535 !important;
 }
 
 .toastui-editor-contents pre {
+    font-family: 'Nanum Gothic', sans-serif;
     background-color: #353535 !important;
     color: white !important;
     margin-top: 1em;
 }
 
 .toastui-editor-contents pre code {
+    font-family: 'Nanum Gothic', sans-serif;
     font-size: 15px !important;
 }
 
 .language-css .token.string, .style .token.string, .token.entity, .token.operator, .token.url {
+    font-family: 'Nanum Gothic', sans-serif;
     background: #353535 !important;
 }
 
 .toastui-editor-contents table td, .toastui-editor-contents table th {
+    font-family: 'Nanum Gothic', sans-serif;
     border: 1px solid white !important;
     color: white !important;
+}
+
+.toastui-editor-contents code {
+    background-color: #4682B4;
+    color: #252525;
 }
