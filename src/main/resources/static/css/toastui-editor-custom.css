@@ -40,20 +40,31 @@
 }
 
 .toastui-editor-contents pre {
-    font-family: 'Nanum Gothic', sans-serif;
+    font-family: 'Nanum Gothic Coding', sans-serif;
     background-color: #353535 !important;
     color: white !important;
     margin-top: 1em;
 }
 
 .toastui-editor-contents pre code {
-    font-family: 'Nanum Gothic', sans-serif;
+    font-family: 'Nanum Gothic Coding', sans-serif;
     font-size: 15px !important;
 }
 
-.language-css .token.string, .style .token.string, .token.entity, .token.operator, .token.url {
-    font-family: 'Nanum Gothic', sans-serif;
+.language-css .token.string, .style .token.string, .token.entity, .token.url {
+    font-family: 'Nanum Gothic Coding', sans-serif;
     background: #353535 !important;
+}
+
+.token.operator {
+    font-family: 'Nanum Gothic Coding', sans-serif;
+    color: white !important;
+    background-color: #353535 !important;
+}
+
+.token.number {
+    font-family: 'Nanum Gothic Coding', sans-serif;
+    color: coral !important;
 }
 
 .toastui-editor-contents table td, .toastui-editor-contents table th {
@@ -63,7 +74,7 @@
 }
 
 .toastui-editor-contents code {
-    font-family: 'Nanum Gothic', sans-serif;
+    font-family: 'Nanum Gothic Coding', sans-serif;
     background-color: #4682B4;
     color: #252525;
 }
