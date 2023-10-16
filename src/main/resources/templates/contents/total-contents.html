@@ -112,7 +112,7 @@
                                     <img src="https://emate-bucket.s3.ap-northeast-2.amazonaws.com/mainthumb.jpeg" class="img-thumbnail">
                                     <p style="color: white">메이트의 개발 블로그입니다.</p>
                                     <div class="card" style="background-color: #303030; color: white; border: 0px solid; cursor : pointer;">
-                                        <div class="card-header" onclick="location.href='/contents/total'" >
+                                        <div class="card-header" onclick="location.href='/contents'" >
                                             <a class="accordion-icon" data-toggle="collapse">
                                                 <h5 class="py-2"> 전체 글 보기 <span><i class="fas"></i></span></h5>
                                             </a>
@@ -168,14 +168,14 @@
                     </div>
                     <ul class="pagination paging" th:if="${total!=0}">
                         <li th:if="${hasPrevious==true}" style="cursor: pointer">
-                            <a th:data-cateurl="${categoryName}" th:data-preurl="${current}-1" th:onclick="|location.href='/contents/'+this.getAttribute('data-cateurl')+'?page='+this.getAttribute('data-preurl')|" class="prev">&laquo</a>
+                            <a th:data-preurl="${current}-1" th:onclick="|location.href='/contents?page='+this.getAttribute('data-preurl')|" class="prev">&laquo</a>
                         </li>
                         <li th:each="num : ${#numbers.sequence(1,total)}" style="cursor: pointer">
                             <a class="active" th:if="${current+1==num}" th:text="${num}"></a>
-                            <a th:data-cateurl="${categoryName}" th:data-preurl="${num}-1" th:onclick="|location.href='/contents/'+this.getAttribute('data-cateurl')+'?page='+this.getAttribute('data-preurl')|" th:if="${current+1!=num}" th:text="${num}"></a>
+                            <a th:data-preurl="${num}-1" th:onclick="|location.href='/contents?page='+this.getAttribute('data-preurl')|" th:if="${current+1!=num}" th:text="${num}"></a>
                         </li>
                         <li th:if="${hasNext==true}" style="cursor: pointer">
-                            <a th:data-cateurl="${categoryName}" th:data-preurl="${current}+1" th:onclick="|location.href='/contents/'+this.getAttribute('data-cateurl')+'?page='+this.getAttribute('data-preurl')|" class="next">&raquo;</a>
+                            <a th:data-preurl="${current}+1" th:onclick="|location.href='/contents?page='+this.getAttribute('data-preurl')|" class="next">&raquo;</a>
                         </li>
                     </ul><br>
 

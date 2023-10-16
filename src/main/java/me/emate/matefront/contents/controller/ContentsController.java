@@ -78,7 +78,7 @@ public class ContentsController {
         return "contents/list-contents";
     }
 
-    @GetMapping("/contents/total")
+    @GetMapping("/contents")
     public String viewTotalContents(@PageableDefault(size = 8) Pageable pageable,
                                     Model model) {
         setContentsInModel(model, contentsService.requestContentsTotal(pageable));
