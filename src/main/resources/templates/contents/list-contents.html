@@ -163,7 +163,9 @@
                                     <img class="bd-placeholder-img card-img-top" th:src="${content.thumbnail}" alt="thumbnail" width="100%" height="250" style="object-fit: cover"/>
                                 </div>
                                 <div class="card-body" style="background-color: #353535">
+                                    <a th:href="@{/{subject-url}(subject-url=${content.urlPath})}">
                                     <p class="card-text" th:text="${content.subject}" style="color: white"></p>
+                                    </a>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <small class="text-body-secondary" th:text="${#temporals.format(content.createdAt, 'yyyy.MM.dd')}" style="color: white"></small>
                                     </div>
@@ -173,14 +175,14 @@
                     </div>
                     <ul class="pagination paging" th:if="${total!=0}">
                         <li th:if="${hasPrevious==true}" style="cursor: pointer">
-                            <a th:data-cateurl="${categoryName}" th:data-preurl="${current}-1" th:onclick="|location.href='/contents/'+this.getAttribute('data-cateurl')+'?page='+this.getAttribute('data-preurl')|" class="prev">&laquo</a>
+                            <a th:href="|@{/contents/{cate-url}?page={pre-url}(cate-url=${categoryName}, pre-url=${current}-1)}|" class="prev">&laquo</a>
                         </li>
                         <li th:each="num : ${#numbers.sequence(1,total)}" style="cursor: pointer">
                             <a class="active" th:if="${current+1==num}" th:text="${num}"></a>
-                            <a th:data-cateurl="${categoryName}" th:data-preurl="${num}-1" th:onclick="|location.href='/contents/'+this.getAttribute('data-cateurl')+'?page='+this.getAttribute('data-preurl')|" th:if="${current+1!=num}" th:text="${num}"></a>
+                            <a th:href="|@{/contents/{cate-url}?page={pre-url}(cate-url=${categoryName}, pre-url=${num}-1)}|" th:if="${current+1!=num}" th:text="${num}"></a>
                         </li>
                         <li th:if="${hasNext==true}" style="cursor: pointer">
-                            <a th:data-cateurl="${categoryName}" th:data-preurl="${current}+1" th:onclick="|location.href='/contents/'+this.getAttribute('data-cateurl')+'?page='+this.getAttribute('data-preurl')|" class="next">&raquo;</a>
+                            <a th:href="|@{/contents/{cate-url}?page={pre-url}(cate-url=${categoryName}, pre-url=${current}+1)}|" class="next">&raquo;</a>
                         </li>
                     </ul><br>
 
