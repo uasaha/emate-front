@@ -146,6 +146,7 @@
         <div class="container" style="margin-top: -2.5em; padding-right: 0; padding-left: 0;">
           <h2 style="color: white" th:text="${keyword} + ': 검색결과'"></h2>
           <hr style="border: solid 1px white">
+          <h2 style="color: white; text-align: center" th:if="${contents.size()} == 0">검색 결과가 존재하지 않습니다.</h2>
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-3">
             <div class="col" th:each="content : ${contents}" style="margin-bottom: 2rem; cursor: pointer" th:data-url="${content.urlPath}" th:onclick="|location.href='/'+this.getAttribute('data-url')|">
               <div class="card shadow-sm" style="overflow: hidden">
