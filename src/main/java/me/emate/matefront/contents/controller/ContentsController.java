@@ -59,9 +59,18 @@ public class ContentsController {
             throw new NotAuthorizedException();
         }
 
+        final int maxSize = 77;
+
         utils.sidebarInModel(model);
         utils.modelRequestMemberNo(model);
         model.addAttribute("content", responseDto);
+        model.addAttribute("urlPath", responseDto.getSubject().replace(" ", "-"));
+
+        if(responseDto.getDetail().length() > maxSize) {
+            model.addAttribute("description", responseDto.getDetail().substring(0, maxSize));
+        } else {
+            model.addAttribute("description", responseDto.getDetail());
+        }
 
         return "contents/detail-contents";
     }
@@ -74,6 +83,7 @@ public class ContentsController {
         model.addAttribute("categoryName", category);
         utils.sidebarInModel(model);
         utils.modelRequestMemberNo(model);
+        model.addAttribute("urlPath", "/contents/" + category);
 
         return "contents/list-contents";
     }

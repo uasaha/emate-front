@@ -123,9 +123,9 @@
                                     <img src="https://emate-bucket.s3.ap-northeast-2.amazonaws.com/mainthumb.jpeg" class="img-thumbnail">
                                     <p style="color: white">메이트의 개발 블로그입니다.</p>
                                     <div class="card" style="background-color: #303030; color: white; border: 0px solid; cursor : pointer;">
-                                        <div class="card-header" onclick="location.href='/contents'" >
-                                            <a class="accordion-icon" data-toggle="collapse">
-                                                <h5 class="py-2"> 전체 글 보기 <span><i class="fas"></i></span></h5>
+                                        <div class="card-header">
+                                            <a class="link-body-emphasis align-items-center d-inline-flex" style="color: white; font-size: 19px" href="/contents">
+                                                <p class="py-2"> 전체 글 보기</p>
                                             </a>
                                         </div>
                                     </div>
@@ -137,8 +137,8 @@
                                         </div>
                                         <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                                             <div class="card-body">
-                                                <div th:each="category : ${categories}" th:data-cateurl="${category.categoryName}" th:onclick="|location.href='/contents/'+this.getAttribute('data-cateurl')|" style="cursor: pointer">
-                                                    <a href="#" class="link-body-emphasis align-items-center d-inline-flex" style="color: white">
+                                                <div th:each="category : ${categories}"  style="cursor: pointer">
+                                                    <a class="link-body-emphasis align-items-center d-inline-flex" style="color: white" th:href="@{/contents/{cate-url}(cate-url=${category.categoryName})}">
                                                         <p th:text="${category.categoryName}"></p><p>(</p><p th:text="${category.contentsCnt}"></p><p>)</p>
                                                     </a>
                                                 </div>
