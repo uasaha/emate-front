@@ -6,10 +6,11 @@
   <title th:text="${content.subject}"></title>
   <meta property="og:url" th:content="'https://emate.me/'+${urlPath}">
   <meta property="og:title" th:content="${content.subject}">
-  <meta data-rh="true" property="og:type" content="article">
+  <meta property="og:type" content="article">
   <meta property="og:locale" content="ko">
-  <meta data-rh="true" property="og:description" th:content="${description}">
-  <meta data-rh="true" property="description" th:content="${description}">
+  <meta property="og:description" th:content="${description}">
+  <meta name="description" th:content="${description}">
+  <meta property="og:image" content="/static/img/favicon/apple-icon-180x180.png">
 
 
   <!--  Boot Strap-->
