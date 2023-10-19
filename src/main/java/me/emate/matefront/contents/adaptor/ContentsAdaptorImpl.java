@@ -121,4 +121,24 @@ public class ContentsAdaptorImpl implements ContentsAdaptor {
                 }
         ).getBody();
     }
+
+    @Override
+    public PageableResponse<ContentsListResponseDto> requestContentsContainsKeyword(String key, Pageable pageable) {
+        HttpHeaders headers = makeHeader();
+        String url = UriComponentsBuilder
+                .fromHttpUrl(toBackConfig.getBackUrl() + CONTENTS_URL + "/search")
+                .queryParam("key", key)
+                .queryParam("page", pageable.getPageNumber())
+                .queryParam("size", 8L)
+                .encode()
+                .toUriString();
+
+        return restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                new HttpEntity<>(headers),
+                new ParameterizedTypeReference<PageableResponse<ContentsListResponseDto>>() {
+                }
+        ).getBody();
+    }
 }

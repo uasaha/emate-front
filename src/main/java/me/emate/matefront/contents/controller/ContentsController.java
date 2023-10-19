@@ -88,6 +88,18 @@ public class ContentsController {
         return "contents/total-contents";
     }
 
+    @GetMapping("/contents/search")
+    public String viewContentsSearch(@PageableDefault(size = 8) Pageable pageable,
+                                     Model model,
+                                     @RequestParam("key") String key) {
+        setContentsInModel(model, contentsService.requestContentsContainsKeyword(key, pageable));
+        model.addAttribute("keyword", key);
+        utils.sidebarInModel(model);
+        utils.modelRequestMemberNo(model);
+
+        return "contents/contents-search";
+    }
+
     private static void setContentsInModel(Model model, PageableResponse<ContentsListResponseDto> responses) {
         model.addAttribute("contents", responses.getContents());
         model.addAttribute("total", responses.getTotalPages());

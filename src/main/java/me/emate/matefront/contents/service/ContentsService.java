@@ -22,4 +22,6 @@ public interface ContentsService {
     List<ContentsListResponseDto> requestLatestContents();
 
     PageableResponse<ContentsListResponseDto> requestContentsTotal(Pageable pageable);
+
+    PageableResponse<ContentsListResponseDto> requestContentsContainsKeyword(String key, Pageable pageable);
 }

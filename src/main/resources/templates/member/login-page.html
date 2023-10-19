@@ -78,6 +78,7 @@
         let $jLatest = jQuery.noConflict();
     </script>
     <script src="/static/js/signup.js"></script>
+    <script src="/static/js/search.js"></script>
 </head>
 
 <body style="font-family: 'Nanum Gothic', sans-serif; background-color: #252525; max-width: 100em; margin: auto !important;">
@@ -105,7 +106,12 @@
             </li>
         </ul>
 
-        <ul class="navbar-nav ml-auto" style="float: right">
+        <form class="form-inline mt-2 mt-md-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="" aria-label="Search" id="search-input" onkeyup="search()">
+            <button class="btn text-white" style="background-color: #404040" type="button" onclick="search()">Search</button>
+        </form>
+
+        <ul class="navbar-nav" style="float: right">
             <li th:if="${memberNo}==1" class="nav-item active">
                 <a class="nav-link" href="/contents/register"><i class="bi bi-pencil my-icons-size"></i></a>
             </li>
@@ -119,12 +125,6 @@
                 <a class="nav-link" href="/logout"><i class="bi bi-door-open-fill my-icons-size"></i></a>
             </li>
         </ul>
-
-        <!--search 추후 추가-->
-        <!--<form class="form-inline mt-2 mt-md-0">-->
-        <!--<input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">-->
-        <!--<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
-        <!--</form>-->
     </div>
 </nav>
 
@@ -174,9 +174,9 @@
                 <form>
                     <img class="mb-4" src="/static/img/favicon/apple-icon-76x76.png" alt="" width="57" height="57">
                     <h1 class="h3 mb-3 fw-normal" style="color: white">로그인</h1>
-                    <input type="id" class="form-control" id="log-id" placeholder="ID">
+                    <input type="id" class="form-control" id="log-id" placeholder="ID" onkeyup="loginSubmit()">
                     <input type="password" class="form-control" id="log-pwd" style="margin-top: 1em"
-                           placeholder="Password">
+                           placeholder="Password" onkeyup="loginSubmit()">
                     <button type="button" class="btn w-100 py-2"
                             style="background-color: #525252; color: white; margin-top: 1em;" onclick="loginSubmit()">
                         로그인
