@@ -1,3 +1,6 @@
+const idInputForEvent = document.getElementById("log-id");
+const pwdInputForEvent = document.getElementById("log-pwd");
+
 function loginSubmit() {
     let idInput = document.getElementById("log-id");
     let pwdInput = document.getElementById("log-pwd");
@@ -28,3 +31,17 @@ function loginSubmit() {
         })
     }
 }
+
+idInputForEvent.addEventListener("keydown", function withEnter() {
+    if (event.keyCode === 13) {
+        const loginButton = document.getElementById("login-button");
+        loginButton.click();
+    }
+});
+
+pwdInputForEvent.addEventListener("keydown", function withEnter() {
+    if (event.keyCode === 13) {
+        const loginButton = document.getElementById("login-button");
+        loginButton.click();
+    }
+});
