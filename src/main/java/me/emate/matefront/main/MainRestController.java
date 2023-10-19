@@ -20,7 +20,18 @@ public class MainRestController {
     @GetMapping(value = "/robots.txt", produces = MediaType.TEXT_PLAIN_VALUE)
     public @ResponseBody byte[] getRobots() throws IOException {
         InputStream txt = getClass().getResourceAsStream("/static/robots.txt");
-        assert txt != null;
+        if (txt == null) {
+            return null;
+        }
         return IOUtils.toByteArray(txt);
+    }
+
+    @GetMapping(value = "/sitemap.xml", produces = MediaType.APPLICATION_XML_VALUE)
+    public @ResponseBody byte[] getSiteMap() throws IOException {
+        InputStream xml = getClass().getResourceAsStream("/static/sitemap.xml");
+        if (xml == null) {
+            return null;
+        }
+        return IOUtils.toByteArray(xml);
     }
 }
