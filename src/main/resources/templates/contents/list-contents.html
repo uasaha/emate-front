@@ -187,11 +187,11 @@
                             </div>
                         </div>
                     </div>
-                    <ul class="pagination paging" th:if="${total!=0}">
+                    <ul class="pagination paging" th:if="${totalPage!=0}">
                         <li th:if="${hasPrevious==true}" style="cursor: pointer">
                             <a th:href="|@{/contents/{cate-url}?page={pre-url}(cate-url=${categoryName}, pre-url=${current}-1)}|" class="prev">&laquo</a>
                         </li>
-                        <li th:each="num : ${#numbers.sequence(1,total)}" style="cursor: pointer">
+                        <li th:each="num : ${#numbers.sequence(1,totalPage)}" style="cursor: pointer">
                             <a class="active" th:if="${current+1==num}" th:text="${num}"></a>
                             <a th:href="|@{/contents/{cate-url}?page={pre-url}(cate-url=${categoryName}, pre-url=${num}-1)}|" th:if="${current+1!=num}" th:text="${num}"></a>
                         </li>

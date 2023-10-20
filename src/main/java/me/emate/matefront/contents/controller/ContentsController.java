@@ -112,7 +112,7 @@ public class ContentsController {
 
     private static void setContentsInModel(Model model, PageableResponse<ContentsListResponseDto> responses) {
         model.addAttribute("contents", responses.getContents());
-        model.addAttribute("total", responses.getTotalPages());
+        model.addAttribute("totalPage", responses.getTotalPages());
         model.addAttribute("current", responses.getCurrent());
         model.addAttribute("hasNext", responses.isHasNext());
         model.addAttribute("hasPrevious", responses.isHasPrevious());

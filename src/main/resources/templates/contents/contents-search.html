@@ -184,11 +184,11 @@
               </div>
             </div>
           </div>
-          <ul class="pagination paging" th:if="${total!=0}">
+          <ul class="pagination paging" th:if="${totalPage!=0}">
             <li th:if="${hasPrevious==true}" style="cursor: pointer">
               <a th:data-preurl="${current}-1" th:data-key="${keyword}" th:onclick="|location.href='/contents/search'+ this.getAttribute('data-key') +'?page='+this.getAttribute('data-preurl')|" class="prev">&laquo</a>
             </li>
-            <li th:each="num : ${#numbers.sequence(1,total)}" style="cursor: pointer">
+            <li th:each="num : ${#numbers.sequence(1,totalPage)}" style="cursor: pointer">
               <a class="active" th:if="${current+1==num}" th:text="${num}"></a>
               <a th:data-preurl="${num}-1" th:data-key="${keyword}" th:onclick="|location.href='/contents/search'+ this.getAttribute('data-key') +'?page='+this.getAttribute('data-preurl')|" th:if="${current+1!=num}" th:text="${num}"></a>
             </li>
