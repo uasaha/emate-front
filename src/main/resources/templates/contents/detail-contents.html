@@ -3,15 +3,17 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title th:text="${content.subject}"></title>
+  <title th:text="${content.subject} + '- 메이트 개발 블로그'"></title>
   <meta property="og:url" th:content="'https://emate.me/'+${urlPath}">
-  <meta property="og:title" th:content="${content.subject}">
+  <meta property="og:title" th:content="${content.subject} + '- 메이트 개발 블로그'">
   <meta property="og:type" content="article">
   <meta property="og:locale" content="ko">
   <meta property="og:description" th:content="${description}">
   <meta name="description" th:content="${description}">
   <meta property="og:image" th:if="${content.thumbnail == null}" content="/static/img/favicon/apple-icon-180x180.png">
   <meta property="og:image" th:if="${content.thumbnail != null}" th:content="${content.thumbnail}">
+  <meta name="date" th:content="${#temporals.format(content.createdAt, 'yyyy-MM.-dd')}">
+  <meta name="robots" content="index, follow">
 
   <!--  Boot Strap-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
@@ -178,7 +180,7 @@
     <div class="col-md-7">
       <div class="col-12">
         <h2 class="col-12" style="color: white; text-align: center; padding-top: 1em" th:text="${content.subject}"></h2>
-        <small class="col-12 d-flex justify-content-center" th:text="${#temporals.format(content.createdAt, 'yyyy.MM.dd')}" style="color: white; text-align: center"></small>
+        <small class="col-12 d-flex justify-content-center" th:text="${#temporals.format(content.createdAt, 'yyyy. MM. dd')}" style="color: white; text-align: center"></small>
       </div>
       <hr style="border: solid 1px white; max-width: 96%">
       <div id="viewer" style="padding-left: 1rem; padding-right: 1rem" class="col-12 my-font"></div>
