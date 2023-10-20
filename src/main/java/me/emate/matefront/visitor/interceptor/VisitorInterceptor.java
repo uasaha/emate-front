@@ -15,7 +15,7 @@ import java.util.Set;
 @RequiredArgsConstructor
 @Component
 public class VisitorInterceptor implements HandlerInterceptor {
-    private static final String VISITOR_KEY = "visitor";
+    public static final String VISITOR_KEY = "visitor";
     public static final String TODAY_KEY = "today";
     private final RedisTemplate<String, String> redisTemplate;
 
