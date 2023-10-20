@@ -10,8 +10,8 @@
   <meta property="og:locale" content="ko">
   <meta property="og:description" th:content="${description}">
   <meta name="description" th:content="${description}">
-  <meta property="og:image" content="/static/img/favicon/apple-icon-180x180.png">
-
+  <meta property="og:image" th:if="${content.thumbnail == null}" content="/static/img/favicon/apple-icon-180x180.png">
+  <meta property="og:image" th:if="${content.thumbnail != null}" th:content="${content.thumbnail}">
 
   <!--  Boot Strap-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
