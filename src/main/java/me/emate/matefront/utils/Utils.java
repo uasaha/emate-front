@@ -10,6 +10,7 @@ import me.emate.matefront.category.service.CategoryService;
 import me.emate.matefront.member.dto.MemberDetailResponseDto;
 import me.emate.matefront.tag.dto.TagListResponseDto;
 import me.emate.matefront.tag.service.TagService;
+import me.emate.matefront.visitor.service.VisitorService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -28,6 +29,7 @@ import java.util.Objects;
 public class Utils {
     private final TagService tagService;
     private final CategoryService categoryService;
+    private final VisitorService visitorService;
     private final ObjectMapper objectMapper;
 
     public static HttpHeaders makeHeader() {
@@ -50,7 +52,11 @@ public class Utils {
     public void sidebarInModel(Model model) {
         List<CategoryListResponseDto> categoryListResponseDtoList = categoryService.getAllCategories();
         List<TagListResponseDto> tagListResponseDtoList = tagService.getAllTags();
+        Integer today = visitorService.getTodayVisitor();
+        Integer total = visitorService.getTotalVisitor();
 
+        model.addAttribute("today", today);
+        model.addAttribute("total", total + today);
         model.addAttribute("categories", categoryListResponseDtoList);
         model.addAttribute("tags", tagListResponseDtoList);
     }

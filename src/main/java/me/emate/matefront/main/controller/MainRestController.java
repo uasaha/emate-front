@@ -1,4 +1,4 @@
-package me.emate.matefront.main;
+package me.emate.matefront.main.controller;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.http.MediaType;

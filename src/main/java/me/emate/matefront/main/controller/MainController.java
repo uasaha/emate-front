@@ -1,4 +1,4 @@
-package me.emate.matefront.main;
+package me.emate.matefront.main.controller;
 
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
