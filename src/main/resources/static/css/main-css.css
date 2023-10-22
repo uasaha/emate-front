@@ -40,3 +40,9 @@ my-icons-size {
     &.active{  cursor: default;}
     &:active{ outline: none;}
 }
+
+.today-count-div {
+    border: 1px solid white;
+    margin-top: 2em;
+    border-radius: 1%;
+}
