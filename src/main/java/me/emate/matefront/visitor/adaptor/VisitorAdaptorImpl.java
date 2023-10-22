@@ -2,6 +2,8 @@ package me.emate.matefront.visitor.adaptor;
 
 import lombok.RequiredArgsConstructor;
 import me.emate.matefront.config.ToBackConfig;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -12,6 +14,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import static me.emate.matefront.utils.Utils.makeHeader;
 
 @Component
+@Scope(value = "request", proxyMode = ScopedProxyMode.TARGET_CLASS)
 @RequiredArgsConstructor
 public class VisitorAdaptorImpl implements VisitorAdaptor {
     private final RestTemplate restTemplate;
