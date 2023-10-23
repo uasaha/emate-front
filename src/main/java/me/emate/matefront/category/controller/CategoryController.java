@@ -30,7 +30,6 @@ public class CategoryController {
         model.addAttribute("categoryName", category);
         utils.sidebarInModel(model);
         utils.modelRequestMemberNo(model);
-        model.addAttribute("urlPath", "/contents/" + category);
 
         return "contents/list-contents";
     }
