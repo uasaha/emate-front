@@ -161,10 +161,10 @@
                 <div class="today-count-div">
                   <div style="text-align: center; border-radius: 2%; margin-top: 1em">
                     <div>
-                      <h1 style="color: white; font-size: 15px">Total</h1>
+                      <h2 style="color: white; font-size: 15px">Total</h2>
                     </div>
                     <div>
-                      <h1 style="color: white; font-size: 25px;" th:text="${total}"></h1>
+                      <h2 style="color: white; font-size: 25px;" th:text="${total}"></h2>
                     </div>
                     <div>
                       <p style="color: white; font-size: 15px" th:text="'Today : ' + ${today}"></p>
@@ -179,7 +179,7 @@
     </div>
     <div class="col-md-7">
       <div class="col-12">
-        <h2 class="col-12" style="color: white; text-align: center; padding-top: 1em" th:text="${content.subject}"></h2>
+        <h1 class="col-12" style="color: white; text-align: center; padding-top: 1em; font-size: 35px" th:text="${content.subject}"></h1>
         <small class="col-12 d-flex justify-content-center" th:text="${#temporals.format(content.createdAt, 'yyyy. MM. dd')}" style="color: white; text-align: center"></small>
       </div>
       <hr style="border: solid 1px white; max-width: 96%">
