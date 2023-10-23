@@ -168,8 +168,8 @@
                     <hr style="border: solid 1px white">
                     <h2 style="color: white; text-align: center" th:if="${contents.size()} == 0">포스트가 존재하지 않습니다.</h2>
                     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-3">
-                        <div class="col" th:each="content : ${contents}" style="margin-bottom: 2rem; cursor: pointer" th:data-url="${content.urlPath}" th:onclick="|location.href='/'+this.getAttribute('data-url')|">
-                            <div class="card shadow-sm" style="overflow: hidden">
+                        <div class="col" th:each="content : ${contents}" style="margin-bottom: 2rem;">
+                            <div class="card shadow-sm" style="overflow: hidden; cursor: pointer" th:data-url="${content.urlPath}" th:onclick="|location.href='/'+this.getAttribute('data-url')|">
                                 <div th:if="${content.thumbnail == null}">
                                     <p th:text="${content.subject}" style="text-align: center; position: absolute; color: white; transform: translate(-50%, -50%); top: 37%; left: 50%; font-size: 2em"></p>
                                     <img class="bd-placeholder-img card-img-top" src="https://emate-bucket.s3.ap-northeast-2.amazonaws.com/default_thumbnail.png" alt="thumbnail" width="100%" height="250" style="object-fit: cover"/>
