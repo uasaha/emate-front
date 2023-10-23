@@ -1,4 +1,5 @@
 editor.addHook("addImageBlobHook", function (blob, callback) {
+    showSpinner();
     const formData = new FormData();
     formData.append('file', blob);
 
@@ -12,10 +13,13 @@ editor.addHook("addImageBlobHook", function (blob, callback) {
         data: formData,
         success: function (response) {
             callback(response, 'Image')
+            hideSpinner();
         },
         error: function () {
             callback('image_upload_fail', 'Image')
-        }
+            hideSpinner();
+        },
+
     })
 })
 
@@ -23,6 +27,7 @@ const fileSelected = document.getElementById("file-select")
 fileSelected.addEventListener('change', getImageFiles);
 
 function getImageFiles(e) {
+    showSpinner();
     const files = e.currentTarget.files;
     console.log(typeof files, files);
     const fileUrl = document.getElementById("thumbnail");
@@ -39,10 +44,19 @@ function getImageFiles(e) {
         data: formData,
         success: function (response) {
             fileUrl.value = response;
+            hideSpinner();
         },
         error: function () {
             fileUrl.value = 'Image Upload Failed!';
+            hideSpinner();
         }
     })
 }
 
+function showSpinner() {
+    document.getElementsByClassName('layerPopup')[0].style.display='block';
+}
+
+function hideSpinner() {
+    document.getElementsByClassName('layerPopup')[0].style.display='none';
+}

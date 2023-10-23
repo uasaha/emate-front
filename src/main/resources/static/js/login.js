@@ -2,6 +2,7 @@ const idInputForEvent = document.getElementById("log-id");
 const pwdInputForEvent = document.getElementById("log-pwd");
 
 function loginSubmit() {
+    showSpinner();
     let idInput = document.getElementById("log-id");
     let pwdInput = document.getElementById("log-pwd");
 
@@ -45,3 +46,7 @@ pwdInputForEvent.addEventListener("keydown", function withEnter() {
         loginButton.click();
     }
 });
+
+function showSpinner() {
+    document.getElementsByClassName('layerPopup')[0].style.display='block';
+}
