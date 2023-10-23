@@ -18,11 +18,12 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @Controller
 @RequiredArgsConstructor
+@RequestMapping("/contents")
 public class ContentsController {
     private final Utils utils;
     private final ContentsService contentsService;
 
-    @GetMapping("/contents/register")
+    @GetMapping("/register")
     public String registerContentsView(Model model) {
         if(!utils.getMemberNo().equals(1)) {
             throw new NotAuthorizedException();
@@ -34,7 +35,7 @@ public class ContentsController {
         return "contents/register-contents";
     }
 
-    @PostMapping("/contents/register")
+    @PostMapping("/register")
     public String registerContents(CreateContentsRequestDto requestDto) {
         if(!utils.getMemberNo().equals(1)) {
             throw new NotAuthorizedException();
@@ -75,20 +76,7 @@ public class ContentsController {
         return "contents/detail-contents";
     }
 
-    @GetMapping("/contents/{category}")
-    public String viewContentsByCategory(@PathVariable String category,
-                                         @PageableDefault(size = 8) Pageable pageable,
-                                         Model model) {
-        setContentsInModel(model, contentsService.requestContentsByCategory(category, pageable));
-        model.addAttribute("categoryName", category);
-        utils.sidebarInModel(model);
-        utils.modelRequestMemberNo(model);
-        model.addAttribute("urlPath", "/contents/" + category);
-
-        return "contents/list-contents";
-    }
-
-    @GetMapping("/contents")
+    @GetMapping
     public String viewTotalContents(@PageableDefault(size = 8) Pageable pageable,
                                     Model model) {
         setContentsInModel(model, contentsService.requestContentsTotal(pageable));
@@ -98,7 +86,7 @@ public class ContentsController {
         return "contents/total-contents";
     }
 
-    @GetMapping("/contents/search")
+    @GetMapping("/search")
     public String viewContentsSearch(@PageableDefault(size = 8) Pageable pageable,
                                      Model model,
                                      @RequestParam("key") String key) {
@@ -110,7 +98,7 @@ public class ContentsController {
         return "contents/contents-search";
     }
 
-    private static void setContentsInModel(Model model, PageableResponse<ContentsListResponseDto> responses) {
+    public static void setContentsInModel(Model model, PageableResponse<ContentsListResponseDto> responses) {
         model.addAttribute("contents", responses.getContents());
         model.addAttribute("totalPage", responses.getTotalPages());
         model.addAttribute("current", responses.getCurrent());

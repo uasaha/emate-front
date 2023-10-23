@@ -150,7 +150,7 @@
                     <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                       <div class="card-body">
                         <div th:each="category : ${categories}"  style="cursor: pointer">
-                          <a class="link-body-emphasis align-items-center d-inline-flex" style="color: white" th:href="@{/contents/{cate-url}(cate-url=${category.categoryName})}">
+                          <a class="link-body-emphasis align-items-center d-inline-flex" style="color: white" th:href="@{/category/{cate-url}(cate-url=${category.categoryName})}">
                             <p th:text="${category.categoryName}"></p><p>(</p><p th:text="${category.contentsCnt}"></p><p>)</p>
                           </a>
                         </div>

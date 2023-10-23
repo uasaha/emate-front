@@ -23,102 +23,102 @@
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://emate.me/contents/DesignPattern</loc>
+  <loc>https://emate.me/category/DesignPattern</loc>
   <lastmod>2023-10-19T07:28:54+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://emate.me/contents/Spring</loc>
+  <loc>https://emate.me/category/Spring</loc>
   <lastmod>2023-10-19T07:28:54+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://emate.me/contents/Java</loc>
+  <loc>https://emate.me/category/Java</loc>
   <lastmod>2023-10-19T07:28:54+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://emate.me/contents/Cloud</loc>
+  <loc>https://emate.me/category/Cloud</loc>
   <lastmod>2023-10-19T07:28:54+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://emate.me/contents/ComputerScience</loc>
+  <loc>https://emate.me/category/ComputerScience</loc>
   <lastmod>2023-10-19T07:28:54+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://emate.me/%EC%83%81%EC%86%8D(Inheritance)</loc>
+  <loc>https://emate.me/contents/%EC%83%81%EC%86%8D(Inheritance)</loc>
   <lastmod>2023-10-19T07:28:54+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://emate.me/%ED%81%B4%EB%9E%98%EC%8A%A4(Classes)</loc>
+  <loc>https://emate.me/contents/%ED%81%B4%EB%9E%98%EC%8A%A4(Classes)</loc>
   <lastmod>2023-10-19T07:28:54+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://emate.me/Object-Oriented-Programming(%EA%B0%9D%EC%B2%B4-%EC%A7%80%ED%96%A5-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D)</loc>
+  <loc>https://emate.me/contents/Object-Oriented-Programming(%EA%B0%9D%EC%B2%B4-%EC%A7%80%ED%96%A5-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D)</loc>
   <lastmod>2023-10-19T07:28:54+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://emate.me/Abstraction-%EC%B6%94%EC%83%81%ED%99%94</loc>
+  <loc>https://emate.me/contents/Abstraction-%EC%B6%94%EC%83%81%ED%99%94</loc>
   <lastmod>2023-10-19T07:28:54+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://emate.me/Aliases</loc>
+  <loc>https://emate.me/contents/Aliases</loc>
   <lastmod>2023-10-19T07:28:54+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://emate.me/Assertion</loc>
+  <loc>https://emate.me/contents/Assertion</loc>
   <lastmod>2023-10-19T07:28:54+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://emate.me/Debugging-%EB%94%94%EB%B2%84%EA%B9%85</loc>
+  <loc>https://emate.me/contents/Debugging-%EB%94%94%EB%B2%84%EA%B9%85</loc>
   <lastmod>2023-10-19T07:28:54+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://emate.me/Exception-in-python</loc>
+  <loc>https://emate.me/contents/Exception-in-python</loc>
   <lastmod>2023-10-19T07:28:54+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
-  <loc>https://emate.me/contents?page=1</loc>
+  <loc>https://emate.me/contents/contents?page=1</loc>
   <lastmod>2023-10-19T07:28:54+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://emate.me/contents/ComputerScience?page=1</loc>
+  <loc>https://emate.me/category/ComputerScience?page=1</loc>
   <lastmod>2023-10-19T07:28:54+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://emate.me/Mutable-&amp;-Immutable</loc>
+  <loc>https://emate.me/contents/Mutable-&amp;-Immutable</loc>
   <lastmod>2023-10-19T07:28:54+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
-  <loc>https://emate.me/Bisection</loc>
+  <loc>https://emate.me/contents/Bisection</loc>
   <lastmod>2023-10-19T07:28:54+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
-  <loc>https://emate.me/Tuple</loc>
+  <loc>https://emate.me/contents/Tuple</loc>
   <lastmod>2023-10-19T07:28:54+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
-  <loc>https://emate.me/Testing</loc>
+  <loc>https://emate.me/contents/Testing</loc>
   <lastmod>2023-10-19T07:28:54+00:00</lastmod>
   <priority>0.51</priority>
 </url>
 <url>
-  <loc>https://emate.me/Recursion</loc>
+  <loc>https://emate.me/contents/Recursion</loc>
   <lastmod>2023-10-19T07:28:54+00:00</lastmod>
   <priority>0.51</priority>
 </url>
@@ -127,8 +127,13 @@
   <lastmod>2023-10-19T07:28:54+00:00</lastmod>
   <priority>0.51</priority>
 </url>
+  <url>
+    <loc>https://emate.me/contents?page=1</loc>
+    <lastmod>2023-10-19T07:28:54+00:00</lastmod>
+    <priority>0.51</priority>
+  </url>
 <url>
-  <loc>https://emate.me/contents/ComputerScience?page=0</loc>
+  <loc>https://emate.me/category/ComputerScience?page=0</loc>
   <lastmod>2023-10-19T07:28:54+00:00</lastmod>
   <priority>0.51</priority>
 </url>
