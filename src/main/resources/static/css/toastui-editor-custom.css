@@ -18,16 +18,33 @@
     font-weight: bold;
 }
 
-.toastui-editor-contents h3,
-.toastui-editor-contents h4,
-.toastui-editor-contents h5,
-.toastui-editor-contents h6 {
+.toastui-editor-contents h3 {
     font-family: 'Nanum Gothic', sans-serif;
     color: white !important;
     font-size: 20px !important;
     font-weight: bold;
 }
 
+.toastui-editor-contents h4 {
+    font-family: 'Nanum Gothic', sans-serif;
+    color: white !important;
+    font-size: 18px !important;
+    font-weight: bold;
+}
+
+.toastui-editor-contents h5 {
+    font-family: 'Nanum Gothic', sans-serif;
+    color: white !important;
+    font-size: 16px !important;
+    font-weight: bold;
+}
+
+.toastui-editor-contents h6 {
+    font-family: 'Nanum Gothic', sans-serif;
+    color: white !important;
+    font-size: 15px !important;
+    font-weight: bold;
+}
 
 .toastui-editor-defaultUI .ProseMirror {
     font-family: 'Nanum Gothic', sans-serif;

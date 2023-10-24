@@ -41,12 +41,9 @@ public class ContentsController {
             throw new NotAuthorizedException();
         }
 
-        ContentsDetailResponseDto responseDto =
-                contentsService.registerContents(requestDto);
+        contentsService.registerContents(requestDto);
 
-        String noBlankSubject = responseDto.getSubject().replace(" ", "-");
-
-        return "redirect:/" + noBlankSubject;
+        return "redirect:/";
     }
 
     @GetMapping("/{subject}")
