@@ -59,3 +59,8 @@ my-icons-size {
     justify-content: center;
     align-items: center;
 }
+
+.col-md-7 {
+    padding-right: 10px !important;
+    padding-left: 10px !important;
+}
