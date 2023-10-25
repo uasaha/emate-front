@@ -178,7 +178,12 @@
     </div>
     <div class="col-md-7">
       <div class="col-12">
-        <h1 class="col-12" style="color: white; text-align: center; padding-top: 1em; font-size: 35px" th:text="${content.subject}"></h1>
+        <div class="col-12  d-flex justify-content-center" style="overflow: auto;">
+          <div th:each="tag : ${content.tags}" th:style="'background-color: ' + ${tag.tagColor} + '; border-radius: 1rem; text-align: center; margin-right: 0.5rem'" th:id="'div' + ${tag.tagName}">
+            <a href="#" th:text="'#' + ${tag.tagName}" style="color: white; font-style: oblique;" th:id="'a'+${tag.tagName}"></a>
+          </div>
+        </div>
+        <h1 class="col-12" style="color: white; text-align: center; font-size: 35px; margin-top: 0.5rem;" th:text="${content.subject}"></h1>
         <small class="col-12 d-flex justify-content-center" th:text="${#temporals.format(content.createdAt, 'yyyy. MM. dd')}" style="color: white; text-align: center"></small>
       </div>
       <hr style="border: solid 1px white; max-width: 96%">
@@ -208,8 +213,16 @@
     });
     const elem = [[${content.detail}]];
     viewer.setMarkdown(elem);
+
+    const tags = [[${content.tags}]];
+
+    tags.forEach(function (tag){
+      let tagDiv = document.getElementById('div'+tag.tagName);
+      let tagA = document.getElementById('a'+tag.tagName);
+      tagDiv.style.width = tagA.offsetWidth + 20 + "px";
+    })
+
   </script>
-  <script src="/static/js/contents-register.js"></script>
   <script src="/static/js/search.js"></script>
 
 </footer>

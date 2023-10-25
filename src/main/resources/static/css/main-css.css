@@ -44,7 +44,7 @@ my-icons-size {
 .today-count-div {
     border: 1px solid white;
     margin-top: 2em;
-    border-radius: 1%;
+    border-radius: 0.5rem;
 }
 
 .layerPopup {

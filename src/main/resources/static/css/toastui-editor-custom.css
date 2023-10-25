@@ -61,6 +61,7 @@
     background-color: #353535 !important;
     color: white !important;
     margin-top: 1em;
+    border-radius: 0.5rem; !important;
 }
 
 .toastui-editor-contents pre code {
@@ -94,4 +95,8 @@
     font-family: 'Nanum Gothic Coding', sans-serif;
     background-color: teal;
     color: white;
+}
+
+.toastui-editor-contents img {
+    border-radius: 0.5rem !important;
 }

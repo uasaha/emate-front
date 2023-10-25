@@ -8,4 +8,5 @@ import lombok.NoArgsConstructor;
 public class TagListResponseDto {
     private String tagNo;
     private String tagName;
+    private String tagColor;
 }

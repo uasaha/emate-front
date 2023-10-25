@@ -3,8 +3,10 @@ package me.emate.matefront.contents.dto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import me.emate.matefront.tag.dto.TagListResponseDto;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -12,7 +14,7 @@ import java.time.LocalDateTime;
 public class ContentsDetailResponseDto {
     private Integer contentsNo;
     private String category;
-    private String tags;
+    private List<TagListResponseDto> tags;
     private boolean isDeleted;
     private boolean isHidden;
     private String subject;
