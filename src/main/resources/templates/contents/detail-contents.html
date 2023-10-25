@@ -179,7 +179,7 @@
     <div class="col-md-7">
       <div class="col-12">
         <div class="col-12  d-flex justify-content-center" style="overflow: auto;">
-          <div th:each="tag : ${content.tags}" th:style="'background-color: ' + ${tag.tagColor} + '; border-radius: 1rem; text-align: center; margin-right: 0.5rem'" th:id="'div' + ${tag.tagName}">
+          <div th:each="tag : ${content.tags}" th:style="'background-color: ' + ${tag.tagColor} + '; border-radius: 1rem; text-align: center; margin-right: 0.5rem; white-space: nowrap'" th:id="'div' + ${tag.tagName}">
             <a href="#" th:text="'#' + ${tag.tagName}" style="color: white; font-style: oblique;" th:id="'a'+${tag.tagName}"></a>
           </div>
         </div>
