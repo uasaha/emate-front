@@ -47,6 +47,14 @@ public class ContentsServiceImpl implements ContentsService {
         return responses;
     }
 
+    @Override
+    public PageableResponse<ContentsListResponseDto> requestContentsByTag(String tag, Pageable pageable) {
+        PageableResponse<ContentsListResponseDto> responses = contentsAdaptor.requestContentsByTag(tag, pageable);
+        setUrlPath(responses.getContents());
+
+        return responses;
+    }
+
     @Cacheable(value = "mainContents")
     @Override
     public List<ContentsListResponseDto> requestLatestContents() {

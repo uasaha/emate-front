@@ -3,12 +3,12 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title th:text="${categoryName} + '- 메이트 개발 블로그'"></title>
+    <title th:text="'Category: ' + ${categoryName} + '- 메이트 개발 블로그'"></title>
     <meta property="og:url" th:content="'https://emate.me/category/'+${categoryName}">
-    <meta property="og:title" th:content="${categoryName} + '- 메이트 개발 블로그'">
+    <meta property="og:title" th:content="'Category: ' + ${categoryName} + '- 메이트 개발 블로그'">
     <meta property="og:locale" content="ko">
-    <meta property="og:description" th:content="${categoryName}">
-    <meta name="description" th:content="${categoryName}">
+    <meta property="og:description" th:content="'Category: ' + ${categoryName} + '- 메이트 개발 블로그'">
+    <meta name="description" th:content="'Category: ' + ${categoryName} + '- 메이트 개발 블로그'">
     <meta property="og:image" content="/static/img/favicon/apple-icon-180x180.png">
     <meta name="robots" content="index, follow">
 
@@ -163,7 +163,7 @@
             <!--            꾸미는 공간-->
             <div class="album py-5 bg-body-tertiary">
                 <div class="container main-container">
-                    <h2 class="color-white" th:text="${categoryName}"></h2>
+                    <h2 class="color-white" th:text="'Category: ' + ${categoryName}"></h2>
                     <hr class="border-white">
                     <h2 class="color-white text-center" th:if="${contents.size()} == 0">포스트가 존재하지 않습니다.</h2>
                     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-3">

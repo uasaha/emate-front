@@ -3,16 +3,13 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title th:text="${content.subject} + '- 메이트 개발 블로그'"></title>
-  <meta property="og:url" th:content="'https://emate.me/contents/'+${urlPath}">
-  <meta property="og:title" th:content="${content.subject} + '- 메이트 개발 블로그'">
-  <meta property="og:type" content="article">
+  <title th:text="'Tag: ' + ${tagName} + '- 메이트 개발 블로그'"></title>
+  <meta property="og:url" th:content="'https://emate.me/category/'+${tagName}">
+  <meta property="og:title" th:content="'Tag: ' + ${tagName} + '- 메이트 개발 블로그'">
   <meta property="og:locale" content="ko">
-  <meta property="og:description" th:content="${description}">
-  <meta name="description" th:content="${description}">
-  <meta property="og:image" th:if="${content.thumbnail == null}" content="/static/img/favicon/apple-icon-180x180.png">
-  <meta property="og:image" th:if="${content.thumbnail != null}" th:content="${content.thumbnail}">
-  <meta name="date" th:content="${#temporals.format(content.createdAt, 'yyyy-MM.-dd')}">
+  <meta property="og:description" th:content="'Tag: ' + ${tagName} + '- 메이트 개발 블로그'">
+  <meta name="description" th:content="'Tag: ' + ${tagName} + '- 메이트 개발 블로그'">
+  <meta property="og:image" content="/static/img/favicon/apple-icon-180x180.png">
   <meta name="robots" content="index, follow">
 
   <!--  Boot Strap-->
@@ -34,8 +31,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/font-nanum/1.0/nanumgothiccoding/nanumgothiccoding.css" rel="stylesheet">
-
 
   <!--icon-->
   <link rel="shortcut icon" href="/static/img/favicon/favicon.ico">
@@ -59,27 +54,15 @@
   <!--settings for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!--Toast UI-->
-  <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
-  <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css"/>
-  <link rel="stylesheet" href="/static/css/toastui-editor-custom.css/">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css"/>
-  <link rel="stylesheet" href="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight.min.css"/>
-
   <!--custom-->
   <link rel="stylesheet" href="/static/css/main-css.css">
 
-  <!--Jquery-->
-  <script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-  <script>
-    let $jLatest = jQuery.noConflict();
-  </script>
 </head>
 <body class="main-body">
 <nav class="navbar navbar-expand-md navbar-dark background-252525">
   <a class="navbar-brand" href="https://emate.me/">
-    <img class="logo-bank" src="/static/img/logo_bank.png">
-    <img class="logo-bank" src="/static/img/emate_logo_white.png">
+    <img class="logo-bank" src="/static/img/logo_bank.png" alt="emate">
+    <img class="logo-bank" src="/static/img/emate_logo_white.png" alt="emate.me">
   </a>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
@@ -131,7 +114,7 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="accordion mb-2" id="accordionExample">
-                  <img src="https://emate-bucket.s3.ap-northeast-2.amazonaws.com/mainthumb.jpeg" class="img-thumbnail d-none d-md-block">
+                  <img src="https://emate-bucket.s3.ap-northeast-2.amazonaws.com/mainthumb.jpeg" class="img-thumbnail d-none d-md-block" alt="thumbnail">
                   <p class="d-none d-md-block color-white">메이트의 개발 블로그입니다.</p>
                   <div class="card background-353535 color-white main-sidebar-card">
                     <div class="card-header" onclick="location.href='/contents'">
@@ -142,7 +125,7 @@
                   </div>
                   <div class="card background-353535 color-white main-sidebar-card">
                     <div class="card-header" id="headingOne">
-                      <a class="accordion-icon" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                      <a class="accordion-icon text-deco-none" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                         <h5 class="py-2"> Category <span class="float-right"><i class="fas fa-angle-down"></i></span></h5>
                       </a>
                     </div>
@@ -178,53 +161,53 @@
     </div>
     <div class="col-md-7 pl-2 pr-2">
       <!--            꾸미는 공간-->
-      <div class="col-12">
-        <div class="col-12  d-flex justify-content-center overflow-auto">
-          <div th:each="tag : ${content.tags}" th:style="'background-color: ' + ${tag.tagColor} + '; border-radius: 1rem; text-align: center; margin-right: 0.5rem; white-space: nowrap'" th:id="'div' + ${tag.tagName}">
-            <a class="color-white text-deco-none font-oblique" th:href="@{/tags/{tag-url}(tag-url=${tag.tagUrl})}" th:text="'#' + ${tag.tagName}" th:id="'a'+${tag.tagName}"></a>
+      <div class="album py-5 bg-body-tertiary">
+        <div class="container main-container">
+          <h2 class="color-white" th:text="'Tag: ' + ${tagName}"></h2>
+          <hr class="border-white">
+          <h2 class="color-white text-center" th:if="${contents.size()} == 0">포스트가 존재하지 않습니다.</h2>
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 g-3">
+            <div class="col margin-bottom-2" th:each="content : ${contents}">
+              <div class="card shadow-sm overflow-hidden cursor-pointer" th:data-url="${content.urlPath}" th:onclick="|location.href='/contents/'+this.getAttribute('data-url')|">
+                <div th:if="${content.thumbnail == null}">
+                  <p th:text="${content.subject}" class="content-subject-no-thumb"></p>
+                  <img class="bd-placeholder-img card-img-top list-content-thumbnail" src="https://emate-bucket.s3.ap-northeast-2.amazonaws.com/default_thumbnail.png" alt="thumbnail" width="100%" height="250"/>
+                </div>
+                <div th:if="${content.thumbnail != null}">
+                  <img class="bd-placeholder-img card-img-top list-content-thumbnail" th:src="${content.thumbnail}" alt="thumbnail" width="100%" height="250"/>
+                </div>
+                <div class="card-body background-353535">
+                  <a th:href="@{/contents/{subject-url}(subject-url=${content.urlPath})}">
+                    <p class="card-text color-white list-content-subject" th:text="${content.subject}"></p>
+                  </a>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <small class="text-body-secondary color-white" th:text="${#temporals.format(content.createdAt, 'yyyy.MM.dd')}"></small>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-        <h1 class="col-12 color-white text-center font-35 margin-top-half-1" th:text="${content.subject}"></h1>
-        <small class="col-12 d-flex justify-content-center color-white text-center" th:text="${#temporals.format(content.createdAt, 'yyyy. MM. dd')}"></small>
-      </div>
-      <hr class="border-white max-width-96">
-      <div id="viewer" class="col-12 my-font viewer-padding"></div>
-      <hr class="border-white max-width-96">
-    </div>
-    <div class="col-md-12 height-5">
+          <ul class="pagination paging" th:if="${totalPage!=0}">
+            <li class="cursor-pointer" th:if="${hasPrevious==true}">
+              <a th:href="|@{/tags/{cate-url}?page={pre-url}(cate-url=${tagUrl}, pre-url=${current}-1)}|" class="prev">&laquo</a>
+            </li>
+            <li class="cursor-pointer" th:each="num : ${#numbers.sequence(1,totalPage)}">
+              <a class="active" th:if="${current+1==num}" th:text="${num}"></a>
+              <a th:href="|@{/tags/{cate-url}?page={pre-url}(cate-url=${tagUrl}, pre-url=${num}-1)}|" th:if="${current+1!=num}" th:text="${num}"></a>
+            </li>
+            <li class="cursor-pointer" th:if="${hasNext==true}">
+              <a th:href="|@{/tags/{cate-url}?page={pre-url}(cate-url=${tagUrl}, pre-url=${current}+1)}|" class="next">&raquo;</a>
+            </li>
+          </ul><br>
 
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- Editor -->
-<script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
-<!-- Editor's Plugin -->
-<script src="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight-all.min.js"></script>
 </body>
-
 <footer>
-  <script th:inline="javascript">
-    const Editor = toastui.Editor;
-    const { codeSyntaxHighlight }  = Editor.plugin;
-    const viewer = Editor.factory({
-      el: document.querySelector('#viewer'),
-      viewer: true,
-      plugins: [codeSyntaxHighlight]
-    });
-    const elem = [[${content.detail}]];
-    viewer.setMarkdown(elem);
-
-    const tags = [[${content.tags}]];
-
-    tags.forEach(function (tag){
-      let tagDiv = document.getElementById('div'+tag.tagName);
-      let tagA = document.getElementById('a'+tag.tagName);
-      tagDiv.style.width = tagA.offsetWidth + 20 + "px";
-    })
-
-  </script>
   <script src="/static/js/search.js"></script>
-
 </footer>
 </html>

@@ -29,6 +29,7 @@ public class ContentsAdaptorImpl implements ContentsAdaptor {
     private final ToBackConfig toBackConfig;
     private static final String CONTENTS_URL = "/contents";
     private static final String Category_URL = "/category";
+    private static final String TAG_URL = "/tag";
 
     @Override
     public ContentsDetailResponseDto requestContentsByNo(Integer contentsNo) {
@@ -73,15 +74,34 @@ public class ContentsAdaptorImpl implements ContentsAdaptor {
     }
 
     @Override
-    public PageableResponse<ContentsListResponseDto> requestContentsByCategory(String category, Pageable pageable) {
+    public PageableResponse<ContentsListResponseDto> requestContentsByTag(String tag, Pageable pageable) {
         HttpHeaders headers = makeHeader();
         String url = UriComponentsBuilder
-                .fromHttpUrl(toBackConfig.getBackUrl() + Category_URL + "/" + category)
+                .fromHttpUrl(toBackConfig.getBackUrl() + TAG_URL + "/" + tag)
                 .queryParam("page", pageable.getPageNumber())
                 .queryParam("size", 8L)
                 .encode()
                 .toUriString();
         
+        return restTemplate.exchange(
+                url,
+                HttpMethod.GET,
+                new HttpEntity<>(headers),
+                new ParameterizedTypeReference<PageableResponse<ContentsListResponseDto>>() {
+                }
+        ).getBody();
+    }
+
+    @Override
+    public PageableResponse<ContentsListResponseDto> requestContentsByCategory(String tag, Pageable pageable) {
+        HttpHeaders headers = makeHeader();
+        String url = UriComponentsBuilder
+                .fromHttpUrl(toBackConfig.getBackUrl() + Category_URL + "/" + tag)
+                .queryParam("page", pageable.getPageNumber())
+                .queryParam("size", 8L)
+                .encode()
+                .toUriString();
+
         return restTemplate.exchange(
                 url,
                 HttpMethod.GET,

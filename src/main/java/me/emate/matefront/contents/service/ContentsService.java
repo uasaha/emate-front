@@ -19,6 +19,8 @@ public interface ContentsService {
 
     PageableResponse<ContentsListResponseDto> requestContentsByCategory(String category, Pageable pageable);
 
+    PageableResponse<ContentsListResponseDto> requestContentsByTag(String tag, Pageable pageable);
+
     List<ContentsListResponseDto> requestLatestContents();
 
     PageableResponse<ContentsListResponseDto> requestContentsTotal(Pageable pageable);

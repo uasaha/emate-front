@@ -17,6 +17,8 @@ public interface ContentsAdaptor {
 
     ContentsDetailResponseDto requestLatestContent();
 
+    PageableResponse<ContentsListResponseDto> requestContentsByTag(String tag, Pageable pageable);
+
     PageableResponse<ContentsListResponseDto> requestContentsByCategory(String category, Pageable pageable);
 
     List<ContentsListResponseDto> requestLatestContents();

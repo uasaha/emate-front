@@ -7,6 +7,7 @@ import me.emate.matefront.contents.dto.ContentsListResponseDto;
 import me.emate.matefront.contents.dto.CreateContentsRequestDto;
 import me.emate.matefront.contents.service.ContentsService;
 import me.emate.matefront.member.NotAuthorizedException;
+import me.emate.matefront.tag.dto.TagListResponseDto;
 import me.emate.matefront.utils.PageableResponse;
 import me.emate.matefront.utils.Utils;
 import org.springframework.data.domain.Pageable;
@@ -22,7 +23,7 @@ import org.springframework.web.bind.annotation.*;
 public class ContentsController {
     private final Utils utils;
     private final ContentsService contentsService;
-
+    private static final String NUM_KOR_ENG = "[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9() ]";
     @GetMapping("/register")
     public String registerContentsView(Model model) {
         if(!utils.getMemberNo().equals(1)) {
@@ -57,17 +58,23 @@ public class ContentsController {
             throw new NotAuthorizedException();
         }
 
-        final int maxSize = 77;
+        final int maxSize = 161;
 
         utils.sidebarInModel(model);
         utils.modelRequestMemberNo(model);
         model.addAttribute("content", responseDto);
         model.addAttribute("urlPath", responseDto.getSubject().replace(" ", "-"));
 
-        if(responseDto.getDetail().length() > maxSize) {
-            model.addAttribute("description", responseDto.getDetail().substring(0, maxSize));
+        for (TagListResponseDto tags : responseDto.getTags()) {
+            tags.setTagUrl(tags.getTagName().replace(" ", "-"));
+        }
+
+        String description = responseDto.getDetail().replaceAll(NUM_KOR_ENG, "").replaceAll("br", "");
+
+        if(description.length() > maxSize) {
+            model.addAttribute("description", description.substring(0, maxSize));
         } else {
-            model.addAttribute("description", responseDto.getDetail());
+            model.addAttribute("description", description);
         }
 
         return "contents/detail-contents";
