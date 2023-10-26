@@ -207,3 +207,7 @@ a:hover {
     padding-left: 1rem;
     padding-right: 1rem;
 }
+.minus-margin-10 {
+    margin-right: -5px !important;
+    margin-left: -5px !important;
+}
