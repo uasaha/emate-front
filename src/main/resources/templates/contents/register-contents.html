@@ -64,6 +64,11 @@
     </script>
 </head>
 <body class="main-body">
+<div class="layerPopup">
+    <div class="spinner-border text-light" style="position: absolute; top: 50%; left: 50%" role="status">
+        <span class="visually-hidden"></span>
+    </div>
+</div>
 <nav class="navbar navbar-expand-md navbar-dark background-252525">
     <a class="navbar-brand" href="https://emate.me/">
         <img class="logo-bank" src="/static/img/logo_bank.png">
@@ -183,7 +188,7 @@
                                         th:text="${category.categoryName}"></option>
                             </div>
                         </select>
-                        <select class="form-controll" name="tagNo" required>
+                        <select id="tag-select-box" onchange="tagSelecting(this.value)">
                             <option value="" selected disabled hidden>태그 선택</option>
                             <div th:each="tag : ${tags}">
                                 <option
@@ -191,6 +196,12 @@
                                         th:text="${tag.tagName}"></option>
                             </div>
                         </select>
+                    <input class="form-controll" name="tagNo" id="tagInput" required>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-check">
+                        <label for="flexCheckDefault" class="color-white">즉시 비공개: </label><input class="form-controll" type="text" name="hidden" value="F" id="flexCheckDefault" style="width: 20px">
+                    </div>
                 </div>
                 <input type="text" class="form-control" id="thumbnail" placeholder="썸네일" name="thumbnail">
                     <div id="content"></div>

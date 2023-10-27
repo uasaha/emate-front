@@ -60,3 +60,15 @@ function showSpinner() {
 function hideSpinner() {
     document.getElementsByClassName('layerPopup')[0].style.display='none';
 }
+
+const tagInput = document.getElementById("tagInput");
+
+function tagSelecting(value) {
+    let tagValue = tagInput.value;
+
+    if (tagValue === '') {
+        tagInput.value = value;
+    } else {
+        tagInput.value = tagValue + "," + value;
+    }
+}

@@ -31,6 +31,6 @@ public class CategoryController {
         utils.sidebarInModel(model);
         utils.modelRequestMemberNo(model);
 
-        return "contents/list-contents";
+        return "contents/category-contents";
     }
 }

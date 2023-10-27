@@ -3,14 +3,13 @@ package me.emate.matefront.contents.dto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.util.List;
 
 @Getter
 @AllArgsConstructor
-public class CreateContentsRequestDto {
+public class ContentsRegisterDto {
     private Integer categoryNo;
-    private List<Integer> tagNo;
-    private Boolean hidden;
+    private String tagNo;
+    private String hidden;
     private String thumbnail;
     private String subject;
     private String detail;

@@ -24,6 +24,7 @@ function loginSubmit() {
             },
             success: function (data, textStatus, request) {
                 if (request.getResponseHeader("X-LOGIN") === null) {
+                    hideSpinner();
                     alert('아이디나 패스워드가 잘못 입력되었습니다.');
                 } else {
                     window.location.href = "/";
@@ -49,4 +50,8 @@ pwdInputForEvent.addEventListener("keydown", function withEnter() {
 
 function showSpinner() {
     document.getElementsByClassName('layerPopup')[0].style.display='block';
+}
+
+function hideSpinner() {
+    document.getElementsByClassName('layerPopup')[0].style.display='none';
 }
