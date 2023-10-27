@@ -6,44 +6,50 @@
 
 .toastui-editor-contents h1 {
     font-family: 'Nanum Gothic', sans-serif;
-    color: white !important;
+    color: #D46876 !important;
     font-size: 30px !important;
     font-weight: bold;
+    line-height: 30px !important;
 }
 
 .toastui-editor-contents h2 {
     font-family: 'Nanum Gothic', sans-serif;
-    color: white !important;
+    color: #D08770 !important;
     font-size: 25px !important;
     font-weight: bold;
+    line-height: 30px !important;
 }
 
 .toastui-editor-contents h3 {
     font-family: 'Nanum Gothic', sans-serif;
-    color: white !important;
-    font-size: 20px !important;
+    color: #D5A985 !important;
+    font-size: 22px !important;
     font-weight: bold;
+    line-height: 30px !important;
 }
 
 .toastui-editor-contents h4 {
     font-family: 'Nanum Gothic', sans-serif;
-    color: white !important;
-    font-size: 18px !important;
+    color: #A3BE8C !important;
+    font-size: 20px !important;
     font-weight: bold;
+    line-height: 30px !important;
 }
 
 .toastui-editor-contents h5 {
     font-family: 'Nanum Gothic', sans-serif;
-    color: white !important;
-    font-size: 16px !important;
+    color: #8DA8B9 !important;
+    font-size: 18px !important;
     font-weight: bold;
+    line-height: 30px !important;
 }
 
 .toastui-editor-contents h6 {
     font-family: 'Nanum Gothic', sans-serif;
-    color: white !important;
-    font-size: 15px !important;
+    color: #B48EAD !important;
+    font-size: 16px !important;
     font-weight: bold;
+    line-height: 30px !important;
 }
 
 .toastui-editor-defaultUI .ProseMirror {
@@ -95,8 +101,20 @@
     font-family: 'Nanum Gothic Coding', sans-serif;
     background-color: teal;
     color: white;
+    font-size: 15px;
 }
 
 .toastui-editor-contents img {
     border-radius: 0.5rem !important;
+}
+
+.toastui-editor-contents :not(table) {
+    line-height: 180% !important;
+}
+
+.toastui-editor-contents ul>li:before {
+    background-color: white !important;
+    margin-top: 11px !important;
+    height: 6px !important;
+    width: 6px !important;
 }
