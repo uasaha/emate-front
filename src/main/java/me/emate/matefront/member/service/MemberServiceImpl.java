@@ -68,13 +68,17 @@ public class MemberServiceImpl implements MemberService {
                 SecurityContextHolder.clearContext();
                 return;
             }
-            String accessToken = jwtCookie.getValue();
+
+            String accessToken = "Bearer " + jwtCookie.getValue();
 
             Cookie sessionCookie = CookieUtils.findCookie(SESSION_COOKIE);
             jwtCookie.setMaxAge(0);
             jwtCookie.setValue("");
-            sessionCookie.setMaxAge(0);
-            sessionCookie.setValue("");
+
+            if (sessionCookie != null) {
+                sessionCookie.setMaxAge(0);
+                sessionCookie.setValue("");
+            }
 
             redisTemplate.opsForHash().delete(AUTHENTICATION, SESSION_COOKIE);
 
@@ -82,7 +86,7 @@ public class MemberServiceImpl implements MemberService {
             response.addCookie(sessionCookie);
             SecurityContextHolder.clearContext();
 
-//            memberAdaptor.logout(accessToken);
+            memberAdaptor.logout(accessToken);
         }
     }
 }

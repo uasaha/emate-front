@@ -104,7 +104,6 @@ public class MemberAdaptorImpl implements MemberAdaptor {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(List.of(MediaType.APPLICATION_JSON));
-        log.info(accessToken);
         if (Objects.nonNull(accessToken)) {
             headers.add("Authorization", accessToken);
         }
