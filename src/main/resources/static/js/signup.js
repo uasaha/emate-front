@@ -30,6 +30,7 @@ window.addEventListener('load', () => {
 
 function idPattern() {
     let idVal = document.getElementById('memberId').value;
+    hideSpinner()
     if (!idReg.test(idVal) || emptyReg.test(idVal)) {
         alert('아이디는 영어나 숫자로 5글자에서 20글자로 입력해주세요.')
         return false;
@@ -39,6 +40,7 @@ function idPattern() {
 
 function nicknamePattern() {
     let nickVal = document.getElementById('nickname').value;
+    hideSpinner()
     if (!nickReg.test(nickVal) || emptyReg.test(nickVal)) {
         alert('닉네임은 한글, 영어나 숫자로 2글자 이상 8글자 이하로 입력해주세요.')
         return false;
@@ -48,6 +50,7 @@ function nicknamePattern() {
 
 function emailPattern() {
     let emailVal = document.getElementById('email').value;
+    hideSpinner()
     if (!emailReg.test(emailVal) || emptyReg.test(emailVal)) {
         alert('이메일 형식을 갖춰서 생성해주세요');
         return false;
@@ -56,9 +59,10 @@ function emailPattern() {
 }
 
 function pwdCheck() {
+    showSpinner()
     const pwdVal = document.getElementById('pwd').value;
     const pwdOkVal = document.getElementById('pwd-check').value;
-
+    hideSpinner()
     if (!pwdReg.test(pwdVal) || emptyReg.test(pwdVal)) {
         alert('비밀번호는 문자,숫자,특수문자로 구성된 8글자 이상 20글자 이하로 생성하세요.')
     } else {
@@ -78,10 +82,12 @@ function pwdCheck() {
             alert('비밀번호확인을 입력하세요.')
         }
     }
+
 }
 
 
 function idCheckFunc() {
+    showSpinner()
     const id = $("#memberId").val();
     if (idPattern()) {
         $jLatest.ajax({
@@ -90,6 +96,7 @@ function idCheckFunc() {
             url: "/idcheck",
             data: {"id": id},
             success: function (result) {
+                hideSpinner()
                 if (result === false) {
                     idCheck.value = "1";
                     document.getElementById("memberId").readOnly = true;
@@ -109,6 +116,7 @@ function idCheckFunc() {
 }
 
 function nickCheckFunc() {
+    showSpinner()
     const nickname = $("#nickname").val();
 
     if (nicknamePattern()) {
@@ -118,6 +126,7 @@ function nickCheckFunc() {
             url: "/nickcheck",
             data: {"nickname": nickname},
             success: function (result) {
+                hideSpinner()
                 if (result === false) {
                     nicknameCheck.value = "1";
                     document.getElementById("nickname").readOnly = true;
@@ -135,6 +144,7 @@ function nickCheckFunc() {
 }
 
 function emailCheckFunc() {
+    showSpinner()
     const email = $("#email").val();
 
     if (emailPattern()) {
@@ -144,6 +154,7 @@ function emailCheckFunc() {
             url: "/emailcheck",
             data: {"email": email},
             success: function (result) {
+                hideSpinner()
                 if (result === false) {
                     emailCheck.value = "1";
                     document.getElementById("email").readOnly = true;
@@ -178,9 +189,18 @@ function allCheck() {
 }
 
 function finalCheck() {
+    showSpinner()
     if (allCheck()) {
         let form = document.getElementById("signupForm");
-
         form.submit()
     }
+    hideSpinner();
+}
+
+function showSpinner() {
+    document.getElementsByClassName('layerPopup')[0].style.display='block';
+}
+
+function hideSpinner() {
+    document.getElementsByClassName('layerPopup')[0].style.display='none';
 }
