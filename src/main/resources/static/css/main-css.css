@@ -181,6 +181,10 @@
     max-width: 30rem;
 }
 
+.max-width-50 {
+    max-width: 50rem;
+}
+
 .text-deco-none {
     text-decoration: none !important;
     text-decoration-color: white !important;
