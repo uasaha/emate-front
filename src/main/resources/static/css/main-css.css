@@ -245,6 +245,35 @@ a:hover {
     border-bottom: 1px solid white;
 }
 
+.comment-text-box:valid {
+    background-color: #252525;
+    outline: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid white;
+}
+
+.comment-text-box:-webkit-autofill,
+.comment-text-box:-webkit-autofill:hover,
+.comment-text-box:-webkit-autofill:focus,
+.comment-text-box:-webkit-autofill:active {
+    -webkit-text-fill-color: white;
+    -webkit-box-shadow: 0 0 0px 1000px #252525 inset;
+    box-shadow: 0 0 0px 1000px #252525 inset;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.comment-text-box:autofill,
+.comment-text-box:autofill:hover,
+.comment-text-box:autofill:focus,
+.comment-text-box:autofill:active {
+    -webkit-text-fill-color: white;
+    -webkit-box-shadow: 0 0 0px 1000px #252525 inset;
+    box-shadow: 0 0 0px 1000px #252525 inset;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
 .display-none {
     display: none;
 }
