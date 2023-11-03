@@ -87,6 +87,10 @@
     margin-top: 1rem;
 }
 
+.margin-top-5 {
+    margin-top: 5rem;
+}
+
 .main-sidebar-intro {
     color: white
 }
@@ -214,4 +218,72 @@ a:hover {
 .minus-margin-10 {
     margin-right: -5px !important;
     margin-left: -5px !important;
+}
+
+.max-width-10 {
+    max-width: 10rem;
+}
+
+.width-80 {
+    width: 80%;
+}
+
+.width-100 {
+    width: 100%;
+}
+
+.comment-text-box {
+    background-color: #252525;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #404040;
+}
+
+.comment-text-box:focus {
+    outline: none;
+    border-bottom: 1px solid white;
+}
+
+.display-none {
+    display: none;
+}
+
+.reply-btn {
+    float: right;
+}
+
+.comment-head {
+    padding-top: 0.5rem;
+}
+
+.comment-nick {
+    font-weight: bold;
+}
+
+.comment-time {
+    font-size: 11px;
+    color: #CCCCCC;
+    margin-left: 0.3rem
+}
+
+.comment-body {
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #404040;
+}
+
+.comment-content {
+    font-weight: normal;
+}
+
+.color-505050 {
+    color: #505050;
+}
+
+.border-bottom-white {
+    border-bottom: 1px solid white;
+}
+
+.placeholder-red::placeholder {
+    color: red;
 }

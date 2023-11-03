@@ -2,6 +2,7 @@ package me.emate.matefront.contents.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import me.emate.matefront.comment.service.CommentService;
 import me.emate.matefront.contents.dto.ContentsDetailResponseDto;
 import me.emate.matefront.contents.dto.ContentsListResponseDto;
 import me.emate.matefront.contents.dto.ContentsRegisterDto;
@@ -29,7 +30,9 @@ public class ContentsController {
     private final Utils utils;
     private final ContentsService contentsService;
     private final TagService tagService;
+    private final CommentService commentService;
     private static final String NUM_KOR_ENG = "[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9() ]";
+
     @GetMapping("/register")
     public String registerContentsView(Model model) {
         if(!utils.getMemberNo().equals(1)) {
@@ -49,7 +52,9 @@ public class ContentsController {
             throw new NotAuthorizedException();
         }
 
-        List<Integer> tags = Arrays.stream(registerDto.getTagNo().split(",")).map(Integer::parseInt).toList();
+        List<Integer> tags = Arrays
+                .stream(registerDto.getTagNo().split(","))
+                .map(Integer::parseInt).toList();
 
         log.info(registerDto.getHidden());
 
@@ -67,7 +72,6 @@ public class ContentsController {
     @GetMapping("/{subject}")
     public String contentsDetailView(@PathVariable("subject") String subject,
                                      Model model) {
-
         ContentsDetailResponseDto responseDto =
                 contentsService.viewContentsBySubject(subject);
 
@@ -75,26 +79,41 @@ public class ContentsController {
             throw new NotAuthorizedException();
         }
 
-        final int maxSize = 161;
-
         utils.sidebarInModel(model);
         utils.modelRequestMemberNo(model);
         model.addAttribute("content", responseDto);
-        model.addAttribute("urlPath", responseDto.getSubject().replace(" ", "-"));
+        model.addAttribute("urlPath",
+                blankToHyphen(responseDto.getSubject()));
 
         for (TagListResponseDto tags : responseDto.getTags()) {
-            tags.setTagUrl(tags.getTagName().replace(" ", "-"));
+            tags.setTagUrl(blankToHyphen(tags.getTagName()));
         }
 
-        String description = responseDto.getDetail().replaceAll(NUM_KOR_ENG, "").replaceAll("br", "");
+        model.addAttribute("description",
+                getDescription(responseDto.getDetail()));
 
-        if(description.length() > maxSize) {
-            model.addAttribute("description", description.substring(0, maxSize));
-        } else {
-            model.addAttribute("description", description);
-        }
+        model.addAttribute("comments",
+                commentService.getCommentsByContentsNo(responseDto.getContentsNo()));
 
         return "contents/detail-contents";
+    }
+
+    private String blankToHyphen(String str) {
+        return str.replace(" ", "-");
+    }
+
+    private String getDescription(String detail) {
+        final int maxSize = 161;
+
+        String description = detail
+                .replaceAll(NUM_KOR_ENG, "")
+                .replaceAll("br", "");
+
+        if(description.length() > maxSize) {
+            return description.substring(0, maxSize);
+        }
+
+        return description;
     }
 
     @GetMapping
@@ -111,7 +130,8 @@ public class ContentsController {
     public String viewContentsSearch(@PageableDefault(size = 8) Pageable pageable,
                                      Model model,
                                      @RequestParam("key") String key) {
-        setContentsInModel(model, contentsService.requestContentsContainsKeyword(key, pageable));
+        setContentsInModel(model,
+                contentsService.requestContentsContainsKeyword(key, pageable));
         model.addAttribute("keyword", key);
         utils.sidebarInModel(model);
         utils.modelRequestMemberNo(model);

@@ -2,199 +2,302 @@
 <html lang="ko" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title th:text="${content.subject} + '- 메이트 개발 블로그'"></title>
-  <meta property="og:url" th:content="'https://emate.me/contents/'+${urlPath}">
-  <meta property="og:title" th:content="${content.subject} + '- 메이트 개발 블로그'">
-  <meta property="og:type" content="article">
-  <meta property="og:locale" content="ko">
-  <meta property="og:description" th:content="${description}">
-  <meta name="description" th:content="${description}">
-  <meta property="og:image" th:if="${content.thumbnail == null}" content="/static/img/favicon/apple-icon-180x180.png">
-  <meta property="og:image" th:if="${content.thumbnail != null}" th:content="${content.thumbnail}">
-  <meta name="date" th:content="${#temporals.format(content.createdAt, 'yyyy-MM.-dd')}">
-  <meta name="robots" content="index, follow">
+    <meta charset="UTF-8">
+    <title th:text="${content.subject} + '- 메이트 개발 블로그'"></title>
+    <meta property="og:url" th:content="'https://emate.me/contents/'+${urlPath}">
+    <meta property="og:title" th:content="${content.subject} + '- 메이트 개발 블로그'">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="ko">
+    <meta property="og:description" th:content="${description}">
+    <meta name="description" th:content="${description}">
+    <meta property="og:image" th:if="${content.thumbnail == null}" content="/static/img/favicon/apple-icon-180x180.png">
+    <meta property="og:image" th:if="${content.thumbnail != null}" th:content="${content.thumbnail}">
+    <meta name="date" th:content="${#temporals.format(content.createdAt, 'yyyy-MM.-dd')}">
+    <meta name="robots" content="index, follow">
 
-  <!--  Boot Strap-->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <!--  Boot Strap-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-          integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-          crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-          integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-          crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
-          integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-          crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
 
-  <!--google font-->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/font-nanum/1.0/nanumgothiccoding/nanumgothiccoding.css" rel="stylesheet">
+    <!--google font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/font-nanum/1.0/nanumgothiccoding/nanumgothiccoding.css" rel="stylesheet">
 
 
-  <!--icon-->
-  <link rel="shortcut icon" href="/static/img/favicon/favicon.ico">
-  <link rel="apple-touch-icon" sizes="57x57" href="/static/img/favicon/apple-icon-57x57.png">
-  <link rel="apple-touch-icon" sizes="60x60" href="/static/img/favicon/apple-icon-60x60.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="/static/img/favicon/apple-icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="76x76" href="/static/img/favicon/apple-icon-76x76.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="/static/img/favicon/apple-icon-114x114.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="/static/img/favicon/apple-icon-120x120.png">
-  <link rel="apple-touch-icon" sizes="144x144" href="/static/img/favicon/apple-icon-144x144.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="/static/img/favicon/apple-icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/static/img/favicon/apple-icon-180x180.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="/static/img/favicon/android-icon-192x192.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/static/img/favicon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="/static/img/favicon/favicon-96x96.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/static/img/favicon/favicon-16x16.png">
-  <meta name="msapplication-TileColor" content="#ffffff">
-  <meta name="msapplication-TileImage" content="/static/img/favicon/ms-icon-144x144.png">
-  <meta name="theme-color" content="#ffffff">
+    <!--icon-->
+    <link rel="shortcut icon" href="/static/img/favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="57x57" href="/static/img/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/static/img/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/static/img/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/static/img/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/static/img/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/static/img/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/static/img/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/static/img/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/img/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/static/img/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/static/img/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/img/favicon/favicon-16x16.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/static/img/favicon/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
 
-  <!--settings for mobile-->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--settings for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!--Toast UI-->
-  <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
-  <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css"/>
-  <link rel="stylesheet" href="/static/css/toastui-editor-custom.css/">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css"/>
-  <link rel="stylesheet" href="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight.min.css"/>
+    <!--Toast UI-->
+    <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+    <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css"/>
+    <link rel="stylesheet" href="/static/css/toastui-editor-custom.css/">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css"/>
+    <link rel="stylesheet"
+          href="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight.min.css"/>
 
-  <!--custom-->
-  <link rel="stylesheet" href="/static/css/main-css.css">
+    <!--custom-->
+    <link rel="stylesheet" href="/static/css/main-css.css">
 
-  <!--Jquery-->
-  <script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-  <script>
-    let $jLatest = jQuery.noConflict();
-  </script>
+    <!--Jquery-->
+    <script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <script>
+        let $jLatest = jQuery.noConflict();
+    </script>
 </head>
 <body class="main-body">
+<div class="layerPopup">
+    <div class="spinner-border text-light" style="position: absolute; top: 50%; left: 50%" role="status">
+        <span class="visually-hidden"></span>
+    </div>
+</div>
 <nav class="navbar navbar-expand-md navbar-dark background-252525">
-  <a class="navbar-brand" href="https://emate.me/">
-    <img class="logo-bank" src="/static/img/logo_bank.png">
-    <img class="logo-bank" src="/static/img/emate_logo_white.png">
-  </a>
+    <a class="navbar-brand" href="https://emate.me/">
+        <img class="logo-bank" src="/static/img/logo_bank.png">
+        <img class="logo-bank" src="/static/img/emate_logo_white.png">
+    </a>
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-          aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <div class="collapse navbar-collapse font-25" id="navbarCollapse">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="https://emate.me">Home</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="https://github.com/uasaha">Github</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link disabled" href="#">Contact</a>
-      </li>
-    </ul>
+    <div class="collapse navbar-collapse font-25" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="https://emate.me">Home</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="https://github.com/uasaha">Github</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link disabled" href="#">Contact</a>
+            </li>
+        </ul>
 
-    <form class="form-inline mt-2 mt-md-0" onsubmit="return false">
-      <input class="form-control mr-sm-2" type="text" placeholder="" aria-label="Search" id="search-input">
-      <button class="btn text-white background-353535" id="search-button" type="button" onclick="search()">Search</button>
-    </form>
+        <form class="form-inline mt-2 mt-md-0" onsubmit="return false">
+            <input class="form-control mr-sm-2" type="text" placeholder="" aria-label="Search" id="search-input">
+            <button class="btn text-white background-353535" id="search-button" type="button" onclick="search()">
+                Search
+            </button>
+        </form>
 
-    <ul class="navbar-nav main-navbar-user">
-      <li th:if="${memberNo}==1" class="nav-item active">
-        <a class="nav-link" href="/contents/register"><i class="bi bi-pencil my-icons-size"></i></a>
-      </li>
-      <li th:if="${memberNo}==1" class="nav-item active">
-        <a class="nav-link" href="#"><i class="bi bi-gear-wide-connected my-icons-size"></i></a>
-      </li>
-      <li class="nav-item active" sec:authorize="isAnonymous()">
-        <a class="nav-link" href="/login"><i class="bi bi-door-open my-icons-size"></i></a>
-      </li>
-      <li class="nav-item active" sec:authorize="isAuthenticated()">
-        <a class="nav-link" href="/logout"><i class="bi bi-door-open-fill my-icons-size"></i></a>
-      </li>
-    </ul>
-  </div>
+        <ul class="navbar-nav main-navbar-user">
+            <li th:if="${memberNo}==1" class="nav-item active">
+                <a class="nav-link" href="/contents/register"><i class="bi bi-pencil my-icons-size"></i></a>
+            </li>
+            <li th:if="${memberNo}==1" class="nav-item active">
+                <a class="nav-link" href="#"><i class="bi bi-gear-wide-connected my-icons-size"></i></a>
+            </li>
+            <li class="nav-item active" sec:authorize="isAnonymous()">
+                <a class="nav-link" href="/login"><i class="bi bi-door-open my-icons-size"></i></a>
+            </li>
+            <li class="nav-item active" sec:authorize="isAuthenticated()">
+                <a class="nav-link" href="/logout"><i class="bi bi-door-open-fill my-icons-size"></i></a>
+            </li>
+        </ul>
+    </div>
 </nav>
 
 <div class="container-fluid margin-top-1">
-  <div class="row minus-margin-10">
-    <div class="col-md-3 navbar-nav">
-      <div class="flex-shrink-0 p-3 wd-100 background-252525">
-        <section class="btc-accordion">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="accordion mb-2" id="accordionExample">
-                  <img src="https://emate-bucket.s3.ap-northeast-2.amazonaws.com/mainthumb.jpeg" class="img-thumbnail d-none d-md-block">
-                  <p class="d-none d-md-block color-white">메이트의 개발 블로그입니다.</p>
-                  <div class="card background-353535 color-white main-sidebar-card">
-                    <div class="card-header" onclick="location.href='/contents'">
-                      <a class="link-body-emphasis align-items-center d-inline-flex color-white font-19 text-deco-none" href="/contents">
-                        <p class="py-2"> 전체 글 보기</p>
-                      </a>
-                    </div>
-                  </div>
-                  <div class="card background-353535 color-white main-sidebar-card">
-                    <div class="card-header" id="headingOne">
-                      <a class="accordion-icon" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                        <h5 class="py-2"> Category <span class="float-right"><i class="fas fa-angle-down"></i></span></h5>
-                      </a>
-                    </div>
-                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                      <div class="card-body">
-                        <div class="cursor-pointer" th:each="category : ${categories}">
-                          <a class="link-body-emphasis align-items-center d-inline-flex color-white text-deco-none" th:href="@{/category/{cate-url}(cate-url=${category.categoryName})}">
-                            <p th:text="${category.categoryName}"></p><p>(</p><p th:text="${category.contentsCnt}"></p><p>)</p>
-                          </a>
+    <div class="row minus-margin-10">
+        <div class="col-md-3 navbar-nav">
+            <div class="flex-shrink-0 p-3 wd-100 background-252525">
+                <section class="btc-accordion">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="accordion mb-2" id="accordionExample">
+                                    <img src="https://emate-bucket.s3.ap-northeast-2.amazonaws.com/mainthumb.jpeg"
+                                         class="img-thumbnail d-none d-md-block">
+                                    <p class="d-none d-md-block color-white">메이트의 개발 블로그입니다.</p>
+                                    <div class="card background-353535 color-white main-sidebar-card">
+                                        <div class="card-header" onclick="location.href='/contents'">
+                                            <a class="link-body-emphasis align-items-center d-inline-flex color-white font-19 text-deco-none"
+                                               href="/contents">
+                                                <p class="py-2"> 전체 글 보기</p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="card background-353535 color-white main-sidebar-card">
+                                        <div class="card-header" id="headingOne">
+                                            <a class="accordion-icon" data-toggle="collapse" data-target="#collapseOne"
+                                               aria-expanded="false" aria-controls="collapseOne">
+                                                <h5 class="py-2"> Category <span class="float-right"><i
+                                                        class="fas fa-angle-down"></i></span></h5>
+                                            </a>
+                                        </div>
+                                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+                                             data-parent="#accordionExample">
+                                            <div class="card-body">
+                                                <div class="cursor-pointer" th:each="category : ${categories}">
+                                                    <a class="link-body-emphasis align-items-center d-inline-flex color-white text-deco-none"
+                                                       th:href="@{/category/{cate-url}(cate-url=${category.categoryName})}">
+                                                        <p th:text="${category.categoryName}"></p>
+                                                        <p>(</p>
+                                                        <p th:text="${category.contentsCnt}"></p>
+                                                        <p>)</p>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="today-count-div">
+                                    <div class="main-sidebar-visit">
+                                        <div>
+                                            <h2 class="color-white font-15">Total</h2>
+                                        </div>
+                                        <div>
+                                            <h2 class="color-white font-25" th:text="${total}"></h2>
+                                        </div>
+                                        <div>
+                                            <p class="color-white font-15" th:text="'Today : ' + ${today}"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                      </div>
                     </div>
-                  </div>
-                </div>
-                <div class="today-count-div">
-                  <div class="main-sidebar-visit">
-                    <div>
-                      <h2 class="color-white font-15">Total</h2>
-                    </div>
-                    <div>
-                      <h2 class="color-white font-25" th:text="${total}"></h2>
-                    </div>
-                    <div>
-                      <p class="color-white font-15" th:text="'Today : ' + ${today}"></p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                </section>
             </div>
-          </div>
-        </section>
-      </div>
-    </div>
-    <div class="col-md-7 pl-2 pr-2">
-      <!--            꾸미는 공간-->
-      <div class="col-12">
-        <div class="col-12  d-flex justify-content-center overflow-auto">
-          <div th:each="tag : ${content.tags}" th:style="'background-color: ' + ${tag.tagColor} + '; border-radius: 1rem; text-align: center; margin-right: 0.5rem; white-space: nowrap'" th:id="'div' + ${tag.tagName}">
-            <a class="color-white text-deco-none font-oblique" th:href="@{/tags/{tag-url}(tag-url=${tag.tagUrl})}" th:text="'#' + ${tag.tagName}" th:id="'a'+${tag.tagName}"></a>
-          </div>
         </div>
-        <h1 class="col-12 color-white text-center font-35 margin-top-half-1" th:text="${content.subject}"></h1>
-        <small class="col-12 d-flex justify-content-center color-white text-center" th:text="${#temporals.format(content.createdAt, 'yyyy. MM. dd')}"></small>
-      </div>
-      <hr class="border-white max-width-96">
-      <div id="viewer" class="col-12 my-font viewer-padding"></div>
-      <hr class="border-white max-width-96">
-    </div>
-    <div class="col-md-12 height-5">
+        <div class="col-md-7 pl-2 pr-2">
+            <!--            꾸미는 공간-->
+            <div class="col-12">
+                <div class="col-12  d-flex justify-content-center overflow-auto">
+                    <div th:each="tag : ${content.tags}"
+                         th:style="'background-color: ' + ${tag.tagColor} + '; border-radius: 1rem; text-align: center; margin-right: 0.5rem; white-space: nowrap'"
+                         th:id="'div' + ${tag.tagName}">
+                        <a class="color-white text-deco-none font-oblique"
+                           th:href="@{/tags/{tag-url}(tag-url=${tag.tagUrl})}" th:text="'#' + ${tag.tagName}"
+                           th:id="'a'+${tag.tagName}"></a>
+                    </div>
+                </div>
+                <h1 class="col-12 color-white text-center font-35 margin-top-half-1" th:text="${content.subject}"></h1>
+                <small class="col-12 d-flex justify-content-center color-white text-center"
+                       th:text="${#temporals.format(content.createdAt, 'yyyy. MM. dd')}"></small>
+            </div>
+            <hr class="border-white max-width-96">
+            <div id="viewer" class="col-12 my-font viewer-padding"></div>
 
+            <!--댓글-->
+
+            <h3 class="col-12 color-white margin-top-5">Comments</h3>
+            <hr class="border-white max-width-96">
+            <div class="col-md-12">
+                <form id="mom-form" action="/comments/anonymous" method="post">
+                    <div>
+                        <input class="display-none" name="contentsNo" th:value="${content.contentsNo}">
+                        <input class="display-none" name="momNo" value="">
+                        <label class="color-white">닉네임
+                            <input id="mom-comment-nick" type="text" name="nickName" class="color-white max-width-10 comment-text-box" placeholder="2~8자">
+                        </label>
+                        <label class="color-white">비밀번호
+                            <input id="mom-comment-password" type="password" name="password" class="color-white max-width-10 comment-text-box" placeholder="4~8자">
+                        </label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input id="secret-check" class="form-check-input" type="checkbox" onclick="setSecret(this)">
+                        <input class="display-none" id="real-secret-check" type="text" name="secret" value="false">
+                        <label for="secret-check" class="color-white form-check-label">비밀 댓글</label>
+                    </div>
+                    <div class="comment-head">
+                        <label class="width-80">
+                            <input id="mom-comment-content" type="text" name="content" class="color-white width-80 comment-text-box" placeholder="댓글 추가..." onclick="viewRegisterBtn()">
+                            <i id="comment-register-btn" class="bi bi-arrow-up-square color-white font-25 display-none" onclick="commentSubmit()"></i>
+                        </label>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-md-12" th:if="${comments} != null" th:each="mom : ${comments}">
+                <div class="comment-head">
+                    <span class="color-white font-15 comment-nick"
+                          th:text="${mom.nickName}"></span>
+                    <span class="comment-time"
+                          th:text="'-' + ${#temporals.format(mom.createdAt, 'yyyy.MM.dd hh:mm')}"></span>
+                    <span class="color-white font-15 reply-btn cursor-pointer border-bottom-white display-none" th:if="not ${mom.deleted} and not ${mom.secret}" th:id="${mom.commentNo}" onclick="viewReply(this)">reply</span>
+                </div>
+                <div class="comment-body" th:id="'mom' + ${mom.commentNo}"
+                     th:if="not ${mom.deleted} and not ${mom.secret}">
+                    <span class="color-white font-15 comment-content" th:text="${mom.content}"></span>
+                </div>
+                <div class="comment-body"
+                     th:if="${mom.deleted} and not ${mom.secret}">
+                    <span class="color-white font-15 comment-content color-505050">삭제된 댓글입니다.</span>
+                </div>
+                <div class="comment-body"
+                     th:if="${mom.secret} and not ${mom.deleted}">
+                    <span class="color-white font-15 comment-content color-505050">비밀 댓글입니다.</span>
+                </div>
+                <div class="comment-body"
+                     th:if="${mom.secret} and ${mom.deleted}">
+                    <span class="color-white font-15 comment-content color-505050">삭제된 댓글입니다.</span>
+                </div>
+                <!--          대댓글-->
+                <div th:each="child : ${mom.childComments}" style="padding-left: 2rem;">
+                    <div id="comment-head">
+                        <span class="color-white font-15 comment-nick"
+                              th:text="${child.nickName}"></span>
+                        <span class="comment-time"
+                              th:text="'-' + ${#temporals.format(child.createdAt, 'yyyy.MM.dd hh:mm')}"></span>
+                    </div>
+                    <div class="comment-body"
+                         th:if="not ${child.deleted} and not ${child.secret}">
+                        <span style="font-size: 15px; font-weight: normal" class="color-white"
+                              th:text="${child.content}"></span>
+                    </div>
+                    <div class="comment-body"
+                         th:if="${child.deleted} and not ${child.secret}">
+                        <span class="color-white font-15 comment-content color-505050">삭제된 댓글입니다.</span>
+                    </div>
+                    <div class="comment-body"
+                         th:if="${child.secret} and not ${child.deleted}">
+                        <span class="color-white font-15 comment-content color-505050">비밀 댓글입니다.</span>
+                    </div>
+                    <div class="comment-body"
+                         th:if="${child.secret} and ${child.deleted}">
+                        <span class="color-white font-15 comment-content color-505050">삭제된 댓글입니다.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 height-5">
+
+        </div>
     </div>
-  </div>
 </div>
 
 <!-- Editor -->
@@ -204,27 +307,28 @@
 </body>
 
 <footer>
-  <script th:inline="javascript">
-    const Editor = toastui.Editor;
-    const { codeSyntaxHighlight }  = Editor.plugin;
-    const viewer = Editor.factory({
-      el: document.querySelector('#viewer'),
-      viewer: true,
-      plugins: [codeSyntaxHighlight]
-    });
-    const elem = [[${content.detail}]];
-    viewer.setMarkdown(elem);
+    <script th:inline="javascript">
+        const Editor = toastui.Editor;
+        const {codeSyntaxHighlight} = Editor.plugin;
+        const viewer = Editor.factory({
+            el: document.querySelector('#viewer'),
+            viewer: true,
+            plugins: [codeSyntaxHighlight]
+        });
+        const elem = [[${content.detail}]];
+        viewer.setMarkdown(elem);
 
-    const tags = [[${content.tags}]];
+        const tags = [[${content.tags}]];
 
-    tags.forEach(function (tag){
-      let tagDiv = document.getElementById('div'+tag.tagName);
-      let tagA = document.getElementById('a'+tag.tagName);
-      tagDiv.style.width = tagA.offsetWidth + 20 + "px";
-    })
+        tags.forEach(function (tag) {
+            let tagDiv = document.getElementById('div' + tag.tagName);
+            let tagA = document.getElementById('a' + tag.tagName);
+            tagDiv.style.width = tagA.offsetWidth + 20 + "px";
+        })
 
-  </script>
-  <script src="/static/js/search.js"></script>
+    </script>
+    <script src="/static/js/search.js"></script>
+    <script th:inline="javascript" src="/static/js/comment.js"></script>
 
 </footer>
 </html>
