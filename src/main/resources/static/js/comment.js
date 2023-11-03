@@ -10,15 +10,15 @@ function viewRegisterBtn() {
 function viewReply(reply) {
     const mom = document.getElementById('mom' + reply.id);
 
-    if (document.getElementById('replyDiv' + reply.id) == null) {
+    if (document.getElementById('replyDiv') == null) {
         const replyDiv = document.createElement('div');
         replyDiv.classList.add("col-md-12");
         replyDiv.style.paddingTop = "1rem";
-        replyDiv.id = 'replyDiv' + reply.id;
-        replyDiv.innerHTML = '<form id="mom-form" action="/comments/anonymous" method="post">\n' +
+        replyDiv.id = 'replyDiv';
+        replyDiv.innerHTML = '<form id="child-form" action="/comments/anonymous" method="post">\n' +
             '                    <div>\n' +
-            '                        <input class="display-none" name="contentsNo" th:value="${content.contentsNo}">\n' +
-            '                        <input class="display-none" name="momNo" value="">\n' +
+            '                        <input class="display-none" name="contentsNo" id="momContentsNo">\n' +
+            '                        <input class="display-none" name="momNo" id="momCommentNo">\n' +
             '                        <label class="color-white">닉네임\n' +
             '                            <input id="child-comment-nick" type="text" name="nickName" class="color-white max-width-10 comment-text-box" placeholder="2~8자">\n' +
             '                        </label>\n' +
@@ -34,31 +34,43 @@ function viewReply(reply) {
             '                    <div class="comment-head">\n' +
             '                        <label class="width-80">\n' +
             '                            <input id="child-comment-content" type="text" name="content" class="color-white width-80 comment-text-box" placeholder="댓글 추가...">\n' +
-            '                            <i id="comment-register-btn" class="bi bi-arrow-up-square color-white font-25 display-none" onclick="commentSubmit()"></i>\n' +
+            '                            <i id="comment-register-btn" class="bi bi-arrow-up-square color-white font-25" onclick="childCommentSubmit()"></i>\n' +
             '                        </label>\n' +
             '                    </div>\n' +
             '                </form>';
 
         mom.appendChild(replyDiv);
         mom.style.borderBottom = "0px solid white";
+        document.getElementById("momContentsNo").value = document.getElementById("contentsNo").value;
+        document.getElementById("momCommentNo").value = reply.id;
     } else {
-        const replyDiv = document.getElementById('replyDiv' + reply.id);
+        const replyDiv = document.getElementById('replyDiv');
         replyDiv.remove();
         mom.style.borderBottom = "1px solid #404040";
     }
 }
 
+function childCommentSubmit() {
+    showSpinner();
+    const childForm = document.getElementById("child-form");
+
+    if (totalTesting("child-comment")) {
+        childForm.submit();
+    }
+}
+
+
 function commentSubmit() {
     showSpinner();
     const momForm = document.getElementById("mom-form");
 
-    if (totalTesting()) {
+    if (totalTesting("mom-comment")) {
         momForm.submit();
     }
 }
 
-function isValidNickname() {
-    const nickname = document.getElementById("mom-comment-nick").value;
+function isValidNickname(idStr) {
+    const nickname = document.getElementById(idStr + "-nick").value;
     if (!nickReg.test(nickname) || emptyReg.test(nickname)) {
         alert('닉네임은 한글, 영어나 숫자로 2글자 이상 10글자 이하로 입력해주세요.');
         hideSpinner()
@@ -68,8 +80,8 @@ function isValidNickname() {
     return true;
 }
 
-function isValidPassword() {
-    const password = document.getElementById("mom-comment-password").value;
+function isValidPassword(idStr) {
+    const password = document.getElementById(idStr + "-password").value;
     if (!pwdReg.test(password) || emptyReg.test(password)) {
         alert('비밀번호는 영어나 숫자로 4글자 이상 8글자 이하로 입력해주세요.');
         hideSpinner()
@@ -78,8 +90,8 @@ function isValidPassword() {
     return true;
 }
 
-function isValidContent() {
-    const content = document.getElementById("mom-comment-content").value;
+function isValidContent(idStr) {
+    const content = document.getElementById(idStr + "-content").value;
     if (content == null || content === "") {
         alert('내용을 입력해주세요.');
         hideSpinner();
@@ -88,8 +100,8 @@ function isValidContent() {
     return true;
 }
 
-function totalTesting() {
-    return isValidNickname() && isValidPassword() && isValidContent();
+function totalTesting(idStr) {
+    return isValidNickname(idStr) && isValidPassword(idStr) && isValidContent(idStr);
 }
 
 function showSpinner() {

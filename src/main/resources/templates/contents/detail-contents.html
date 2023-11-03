@@ -219,7 +219,7 @@
             <div class="col-md-12">
                 <form id="mom-form" action="/comments/anonymous" method="post">
                     <div>
-                        <input class="display-none" name="contentsNo" th:value="${content.contentsNo}">
+                        <input class="display-none" name="contentsNo" id="contentsNo" th:value="${content.contentsNo}">
                         <input class="display-none" name="momNo" value="">
                         <label class="color-white">닉네임
                             <input id="mom-comment-nick" type="text" name="nickName" class="color-white max-width-10 comment-text-box" placeholder="2~8자">
@@ -248,7 +248,7 @@
                           th:text="${mom.nickName}"></span>
                     <span class="comment-time"
                           th:text="'-' + ${#temporals.format(mom.createdAt, 'yyyy.MM.dd hh:mm')}"></span>
-                    <span class="color-white font-15 reply-btn cursor-pointer border-bottom-white display-none" th:if="not ${mom.deleted} and not ${mom.secret}" th:id="${mom.commentNo}" onclick="viewReply(this)">reply</span>
+                    <span class="color-white font-15 reply-btn cursor-pointer border-bottom-white" th:if="not ${mom.deleted} and not ${mom.secret}" th:id="${mom.commentNo}" onclick="viewReply(this)">reply</span>
                 </div>
                 <div class="comment-body" th:id="'mom' + ${mom.commentNo}"
                      th:if="not ${mom.deleted} and not ${mom.secret}">
@@ -268,7 +268,7 @@
                 </div>
                 <!--          대댓글-->
                 <div th:each="child : ${mom.childComments}" style="padding-left: 2rem;">
-                    <div id="comment-head">
+                    <div class="comment-head">
                         <span class="color-white font-15 comment-nick"
                               th:text="${child.nickName}"></span>
                         <span class="comment-time"
