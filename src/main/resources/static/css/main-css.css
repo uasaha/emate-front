@@ -245,15 +245,6 @@ a:hover {
     border-bottom: 1px solid white;
 }
 
-.comment-text-box:valid {
-    background-color: #252525;
-    outline: none;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: 1px solid white;
-}
-
 .comment-text-box:-webkit-autofill,
 .comment-text-box:-webkit-autofill:hover,
 .comment-text-box:-webkit-autofill:focus,
