@@ -12,7 +12,7 @@
     <meta name="description" th:content="${description}">
     <meta property="og:image" th:if="${content.thumbnail == null}" content="/static/img/favicon/apple-icon-180x180.png">
     <meta property="og:image" th:if="${content.thumbnail != null}" th:content="${content.thumbnail}">
-    <meta name="date" th:content="${#temporals.format(content.createdAt, 'yyyy-MM.-dd')}">
+    <meta name="date" th:content="${#temporals.format(content.createdAt, 'yyyy-MM-dd')}">
     <meta name="robots" content="index, follow">
 
     <!--  Boot Strap-->
