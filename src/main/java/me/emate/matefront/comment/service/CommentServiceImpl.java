@@ -3,6 +3,7 @@ package me.emate.matefront.comment.service;
 import lombok.RequiredArgsConstructor;
 import me.emate.matefront.comment.adaptor.CommentAdaptor;
 import me.emate.matefront.comment.dto.CommentListResponseDto;
+import me.emate.matefront.comment.dto.CommentMemberRegisterRequestDto;
 import me.emate.matefront.comment.dto.CommentNoMemberRegisterRequestDto;
 import org.springframework.stereotype.Service;
 
@@ -21,5 +22,10 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public void registerAnonymousComment(CommentNoMemberRegisterRequestDto requestDto) {
         commentAdaptor.registerAnonymousComment(requestDto);
+    }
+
+    @Override
+    public void registerMemberComment(CommentMemberRegisterRequestDto requestDto) {
+        commentAdaptor.registerMemberComment(requestDto);
     }
 }

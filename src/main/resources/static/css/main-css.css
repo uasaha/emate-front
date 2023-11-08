@@ -281,6 +281,12 @@ a:hover {
     font-weight: bold;
 }
 
+.comment-nick-me {
+    font-weight: bold;
+    float: left;
+    margin-left: 0.3rem;
+}
+
 .comment-time {
     font-size: 11px;
     color: #CCCCCC;
@@ -306,4 +312,13 @@ a:hover {
 
 .placeholder-red::placeholder {
     color: red;
+}
+
+.display-inline-block {
+    display: inline-block;
+}
+
+.comment-nick-image {
+    max-width: 20px;
+    float: left;
 }

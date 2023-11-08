@@ -196,7 +196,7 @@
         <div class="col-md-7 pl-2 pr-2">
             <!--            꾸미는 공간-->
             <div class="col-12">
-                <div class="col-12  d-flex justify-content-center overflow-auto">
+                <div class="col-12 d-flex justify-content-center overflow-auto">
                     <div th:each="tag : ${content.tags}"
                          th:style="'background-color: ' + ${tag.tagColor} + '; border-radius: 1rem; text-align: center; margin-right: 0.5rem; white-space: nowrap'"
                          th:id="'div' + ${tag.tagName}">
@@ -217,9 +217,9 @@
             <h3 class="col-12 color-white margin-top-5">Comments</h3>
             <hr class="border-white max-width-96">
             <div class="col-md-12">
-                <form id="mom-form" action="/comments/anonymous" method="post">
+                <form sec:authorize="isAnonymous()" id="mom-form-an" action="/comments/anonymous" method="post">
                     <div>
-                        <input class="display-none" name="contentsNo" id="contentsNo" th:value="${content.contentsNo}">
+                        <input class="display-none" name="contentsNo" id="contentsNo-an" th:value="${content.contentsNo}">
                         <input class="display-none" name="momNo" value="">
                         <label class="color-white">닉네임
                             <input id="mom-comment-nick" type="text" name="nickName" class="color-white max-width-10 comment-text-box" placeholder="2~8자">
@@ -228,6 +228,24 @@
                             <input id="mom-comment-password" type="password" name="password" class="color-white max-width-10 comment-text-box" placeholder="4~8자">
                         </label>
                     </div>
+                    <div class="comment-head">
+                        <label class="width-80">
+                            <input id="mom-comment-content" type="text" name="content" class="color-white width-80 comment-text-box" placeholder="댓글 추가..." onclick="viewRegisterBtnAn()">
+                            <i id="comment-register-btn-an" class="bi bi-arrow-up-square color-white font-25 display-none" onclick="anonymousCommentSubmit()"></i>
+                        </label>
+                    </div>
+                </form>
+                <form sec:authorize="isAuthenticated()" id="mom-form-me" action="/comments/member" method="post">
+                    <div>
+                        <input class="display-none" name="contentsNo" id="contentsNo-me" th:value="${content.contentsNo}">
+                        <input class="display-none" name="momNo" value="">
+                        <input class="display-none" id="memberNo" name="memberNo" th:value="${memberNo}">
+                        <input class="display-none" id="memNick" th:value="${member.nickname}">
+                        <div style="display: inline-block">
+                            <img src="/static/img/favicon/favicon-32x32.png" class="comment-nick-image">
+                            <span class="color-white comment-nick-me" th:text="${member.nickname}"></span>
+                        </div>
+                    </div>
                     <div class="form-check form-switch">
                         <input id="secret-check" class="form-check-input" type="checkbox" onclick="setSecret(this)">
                         <input class="display-none" id="real-secret-check" type="text" name="secret" value="false">
@@ -235,8 +253,8 @@
                     </div>
                     <div class="comment-head">
                         <label class="width-80">
-                            <input id="mom-comment-content" type="text" name="content" class="color-white width-80 comment-text-box" placeholder="댓글 추가..." onclick="viewRegisterBtn()">
-                            <i id="comment-register-btn" class="bi bi-arrow-up-square color-white font-25 display-none" onclick="commentSubmit()"></i>
+                            <input id="mom-comment-content-me" type="text" name="content" class="color-white width-80 comment-text-box" placeholder="댓글 추가..." onclick="viewRegisterBtnMe()">
+                            <i id="comment-register-btn-me" class="bi bi-arrow-up-square color-white font-25 display-none" onclick="memberCommentSubmit()"></i>
                         </label>
                     </div>
                 </form>
@@ -244,52 +262,74 @@
 
             <div class="col-md-12" th:if="${comments} != null" th:each="mom : ${comments}">
                 <div class="comment-head">
-                    <span class="color-white font-15 comment-nick"
-                          th:text="${mom.nickName}"></span>
+                    <div style="display: inline-block">
+                        <img th:if="${mom.memberNo != null}" src="/static/img/favicon/favicon-32x32.png" class="comment-nick-image">
+                        <span th:if="${mom.memberNo != null}" class="color-white font-15 comment-nick-me"
+                              th:text="${mom.nickName}"></span>
+                        <span th:if="${mom.memberNo == null}" class="color-white font-15 comment-nick"
+                              th:text="${mom.nickName}"></span>
+                    </div>
                     <span class="comment-time"
                           th:text="'-' + ${#temporals.format(mom.createdAt, 'yyyy.MM.dd hh:mm')}"></span>
-                    <span class="color-white font-15 reply-btn cursor-pointer border-bottom-white" th:if="not ${mom.deleted} and not ${mom.secret}" th:id="${mom.commentNo}" onclick="viewReply(this)">reply</span>
+                    <span class="color-white font-15 reply-btn cursor-pointer border-bottom-white" sec:authorize="isAnonymous()" th:if="not ${mom.deleted} and not ${mom.secret}" th:id="${mom.commentNo}" onclick="viewReplyAn(this)">reply</span>
+                    <span class="color-white font-15 reply-btn cursor-pointer border-bottom-white" sec:authorize="isAuthenticated()" th:if="not ${mom.deleted} and not ${mom.secret}" th:id="${mom.commentNo}" onclick="viewReplyMe(this)">reply</span>
+
                 </div>
-                <div class="comment-body" th:id="'mom' + ${mom.commentNo}"
+
+<!--                비로그인-->
+                <div class="comment-body" th:id="'mom' + ${mom.commentNo}" sec:authorize="isAnonymous()"
                      th:if="not ${mom.deleted} and not ${mom.secret}">
                     <span class="color-white font-15 comment-content" th:text="${mom.content}"></span>
                 </div>
-                <div class="comment-body"
-                     th:if="${mom.deleted} and not ${mom.secret}">
-                    <span class="color-white font-15 comment-content color-505050">삭제된 댓글입니다.</span>
+                <div class="comment-body" th:id="'mom' + ${mom.commentNo}" sec:authorize="isAnonymous()"
+                     th:if="${mom.deleted} or ${mom.secret}">
+                    <span class="font-15 comment-content color-505050">삭제되거나 비밀 댓글입니다.</span>
                 </div>
-                <div class="comment-body"
-                     th:if="${mom.secret} and not ${mom.deleted}">
-                    <span class="color-white font-15 comment-content color-505050">비밀 댓글입니다.</span>
+
+<!--                로그인-->
+                <div class="comment-body" th:id="'mom' + ${mom.commentNo}" sec:authorize="isAuthenticated()"
+                     th:if="not ${mom.deleted} and not ${mom.secret}">
+                    <span class="color-white font-15 comment-content" th:text="${mom.content}"></span>
                 </div>
-                <div class="comment-body"
-                     th:if="${mom.secret} and ${mom.deleted}">
-                    <span class="color-white font-15 comment-content color-505050">삭제된 댓글입니다.</span>
+                <div class="comment-body" th:id="'mom' + ${mom.commentNo}"
+                     th:if="${mom.deleted} or ${mom.secret}" sec:authorize="isAuthenticated()">
+                    <span class="font-15 comment-content color-505050">삭제되거나 비밀 댓글입니다.</span>
+                    <br>
+                    <span class="color-white font-15 comment-content" th:if="${mom.memberNo} == ${memberNo} or ${memberNo} == 1" th:text="${mom.content}"></span>
                 </div>
+
                 <!--          대댓글-->
                 <div th:each="child : ${mom.childComments}" style="padding-left: 2rem;">
                     <div class="comment-head">
-                        <span class="color-white font-15 comment-nick"
-                              th:text="${child.nickName}"></span>
+                        <div class="display-inline-block">
+                            <img th:if="${child.memberNo != null}" src="/static/img/favicon/favicon-32x32.png" style="max-width: 20px; float: left">
+                            <span th:if="${child.memberNo == null}" class="color-white font-15 comment-nick"
+                                  th:text="${child.nickName}"></span>
+                            <span th:if="${child.memberNo != null}" class="color-white font-15 comment-nick-me"
+                                  th:text="${child.nickName}"></span>
+
+                        </div>
                         <span class="comment-time"
                               th:text="'-' + ${#temporals.format(child.createdAt, 'yyyy.MM.dd hh:mm')}"></span>
                     </div>
-                    <div class="comment-body"
+                    <div class="comment-body" sec:authorize="isAnonymous()"
                          th:if="not ${child.deleted} and not ${child.secret}">
-                        <span style="font-size: 15px; font-weight: normal" class="color-white"
+                        <span class="color-white font-15 comment-content"
                               th:text="${child.content}"></span>
                     </div>
-                    <div class="comment-body"
-                         th:if="${child.deleted} and not ${child.secret}">
-                        <span class="color-white font-15 comment-content color-505050">삭제된 댓글입니다.</span>
+                    <div class="comment-body" sec:authorize="isAnonymous()"
+                         th:if="${child.deleted} or ${child.secret}">
+                        <span class="color-white font-15 comment-content color-505050">삭제되거나 비밀 댓글입니다.</span>
+                    </div>
+                    <div class="comment-body" sec:authorize="isAuthenticated()"
+                         th:if="not ${child.deleted} and not ${child.secret}">
+                        <span class="color-white font-15 comment-content" th:text="${child.content}"></span>
                     </div>
                     <div class="comment-body"
-                         th:if="${child.secret} and not ${child.deleted}">
-                        <span class="color-white font-15 comment-content color-505050">비밀 댓글입니다.</span>
-                    </div>
-                    <div class="comment-body"
-                         th:if="${child.secret} and ${child.deleted}">
-                        <span class="color-white font-15 comment-content color-505050">삭제된 댓글입니다.</span>
+                         th:if="${child.deleted} or ${child.secret}" sec:authorize="isAuthenticated()">
+                        <span class="font-15 comment-content color-505050">삭제되거나 비밀 댓글입니다.</span>
+                        <br>
+                        <span class="color-white font-15 comment-content" th:if="${child.memberNo} == ${memberNo} or ${memberNo} == 1" th:text="${child.content}"></span>
                     </div>
                 </div>
             </div>

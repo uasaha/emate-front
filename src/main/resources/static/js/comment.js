@@ -1,13 +1,18 @@
-let nickReg = /^[a-zA-Zㄱ-ㅣ가-힣\d]{2,10}$/;
+let nickReg = /^[a-zA-Zㄱ-ㅣ가-힣\d]{2,8}$/;
 let emptyReg = /\s/g;
 let pwdReg = /^[a-zA-Z0-9\d]{4,8}$/;
 
-function viewRegisterBtn() {
-    const btn = document.getElementById("comment-register-btn");
+function viewRegisterBtnAn() {
+    const btn = document.getElementById("comment-register-btn-an");
     btn.style.display = "contents";
 }
 
-function viewReply(reply) {
+function viewRegisterBtnMe() {
+    const btn = document.getElementById("comment-register-btn-me");
+    btn.style.display = "contents";
+}
+
+function viewReplyAn(reply) {
     const mom = document.getElementById('mom' + reply.id);
 
     if (document.getElementById('replyDiv') == null) {
@@ -26,11 +31,6 @@ function viewReply(reply) {
             '                            <input id="child-comment-password" type="password" name="password" class="color-white max-width-10 comment-text-box" placeholder="4~8자">\n' +
             '                        </label>\n' +
             '                    </div>\n' +
-            '                    <div class="form-check form-switch">\n' +
-            '                        <input id="secret-check" class="form-check-input" type="checkbox" name="secret">\n' +
-            '                        <input type="hidden" name="_secret" value="on">\n' +
-            '                        <label for="secret-check" class="color-white form-check-label">비밀 댓글</label>\n' +
-            '                    </div>\n' +
             '                    <div class="comment-head">\n' +
             '                        <label class="width-80">\n' +
             '                            <input id="child-comment-content" type="text" name="content" class="color-white width-80 comment-text-box" placeholder="댓글 추가...">\n' +
@@ -41,8 +41,54 @@ function viewReply(reply) {
 
         mom.appendChild(replyDiv);
         mom.style.borderBottom = "0px solid white";
-        document.getElementById("momContentsNo").value = document.getElementById("contentsNo").value;
+        document.getElementById("momContentsNo").value = document.getElementById("contentsNo-an").value;
         document.getElementById("momCommentNo").value = reply.id;
+    } else {
+        const replyDiv = document.getElementById('replyDiv');
+        replyDiv.remove();
+        mom.style.borderBottom = "1px solid #404040";
+    }
+}
+
+function viewReplyMe(reply) {
+    console.log(reply.id);
+    const mom = document.getElementById('mom' + reply.id);
+    const memberNo = document.getElementById("memberNo").value;
+    console.log(memberNo);
+    const memberNick = document.getElementById("memNick").value;
+
+    if (document.getElementById('replyDiv') == null) {
+        const replyDiv = document.createElement('div');
+        replyDiv.classList.add("col-md-12");
+        replyDiv.style.paddingTop = "1rem";
+        replyDiv.id = 'replyDiv';
+        replyDiv.innerHTML = '<form id="child-form" action="/comments/member" method="post">\n' +
+            '                    <div>\n' +
+            '                        <input class="display-none" name="contentsNo" id="momContentsNo-me">\n' +
+            '                        <input class="display-none" name="momNo" id="momNo-me" value="">\n' +
+            '                        <input class="display-none" name="memberNo" value="' + memberNo +'">\n' +
+            '                        <div style="display: inline-block">' +
+            '                            <img src="/static/img/favicon/favicon-32x32.png" class="comment-nick-image">' +
+            '                            <span class="color-white comment-nick">' + memberNick + '</span>\n' +
+            '                        </div>' +
+            '                    </div>\n' +
+            '                    <div class="form-check form-switch">\n' +
+            '                        <input id="secret-check-child" class="form-check-input" type="checkbox" onclick="setSecretChild(this)">\n' +
+            '                        <input class="display-none" id="real-secret-check-child" type="text" name="secret" value="false">\n' +
+            '                        <label for="secret-check-child" class="color-white form-check-label">비밀 댓글</label>\n' +
+            '                    </div>\n' +
+            '                    <div class="comment-head">\n' +
+            '                        <label class="width-80">\n' +
+            '                            <input id="child-comment-content-me" type="text" name="content" class="color-white width-80 comment-text-box" placeholder="댓글 추가...">\n' +
+            '                            <i id="comment-register-btn-me" class="bi bi-arrow-up-square color-white font-25" onclick="memberChildCommentSubmit()"></i>\n' +
+            '                        </label>\n' +
+            '                    </div>\n' +
+            '                </form>'
+
+        mom.appendChild(replyDiv);
+        mom.style.borderBottom = "0px solid white";
+        document.getElementById("momContentsNo-me").value = document.getElementById("contentsNo-me").value;
+        document.getElementById("momNo-me").value = reply.id;
     } else {
         const replyDiv = document.getElementById('replyDiv');
         replyDiv.remove();
@@ -59,12 +105,30 @@ function childCommentSubmit() {
     }
 }
 
-
-function commentSubmit() {
+function memberChildCommentSubmit() {
     showSpinner();
-    const momForm = document.getElementById("mom-form");
+    const childForm = document.getElementById("child-form");
+
+    if(memberTesting("child-comment")) {
+        childForm.submit();
+    }
+}
+
+
+function anonymousCommentSubmit() {
+    showSpinner();
+    const momForm = document.getElementById("mom-form-an");
 
     if (totalTesting("mom-comment")) {
+        momForm.submit();
+    }
+}
+
+function memberCommentSubmit() {
+    showSpinner();
+    const momForm = document.getElementById("mom-form-me");
+
+    if (memberTesting("mom-comment")) {
         momForm.submit();
     }
 }
@@ -100,8 +164,22 @@ function isValidContent(idStr) {
     return true;
 }
 
+function isValidContentForMember(idStr) {
+    const content = document.getElementById(idStr + "-content-me").value;
+    if (content == null || content === "") {
+        alert('내용을 입력해주세요.');
+        hideSpinner();
+        return false;
+    }
+    return true;
+}
+
 function totalTesting(idStr) {
     return isValidNickname(idStr) && isValidPassword(idStr) && isValidContent(idStr);
+}
+
+function memberTesting(idStr) {
+    return isValidContentForMember(idStr);
 }
 
 function showSpinner() {
@@ -119,5 +197,15 @@ function setSecret(secret) {
         real.value = true;
     } else {
         real.value = false;
+    }
+}
+
+function setSecretChild(secret) {
+    const realChild = document.getElementById("real-secret-check-child");
+
+    if (secret.checked) {
+        realChild.value = true;
+    } else {
+        realChild.value = false;
     }
 }

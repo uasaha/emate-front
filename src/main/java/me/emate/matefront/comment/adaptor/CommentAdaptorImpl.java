@@ -3,6 +3,7 @@ package me.emate.matefront.comment.adaptor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.emate.matefront.comment.dto.CommentListResponseDto;
+import me.emate.matefront.comment.dto.CommentMemberRegisterRequestDto;
 import me.emate.matefront.comment.dto.CommentNoMemberRegisterRequestDto;
 import me.emate.matefront.comment.dto.CommentResponseDto;
 import me.emate.matefront.config.ToBackConfig;
@@ -44,6 +45,16 @@ public class CommentAdaptorImpl implements CommentAdaptor {
                 HttpMethod.POST,
                 new HttpEntity<>(requestDto, makeHeader()),
                 new ParameterizedTypeReference<CommentResponseDto>() {})
+                .getBody();
+    }
+
+    @Override
+    public void registerMemberComment(CommentMemberRegisterRequestDto requestDto) {
+        restTemplate.exchange(
+                toBackConfig.getBackUrl() + COMMENT_URL + "/member",
+                HttpMethod.POST,
+                new HttpEntity<>(requestDto, makeHeader()),
+                new ParameterizedTypeReference<Void>() {})
                 .getBody();
     }
 }

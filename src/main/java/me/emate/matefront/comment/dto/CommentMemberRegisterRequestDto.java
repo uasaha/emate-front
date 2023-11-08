@@ -3,12 +3,12 @@ package me.emate.matefront.comment.dto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-@AllArgsConstructor
 @Getter
-public class CommentNoMemberRegisterRequestDto {
+@AllArgsConstructor
+public class CommentMemberRegisterRequestDto {
     private Integer contentsNo;
+    private Integer memberNo;
     private Long momNo;
-    private String nickName;
-    private String password;
     private String content;
+    private boolean secret;
 }
