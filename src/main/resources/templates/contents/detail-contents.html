@@ -270,7 +270,7 @@
                               th:text="${mom.nickName}"></span>
                     </div>
                     <span class="comment-time"
-                          th:text="'-' + ${#temporals.format(mom.createdAt, 'yyyy.MM.dd hh:mm')}"></span>
+                          th:text="'-' + ${#temporals.format(mom.createdAt, 'yyyy.MM.dd HH:mm')}"></span>
                     <span class="color-white font-15 reply-btn cursor-pointer border-bottom-white" sec:authorize="isAnonymous()" th:if="not ${mom.deleted} and not ${mom.secret}" th:id="${mom.commentNo}" onclick="viewReplyAn(this)">reply</span>
                     <span class="color-white font-15 reply-btn cursor-pointer border-bottom-white" sec:authorize="isAuthenticated()" th:if="not ${mom.deleted} and not ${mom.secret}" th:id="${mom.commentNo}" onclick="viewReplyMe(this)">reply</span>
 
@@ -310,7 +310,7 @@
 
                         </div>
                         <span class="comment-time"
-                              th:text="'-' + ${#temporals.format(child.createdAt, 'yyyy.MM.dd hh:mm')}"></span>
+                              th:text="'-' + ${#temporals.format(child.createdAt, 'yyyy.MM.dd HH:mm')}"></span>
                     </div>
                     <div class="comment-body" sec:authorize="isAnonymous()"
                          th:if="not ${child.deleted} and not ${child.secret}">
