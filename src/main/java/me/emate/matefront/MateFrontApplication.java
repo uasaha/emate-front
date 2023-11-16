@@ -9,8 +9,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
 public class MateFrontApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(MateFrontApplication.class, args);
-	}
+  public static void main(String[] args) {
+    SpringApplication.run(MateFrontApplication.class, args);
+  }
 
 }

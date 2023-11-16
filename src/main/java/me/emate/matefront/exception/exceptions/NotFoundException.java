@@ -5,9 +5,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
 public class NotFoundException extends RuntimeException {
-    private static final String MESSAGE = "Not Found";
 
-    public NotFoundException() {
-        super(MESSAGE);
-    }
+  private static final String MESSAGE = "Not Found";
+
+  public NotFoundException() {
+    super(MESSAGE);
+  }
 }

@@ -8,13 +8,14 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @RequiredArgsConstructor
-public class WebMVCConfig implements WebMvcConfigurer {
-    private final VisitorInterceptor visitorInterceptor;
+public class WebMvcConfig implements WebMvcConfigurer {
 
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(visitorInterceptor)
-                .addPathPatterns("/*")
-                .excludePathPatterns("/logout", "/robots.txt", "/sitemap.xml");
-    }
+  private final VisitorInterceptor visitorInterceptor;
+
+  @Override
+  public void addInterceptors(InterceptorRegistry registry) {
+    registry.addInterceptor(visitorInterceptor)
+        .addPathPatterns("/*")
+        .excludePathPatterns("/logout", "/robots.txt", "/sitemap.xml");
+  }
 }

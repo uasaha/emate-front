@@ -11,20 +11,21 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 public class MemberRestController {
-    private final MemberService memberService;
 
-    @PostMapping("/idcheck")
-    public boolean idConflictCheck(@RequestParam String id) {
-        return memberService.idConflictCheck(id);
-    }
+  private final MemberService memberService;
 
-    @PostMapping("/nickcheck")
-    public boolean nickConflictCheck(@RequestParam String nickname) {
-        return memberService.isNickConflict(nickname);
-    }
+  @PostMapping("/idcheck")
+  public boolean idConflictCheck(@RequestParam String id) {
+    return memberService.idConflictCheck(id);
+  }
 
-    @PostMapping("/emailcheck")
-    public boolean emailConflictCheck(@RequestParam String email) {
-        return memberService.isEmailConflict(email);
-    }
+  @PostMapping("/nickcheck")
+  public boolean nickConflictCheck(@RequestParam String nickname) {
+    return memberService.isNickConflict(nickname);
+  }
+
+  @PostMapping("/emailcheck")
+  public boolean emailConflictCheck(@RequestParam String email) {
+    return memberService.isEmailConflict(email);
+  }
 }

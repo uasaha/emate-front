@@ -8,19 +8,20 @@ import org.springframework.web.client.RestTemplate;
 
 @Configuration
 public class RestTemplateConfig {
-    @Bean
-    public ClientHttpRequestFactory clientHttpRequestFactory() {
-        SimpleClientHttpRequestFactory factory = new SimpleClientHttpRequestFactory();
 
-        factory.setConnectTimeout(30000);
-        factory.setReadTimeout(100000);
-        factory.setBufferRequestBody(false);
+  @Bean
+  public ClientHttpRequestFactory clientHttpRequestFactory() {
+    SimpleClientHttpRequestFactory factory = new SimpleClientHttpRequestFactory();
 
-        return factory;
-    }
+    factory.setConnectTimeout(30000);
+    factory.setReadTimeout(100000);
+    factory.setBufferRequestBody(false);
 
-    @Bean
-    public RestTemplate restTemplate(ClientHttpRequestFactory clientHttpRequestFactory) {
-        return new RestTemplate(clientHttpRequestFactory);
-    }
+    return factory;
+  }
+
+  @Bean
+  public RestTemplate restTemplate(ClientHttpRequestFactory clientHttpRequestFactory) {
+    return new RestTemplate(clientHttpRequestFactory);
+  }
 }

@@ -1,324 +1,336 @@
 .my-icons-size {
-    font-size: 25px;
+  font-size: 25px;
 }
 
 .pagination {
-    list-style: none;
-    display: inline-block;
-    padding: 0;
-    margin-top: 10px;
-    box-sizing:border-box;
-    text-align: center;
+  list-style: none;
+  display: inline-block;
+  padding: 0;
+  margin-top: 10px;
+  box-sizing: border-box;
+  text-align: center;
 }
 
 .pagination li {
-    display: inline;
-    text-align: center;
+  display: inline;
+  text-align: center;
 }
 
 .pagination a {
-    float: left;
-    display: block;
-    font-size: 14px;
-    text-decoration: none;
-    padding: 5px 12px;
-    color:#fff;
-    border:1px solid transparent;
-    margin-left: 3px;
-    width: 3em;
-    height: 3em;
-    line-height: 30px;
-    border-radius: 50%;
-    &:hover{
-        background-color: #404040;
-        color: white;
-    }
-    &.active, &:active{
-        background-color: #404040;
-        color: white;
-    }
-    &.active{  cursor: default;}
-    &:active{ outline: none;}
+  float: left;
+  display: block;
+  font-size: 14px;
+  text-decoration: none;
+  padding: 5px 12px;
+  color: #fff;
+  border: 1px solid transparent;
+  margin-left: 3px;
+  width: 3em;
+  height: 3em;
+  line-height: 30px;
+  border-radius: 50%;
+
+  &:hover {
+    background-color: #404040;
+    color: white;
+  }
+
+  &.active, &:active {
+    background-color: #404040;
+    color: white;
+  }
+
+  &.active {
+    cursor: default;
+  }
+
+  &:active {
+    outline: none;
+  }
 }
 
 .today-count-div {
-    border: 1px solid white;
-    margin-top: 2em;
-    border-radius: 0.5rem;
+  border: 1px solid white;
+  margin-top: 2em;
+  border-radius: 0.5rem;
 }
 
 .layerPopup {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.8);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
 }
 
 .cursor-pointer {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .main-body {
-    font-family: 'Nanum Gothic', sans-serif;
-    background-color: #252525;
-    max-width: 100em;
-    margin: auto !important;
+  font-family: 'Nanum Gothic', sans-serif;
+  background-color: #252525;
+  max-width: 100em;
+  margin: auto !important;
 }
 
 .logo-bank {
-    height: 40px;
+  height: 40px;
 }
 
 .main-navbar-div {
-    font-size: 25px;
+  font-size: 25px;
 }
 
 .main-navbar-user {
-    float: right;
+  float: right;
 }
 
 .margin-top-1 {
-    margin-top: 1rem;
+  margin-top: 1rem;
 }
 
 .margin-top-5 {
-    margin-top: 5rem;
+  margin-top: 5rem;
 }
 
 .main-sidebar-intro {
-    color: white
+  color: white
 }
 
 .main-sidebar-card {
-    color: white;
-    border: none !important;
-    cursor : pointer;
+  color: white;
+  border: none !important;
+  cursor: pointer;
 }
 
 .color-white {
-    color: white;
+  color: white;
 }
 
 .font-15 {
-    font-size: 15px;
+  font-size: 15px;
 }
 
 .main-sidebar-visit {
-    text-align: center;
-    border-radius: 0.5rem;
-    margin-top: 1em;
+  text-align: center;
+  border-radius: 0.5rem;
+  margin-top: 1em;
 }
 
 .font-25 {
-    font-size: 25px;
+  font-size: 25px;
 }
 
 .font-19 {
-    font-size: 19px;
+  font-size: 19px;
 }
 
 .main-container {
-    margin-top: -2.5em;
-    padding-right: 0;
-    padding-left: 0;
+  margin-top: -2.5em;
+  padding-right: 0;
+  padding-left: 0;
 }
 
 .border-white {
-    border: solid 1px white;
+  border: solid 1px white;
 }
 
 .margin-bottom-2 {
-    margin-bottom: 2rem;
+  margin-bottom: 2rem;
 }
 
 .overflow-hidden {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .list-content-thumbnail {
-    object-fit: cover;
+  object-fit: cover;
 }
 
 .background-353535 {
-    background-color: #353535 !important;
+  background-color: #353535 !important;
 }
 
 .background-252525 {
-    background-color: #252525 !important;
+  background-color: #252525 !important;
 }
 
 .list-content-subject {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .content-subject-no-thumb {
-    text-align: center;
-    position: absolute;
-    color: white;
-    transform: translate(-50%, -50%);
-    top: 37%;
-    left: 50%;
-    font-size: 2em
+  text-align: center;
+  position: absolute;
+  color: white;
+  transform: translate(-50%, -50%);
+  top: 37%;
+  left: 50%;
+  font-size: 2em
 }
 
 .text-center {
-    text-align: center;
+  text-align: center;
 }
 
 .max-width-96 {
-    max-width: 100%;
+  max-width: 100%;
 }
 
 .height-5 {
-    height: 5rem;
+  height: 5rem;
 }
 
 .max-width-30 {
-    max-width: 30rem;
+  max-width: 30rem;
 }
 
 .max-width-50 {
-    max-width: 50rem;
+  max-width: 50rem;
 }
 
 .text-deco-none {
-    text-decoration: none !important;
-    text-decoration-color: white !important;
+  text-decoration: none !important;
+  text-decoration-color: white !important;
 }
 
 a:hover {
-    color: white;
+  color: white;
 }
 
 .overflow-auto {
-    overflow: auto;
+  overflow: auto;
 }
 
 .font-oblique {
-    font-style: oblique;
+  font-style: oblique;
 }
+
 .font-35 {
-    font-size: 35px;
+  font-size: 35px;
 }
+
 .margin-top-half-1 {
-    margin-top: 0.5rem;
+  margin-top: 0.5rem;
 }
+
 .viewer-padding {
-    padding-left: 0rem;
-    padding-right: 0rem;
+  padding-left: 0rem;
+  padding-right: 0rem;
 }
+
 .minus-margin-10 {
-    margin-right: -5px !important;
-    margin-left: -5px !important;
+  margin-right: -5px !important;
+  margin-left: -5px !important;
 }
 
 .max-width-10 {
-    max-width: 10rem;
+  max-width: 10rem;
 }
 
 .width-80 {
-    width: 80%;
+  width: 80%;
 }
 
 .width-100 {
-    width: 100%;
+  width: 100%;
 }
 
 .comment-text-box {
-    background-color: #252525;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom: 1px solid #404040;
+  background-color: #252525;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #404040;
 }
 
 .comment-text-box:focus {
-    outline: none;
-    border-bottom: 1px solid white;
+  outline: none;
+  border-bottom: 1px solid white;
 }
 
 .comment-text-box:-webkit-autofill,
 .comment-text-box:-webkit-autofill:hover,
 .comment-text-box:-webkit-autofill:focus,
 .comment-text-box:-webkit-autofill:active {
-    -webkit-text-fill-color: white;
-    -webkit-box-shadow: 0 0 0px 1000px #252525 inset;
-    box-shadow: 0 0 0px 1000px #252525 inset;
-    transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: white;
+  -webkit-box-shadow: 0 0 0px 1000px #252525 inset;
+  box-shadow: 0 0 0px 1000px #252525 inset;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 .comment-text-box:autofill,
 .comment-text-box:autofill:hover,
 .comment-text-box:autofill:focus,
 .comment-text-box:autofill:active {
-    -webkit-text-fill-color: white;
-    -webkit-box-shadow: 0 0 0px 1000px #252525 inset;
-    box-shadow: 0 0 0px 1000px #252525 inset;
-    transition: background-color 5000s ease-in-out 0s;
+  -webkit-text-fill-color: white;
+  -webkit-box-shadow: 0 0 0px 1000px #252525 inset;
+  box-shadow: 0 0 0px 1000px #252525 inset;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 .display-none {
-    display: none;
+  display: none;
 }
 
 .reply-btn {
-    float: right;
+  float: right;
 }
 
 .comment-head {
-    padding-top: 0.5rem;
+  padding-top: 0.5rem;
 }
 
 .comment-nick {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .comment-nick-me {
-    font-weight: bold;
-    float: left;
-    margin-left: 0.3rem;
+  font-weight: bold;
+  float: left;
+  margin-left: 0.3rem;
 }
 
 .comment-time {
-    font-size: 11px;
-    color: #CCCCCC;
-    margin-left: 0.3rem
+  font-size: 11px;
+  color: #CCCCCC;
+  margin-left: 0.3rem
 }
 
 .comment-body {
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid #404040;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #404040;
 }
 
 .comment-content {
-    font-weight: normal;
+  font-weight: normal;
 }
 
 .color-505050 {
-    color: #505050;
+  color: #505050;
 }
 
 .border-bottom-white {
-    border-bottom: 1px solid white;
+  border-bottom: 1px solid white;
 }
 
 .placeholder-red::placeholder {
-    color: red;
+  color: red;
 }
 
 .display-inline-block {
-    display: inline-block;
+  display: inline-block;
 }
 
 .comment-nick-image {
-    max-width: 20px;
-    float: left;
+  max-width: 20px;
+  float: left;
 }

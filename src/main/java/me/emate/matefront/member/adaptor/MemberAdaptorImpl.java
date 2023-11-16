@@ -21,7 +21,7 @@ import static me.emate.matefront.utils.Utils.makeHeader;
 public class MemberAdaptorImpl implements MemberAdaptor {
     private final RestTemplate restTemplate;
     private final ToBackConfig toBackConfig;
-    private static final String MEMBER_URL = "/member";
+    private static final String MEMBER_URL = "/members";
     private static final String AUTH_URL = "/auth";
 
     @Override
@@ -49,12 +49,12 @@ public class MemberAdaptorImpl implements MemberAdaptor {
     }
 
     @Override
-    public ResponseEntity<Boolean> idConflictCheck(CheckIDRequestDto requestDto) {
-        HttpEntity<CheckIDRequestDto> entity =
+    public ResponseEntity<Boolean> idConflictCheck(CheckIdRequestDto requestDto) {
+        HttpEntity<CheckIdRequestDto> entity =
                 new HttpEntity<>(requestDto, makeHeader());
 
         return restTemplate.exchange(
-                toBackConfig.getBackUrl() + MEMBER_URL + "/signup/idcheck",
+                toBackConfig.getBackUrl() + MEMBER_URL + "/signup/id",
                 HttpMethod.POST,
                 entity,
                 Boolean.class
@@ -67,7 +67,7 @@ public class MemberAdaptorImpl implements MemberAdaptor {
                 new HttpEntity<>(requestDto, makeHeader());
 
         return restTemplate.exchange(
-                toBackConfig.getBackUrl() + MEMBER_URL + "/signup/nickcheck",
+                toBackConfig.getBackUrl() + MEMBER_URL + "/signup/nickname",
                 HttpMethod.POST,
                 entity,
                 Boolean.class
@@ -80,7 +80,7 @@ public class MemberAdaptorImpl implements MemberAdaptor {
                 new HttpEntity<>(requestDto, makeHeader());
 
         return restTemplate.exchange(
-                toBackConfig.getBackUrl() + MEMBER_URL + "/signup/emailcheck",
+                toBackConfig.getBackUrl() + MEMBER_URL + "/signup/email",
                 HttpMethod.POST,
                 entity,
                 Boolean.class

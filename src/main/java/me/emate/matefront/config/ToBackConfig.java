@@ -6,10 +6,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ToBackConfig {
 
-    @Value("${emate.back.url}")
-    private String backUrl;
+  @Value("${emate.back.url}")
+  private String backUrl;
 
-    public String getBackUrl() {
-        return this.backUrl;
-    }
+  public String getBackUrl() {
+    return this.backUrl;
+  }
 }

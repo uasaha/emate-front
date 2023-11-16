@@ -1,9 +1,13 @@
 package me.emate.matefront.token.filter;
 
+import static me.emate.matefront.utils.JwtUtils.makeJwtCookie;
+
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.emate.matefront.member.adaptor.MemberAdaptor;
@@ -16,59 +20,55 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import java.io.IOException;
-import java.util.Objects;
-
-import static me.emate.matefront.utils.JwtUtils.makeJwtCookie;
-
 @Slf4j
 @RequiredArgsConstructor
 public class CustomLoginFilter extends UsernamePasswordAuthenticationFilter {
-    private final MemberAdaptor memberAdaptor;
 
-    private static final String LOGIN_STATUS = "X-LOGIN";
+  private final MemberAdaptor memberAdaptor;
 
-    @Override
-    public Authentication attemptAuthentication(
-            HttpServletRequest request, HttpServletResponse response)
-            throws AuthenticationException {
-        String id = obtainUsername(request);
-        String password = obtainPassword(request);
+  private static final String LOGIN_STATUS = "X-LOGIN";
 
-        MemberLoginRequestDto loginMemberRequestDto = new MemberLoginRequestDto(id, password);
+  @Override
+  public Authentication attemptAuthentication(
+      HttpServletRequest request, HttpServletResponse response)
+      throws AuthenticationException {
+    String id = obtainUsername(request);
+    String password = obtainPassword(request);
 
-        ResponseEntity<Void> jwtResponse
-                = memberAdaptor.loginRequest(loginMemberRequestDto);
+    MemberLoginRequestDto loginMemberRequestDto = new MemberLoginRequestDto(id, password);
 
-        Long expireTime = getExpireTime(jwtResponse);
-        String accessToken = getAccessToken(jwtResponse);
+    ResponseEntity<Void> jwtResponse
+        = memberAdaptor.loginRequest(loginMemberRequestDto);
 
-        UsernamePasswordAuthenticationToken token =
-                new UsernamePasswordAuthenticationToken(accessToken, password);
+    Long expireTime = getExpireTime(jwtResponse);
+    String accessToken = getAccessToken(jwtResponse);
 
-        Cookie cookie = makeJwtCookie(accessToken, expireTime);
+    UsernamePasswordAuthenticationToken token =
+        new UsernamePasswordAuthenticationToken(accessToken, password);
 
-        response.addCookie(cookie);
+    Cookie cookie = makeJwtCookie(accessToken, expireTime);
 
-        return getAuthenticationManager().authenticate(token);
-    }
+    response.addCookie(cookie);
 
-    private static String getAccessToken(ResponseEntity<Void> jwtResponse) {
-        return Objects.requireNonNull(jwtResponse.getHeaders()
-                .get("Authorization")).get(0).substring(JwtUtils.TOKEN_TYPE.length());
-    }
+    return getAuthenticationManager().authenticate(token);
+  }
 
-    private static Long getExpireTime(ResponseEntity<Void> jwtResponse) {
-        return Long.parseLong(
-                Objects.requireNonNull(
-                        jwtResponse.getHeaders().get(JwtUtils.EXP_HEADER)).get(0));
-    }
+  private static String getAccessToken(ResponseEntity<Void> jwtResponse) {
+    return Objects.requireNonNull(jwtResponse.getHeaders()
+        .get("Authorization")).get(0).substring(JwtUtils.TOKEN_TYPE.length());
+  }
 
-    @Override
-    protected void successfulAuthentication(
-            HttpServletRequest request, HttpServletResponse response,
-            FilterChain chain, Authentication authResult) throws IOException {
-        SecurityContextHolder.clearContext();
-        response.setHeader(LOGIN_STATUS, "success");
-    }
+  private static Long getExpireTime(ResponseEntity<Void> jwtResponse) {
+    return Long.parseLong(
+        Objects.requireNonNull(
+            jwtResponse.getHeaders().get(JwtUtils.EXP_HEADER)).get(0));
+  }
+
+  @Override
+  protected void successfulAuthentication(
+      HttpServletRequest request, HttpServletResponse response,
+      FilterChain chain, Authentication authResult) throws IOException {
+    SecurityContextHolder.clearContext();
+    response.setHeader(LOGIN_STATUS, "success");
+  }
 }

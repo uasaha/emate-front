@@ -14,41 +14,42 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 @Slf4j
 @Configuration
 public class RedisConfig {
-    @Value("${emate.redis.host}")
-    private String host;
 
-    @Value("${emate.redis.port}")
-    private String port;
+  @Value("${emate.redis.host}")
+  private String host;
 
-    @Value("${emate.redis.password}")
-    private String password;
+  @Value("${emate.redis.port}")
+  private String port;
 
-    @Bean
-    public LettuceConnectionFactory redisConnectionFactory() {
-        LettuceClientConfiguration clientConfiguration =
-                LettuceClientConfiguration.builder()
-                        .useSsl().build();
+  @Value("${emate.redis.password}")
+  private String password;
 
-        RedisStandaloneConfiguration standaloneConfiguration =
-                new RedisStandaloneConfiguration();
+  @Bean
+  public LettuceConnectionFactory redisConnectionFactory() {
+    final LettuceClientConfiguration clientConfiguration =
+        LettuceClientConfiguration.builder()
+            .useSsl().build();
 
-        standaloneConfiguration.setHostName(host);
-        standaloneConfiguration.setPort(Integer.parseInt(port));
-        standaloneConfiguration.setPassword(password);
+    RedisStandaloneConfiguration standaloneConfiguration =
+        new RedisStandaloneConfiguration();
 
-        return new LettuceConnectionFactory(standaloneConfiguration, clientConfiguration);
-    }
+    standaloneConfiguration.setHostName(host);
+    standaloneConfiguration.setPort(Integer.parseInt(port));
+    standaloneConfiguration.setPassword(password);
 
-    @Bean
-    public RedisTemplate<?, ?> redisTemplate() {
-        RedisTemplate<byte[], byte[]> redisTemplate = new RedisTemplate<>();
-        redisTemplate.setConnectionFactory(redisConnectionFactory());
-        redisTemplate.setKeySerializer(new StringRedisSerializer());
-        redisTemplate.setValueSerializer(new GenericJackson2JsonRedisSerializer());
-        redisTemplate.setHashKeySerializer(new StringRedisSerializer());
-        redisTemplate.setHashValueSerializer(new GenericJackson2JsonRedisSerializer());
-        redisTemplate.setDefaultSerializer(new StringRedisSerializer());
+    return new LettuceConnectionFactory(standaloneConfiguration, clientConfiguration);
+  }
 
-        return redisTemplate;
-    }
+  @Bean
+  public RedisTemplate<?, ?> redisTemplate() {
+    RedisTemplate<byte[], byte[]> redisTemplate = new RedisTemplate<>();
+    redisTemplate.setConnectionFactory(redisConnectionFactory());
+    redisTemplate.setKeySerializer(new StringRedisSerializer());
+    redisTemplate.setValueSerializer(new GenericJackson2JsonRedisSerializer());
+    redisTemplate.setHashKeySerializer(new StringRedisSerializer());
+    redisTemplate.setHashValueSerializer(new GenericJackson2JsonRedisSerializer());
+    redisTemplate.setDefaultSerializer(new StringRedisSerializer());
+
+    return redisTemplate;
+  }
 }

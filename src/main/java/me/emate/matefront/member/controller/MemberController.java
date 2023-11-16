@@ -1,5 +1,6 @@
 package me.emate.matefront.member.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,37 +17,40 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 @RequiredArgsConstructor
 public class MemberController {
-    private final Utils utils;
-    private final MemberService memberService;
 
-    @GetMapping("/login")
-    public String loginView(Model model) {
-        utils.sidebarInModel(model);
-        utils.modelRequestMemberNo(model);
+  private final Utils utils;
+  private final MemberService memberService;
+  private static final String REFERER = "Referer";
 
-        return "member/login-page";
-    }
+  @GetMapping("/login")
+  public String loginView(Model model) {
+    utils.sidebarInModel(model);
+    utils.modelRequestMemberNo(model);
 
-    @GetMapping("/register")
-    public String registerView(Model model) {
-        utils.sidebarInModel(model);
+    return "member/login-page";
+  }
 
-        return "member/register-page";
-    }
+  @GetMapping("/register")
+  public String registerView(Model model) {
+    utils.sidebarInModel(model);
 
-    @PostMapping("/register")
-    public String signup(Model model,
-                         @ModelAttribute("signupForm") SignupRequestDto requestDto) {
-        memberService.signup(requestDto);
+    return "member/register-page";
+  }
 
-        utils.sidebarInModel(model);
-        return "member/register-success";
-    }
+  @PostMapping("/register")
+  public String signup(Model model,
+      @ModelAttribute("signupForm") SignupRequestDto requestDto) {
+    memberService.signup(requestDto);
 
-    @GetMapping("/logout")
-    public String logout(HttpServletResponse response) {
-        memberService.logout(response);
+    utils.sidebarInModel(model);
+    return "member/register-success";
+  }
 
-        return "redirect:/";
-    }
+  @GetMapping("/logout")
+  public String logout(HttpServletRequest request,
+      HttpServletResponse response) {
+    memberService.logout(response);
+
+    return "redirect:" + request.getHeader(REFERER);
+  }
 }

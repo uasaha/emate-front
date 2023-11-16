@@ -27,69 +27,70 @@ import org.springframework.security.web.context.SecurityContextPersistenceFilter
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-public class SecurityConfig  {
-    private final MemberAdaptor memberAdaptor;
-    private final CustomUserDetailService userDetailsService;
-    private final RedisTemplate<String, AuthDto> redisTemplate;
-    private final ObjectMapper objectMapper;
+public class SecurityConfig {
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+  private final MemberAdaptor memberAdaptor;
+  private final CustomUserDetailService userDetailsService;
+  private final RedisTemplate<String, AuthDto> redisTemplate;
+  private final ObjectMapper objectMapper;
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        AuthenticationManager authenticationManager
-                = authenticationManager(http.getSharedObject(AuthenticationConfiguration.class));
+  @Bean
+  public PasswordEncoder passwordEncoder() {
+    return new BCryptPasswordEncoder();
+  }
 
-        return http.csrf(AbstractHttpConfigurer::disable)
-                .cors(AbstractHttpConfigurer::disable)
-                .formLogin(AbstractHttpConfigurer::disable)
-                .logout(AbstractHttpConfigurer::disable)
-                .sessionManagement(configurer -> configurer
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(registry -> registry
-                        .requestMatchers("/", "/login", "/signup").permitAll()
-                        .requestMatchers("/admin/**").hasAnyAuthority("ADMIN")
-                        .anyRequest().permitAll())
-                .addFilterAt(customLoginFilter(authenticationManager),
-                        UsernamePasswordAuthenticationFilter.class)
-                .addFilterAfter(customAuthenticationFilter(),
-                        SecurityContextPersistenceFilter.class)
-                .build();
-    }
+  @Bean
+  public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    AuthenticationManager authenticationManager
+        = authenticationManager(http.getSharedObject(AuthenticationConfiguration.class));
 
-    @Bean
-    public CustomAuthenticationFilter customAuthenticationFilter() {
-        return new CustomAuthenticationFilter(redisTemplate, objectMapper);
-    }
+    return http.csrf(AbstractHttpConfigurer::disable)
+        .cors(AbstractHttpConfigurer::disable)
+        .formLogin(AbstractHttpConfigurer::disable)
+        .logout(AbstractHttpConfigurer::disable)
+        .sessionManagement(configurer -> configurer
+            .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+        .authorizeHttpRequests(registry -> registry
+            .requestMatchers("/", "/login", "/signup").permitAll()
+            .requestMatchers("/admin/**").hasAnyAuthority("ADMIN")
+            .anyRequest().permitAll())
+        .addFilterAt(customLoginFilter(authenticationManager),
+            UsernamePasswordAuthenticationFilter.class)
+        .addFilterAfter(customAuthenticationFilter(),
+            SecurityContextPersistenceFilter.class)
+        .build();
+  }
 
-    @Bean
-    public CustomLoginFilter customLoginFilter(AuthenticationManager authenticationManager) {
-        CustomLoginFilter loginFilter
-                = new CustomLoginFilter(memberAdaptor);
-        loginFilter.setFilterProcessesUrl("/auth");
-        loginFilter.setAuthenticationManager(authenticationManager);
-        loginFilter.setUsernameParameter("id");
-        loginFilter.setPasswordParameter("pwd");
+  @Bean
+  public CustomAuthenticationFilter customAuthenticationFilter() {
+    return new CustomAuthenticationFilter(redisTemplate, objectMapper);
+  }
 
-        return loginFilter;
-    }
+  @Bean
+  public CustomLoginFilter customLoginFilter(AuthenticationManager authenticationManager) {
+    CustomLoginFilter loginFilter
+        = new CustomLoginFilter(memberAdaptor);
+    loginFilter.setFilterProcessesUrl("/auth");
+    loginFilter.setAuthenticationManager(authenticationManager);
+    loginFilter.setUsernameParameter("id");
+    loginFilter.setPasswordParameter("pwd");
 
-    @Bean
-    public AuthenticationManager authenticationManager(
-            AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
-    }
+    return loginFilter;
+  }
 
-    @Bean
-    public AuthenticationProvider authenticationProvider() {
-        CustomAuthenticationProvider authenticationProvider = new CustomAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(userDetailsService);
-        authenticationProvider.setPasswordEncoder(passwordEncoder());
+  @Bean
+  public AuthenticationManager authenticationManager(
+      AuthenticationConfiguration authenticationConfiguration) throws Exception {
+    return authenticationConfiguration.getAuthenticationManager();
+  }
 
-        return authenticationProvider;
-    }
+  @Bean
+  public AuthenticationProvider authenticationProvider() {
+    CustomAuthenticationProvider authenticationProvider = new CustomAuthenticationProvider();
+    authenticationProvider.setUserDetailsService(userDetailsService);
+    authenticationProvider.setPasswordEncoder(passwordEncoder());
+
+    return authenticationProvider;
+  }
 
 }

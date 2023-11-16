@@ -4,13 +4,14 @@ import jakarta.servlet.http.HttpServletResponse;
 import me.emate.matefront.member.dto.SignupRequestDto;
 
 public interface MemberService {
-    boolean idConflictCheck(String id);
 
-    boolean isNickConflict(String nickname);
+  boolean idConflictCheck(String id);
 
-    boolean isEmailConflict(String email);
+  boolean isNickConflict(String nickname);
 
-    void signup(SignupRequestDto requestDto);
+  boolean isEmailConflict(String email);
 
-    void logout(HttpServletResponse response);
+  void signup(SignupRequestDto requestDto);
+
+  void logout(HttpServletResponse response);
 }

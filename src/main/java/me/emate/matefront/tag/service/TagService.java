@@ -1,9 +1,9 @@
 package me.emate.matefront.tag.service;
 
+import java.util.List;
 import me.emate.matefront.tag.dto.TagListResponseDto;
 
-import java.util.List;
-
 public interface TagService {
-    List<TagListResponseDto> getAllTags();
+
+  List<TagListResponseDto> getAllTags();
 }

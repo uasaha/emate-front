@@ -1,9 +1,10 @@
 package me.emate.matefront.visitor.service;
 
 public interface VisitorService {
-    Integer getTodayVisitor();
 
-    Integer getTotalVisitor();
+  Integer getTodayVisitor();
 
-    void setTodayVisitorToTotal();
+  Integer getTotalVisitor();
+
+  void setTodayVisitorToTotal();
 }

@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public class CheckIDRequestDto {
-    private String id;
+public class CheckIdRequestDto {
+
+  private String id;
 }

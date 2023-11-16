@@ -6,7 +6,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 public class CategoryListResponseDto {
-    private Integer categoryNo;
-    private String categoryName;
-    private Long contentsCnt;
+
+  private Integer categoryNo;
+  private String categoryName;
+  private Long contentsCnt;
 }

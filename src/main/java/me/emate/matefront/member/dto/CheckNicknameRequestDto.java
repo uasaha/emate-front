@@ -8,5 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 public class CheckNicknameRequestDto {
-    private String nickname;
+
+  private String nickname;
 }

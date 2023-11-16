@@ -1,9 +1,9 @@
 package me.emate.matefront.storage.service;
 
+import java.io.IOException;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-
 public interface StorageService {
-    String uploadFile(MultipartFile file) throws IOException;
+
+  String uploadFile(MultipartFile file) throws IOException;
 }

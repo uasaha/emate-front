@@ -9,21 +9,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
 @Controller
 @RequestMapping("/")
 @RequiredArgsConstructor
 public class MainController {
-    private final Utils utils;
-    private final ContentsService contentsService;
 
-    @GetMapping
-    public String mainView(HttpServletResponse response,
-                           Model model) {
-        utils.sidebarInModel(model);
-        utils.modelRequestMemberNo(model);
-        model.addAttribute("contents", contentsService.requestLatestContents());
+  private final Utils utils;
+  private final ContentsService contentsService;
 
-        return "main/main";
-    }
+  @GetMapping
+  public String mainView(HttpServletResponse response,
+      Model model) {
+    utils.sidebarInModel(model);
+    utils.modelRequestMemberNo(model);
+    model.addAttribute("contents", contentsService.requestLatestContents());
+
+    return "main/main";
+  }
 }

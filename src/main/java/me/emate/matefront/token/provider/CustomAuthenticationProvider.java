@@ -9,17 +9,18 @@ import org.springframework.security.core.userdetails.User;
 
 @Slf4j
 public class CustomAuthenticationProvider extends DaoAuthenticationProvider {
-    @Override
-    public Authentication authenticate(
-            Authentication authentication) throws AuthenticationException {
 
-        User userDetails
-                = (User) this.getUserDetailsService()
-                .loadUserByUsername((String) authentication.getPrincipal());
+  @Override
+  public Authentication authenticate(
+      Authentication authentication) throws AuthenticationException {
 
-        return new UsernamePasswordAuthenticationToken(
-                userDetails.getUsername(),
-                userDetails.getPassword(),
-                userDetails.getAuthorities());
-    }
+    User userDetails
+        = (User) this.getUserDetailsService()
+        .loadUserByUsername((String) authentication.getPrincipal());
+
+    return new UsernamePasswordAuthenticationToken(
+        userDetails.getUsername(),
+        userDetails.getPassword(),
+        userDetails.getAuthorities());
+  }
 }

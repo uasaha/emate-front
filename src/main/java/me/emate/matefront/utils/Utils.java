@@ -3,6 +3,8 @@ package me.emate.matefront.utils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
+import java.util.List;
+import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.emate.matefront.category.dto.CategoryListResponseDto;
@@ -17,72 +19,69 @@ import org.springframework.ui.Model;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import java.util.List;
-import java.util.Objects;
-
-
 @Component
 @Slf4j
 @RequiredArgsConstructor
 public class Utils {
-    private final CategoryService categoryService;
-    private final VisitorService visitorService;
-    private final ObjectMapper objectMapper;
 
-    public static HttpHeaders makeHeader() {
-        ServletRequestAttributes servletRequestAttributes =
-                (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-        HttpServletRequest request = servletRequestAttributes.getRequest();
+  private final CategoryService categoryService;
+  private final VisitorService visitorService;
+  private final ObjectMapper objectMapper;
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.setAccept(List.of(MediaType.APPLICATION_JSON));
+  public static HttpHeaders makeHeader() {
+    ServletRequestAttributes servletRequestAttributes =
+        (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+    HttpServletRequest request = servletRequestAttributes.getRequest();
 
-        String accessToken = (String) request.getAttribute(JwtUtils.AUTH_HEADER);
-        if (Objects.nonNull(accessToken)) {
-            headers.add(JwtUtils.AUTH_HEADER, accessToken);
-        }
+    HttpHeaders headers = new HttpHeaders();
+    headers.setContentType(MediaType.APPLICATION_JSON);
+    headers.setAccept(List.of(MediaType.APPLICATION_JSON));
 
-        return headers;
+    String accessToken = (String) request.getAttribute(JwtUtils.AUTH_HEADER);
+    if (Objects.nonNull(accessToken)) {
+      headers.add(JwtUtils.AUTH_HEADER, accessToken);
     }
 
-    public void sidebarInModel(Model model) {
-        List<CategoryListResponseDto> categoryListResponseDtoList = categoryService.getAllCategories();
-        Integer today = visitorService.getTodayVisitor();
-        Integer total = visitorService.getTotalVisitor();
+    return headers;
+  }
 
-        model.addAttribute("today", today);
-        model.addAttribute("total", total + today);
-        model.addAttribute("categories", categoryListResponseDtoList);
+  public void sidebarInModel(Model model) {
+    List<CategoryListResponseDto> categoryListResponseDtoList = categoryService.getAllCategories();
+    Integer today = visitorService.getTodayVisitor();
+    Integer total = visitorService.getTotalVisitor();
+
+    model.addAttribute("today", today);
+    model.addAttribute("total", total + today);
+    model.addAttribute("categories", categoryListResponseDtoList);
+  }
+
+  public void modelRequestMemberNo(Model model) {
+    String credential =
+        (String) SecurityContextHolder.getContext().getAuthentication().getCredentials();
+
+    MemberDetailResponseDto member;
+
+    try {
+      member = objectMapper.readValue(credential, MemberDetailResponseDto.class);
+    } catch (JsonProcessingException e) {
+      member = null;
     }
 
-    public void modelRequestMemberNo(Model model) {
-        String credential =
-                (String) SecurityContextHolder.getContext().getAuthentication().getCredentials();
+    model.addAttribute("memberNo", getMemberNo());
+    model.addAttribute("member", member);
+  }
 
-        MemberDetailResponseDto member;
+  public Integer getMemberNo() {
+    String principal =
+        (String) SecurityContextHolder.getContext()
+            .getAuthentication().getPrincipal();
 
-        try {
-            member = objectMapper.readValue(credential, MemberDetailResponseDto.class);
-        } catch (JsonProcessingException e) {
-            member = null;
-        }
+    int memberNo = -1;
 
-        model.addAttribute("memberNo", getMemberNo());
-        model.addAttribute("member", member);
+    if (!principal.equals("anonymousUser")) {
+      memberNo = Integer.parseInt(principal);
     }
 
-    public Integer getMemberNo() {
-        String principal =
-                (String) SecurityContextHolder.getContext()
-                        .getAuthentication().getPrincipal();
-
-        int memberNo = -1;
-
-        if (!principal.equals("anonymousUser")) {
-            memberNo = Integer.parseInt(principal);
-        }
-
-        return memberNo;
-    }
+    return memberNo;
+  }
 }

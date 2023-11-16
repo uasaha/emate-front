@@ -1,7 +1,14 @@
 package me.emate.matefront.token.service;
 
+
+import static me.emate.matefront.utils.JwtUtils.AUTHENTICATION;
+import static me.emate.matefront.utils.JwtUtils.SESSION_COOKIE;
+import static me.emate.matefront.utils.JwtUtils.makeAuthorities;
+
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
+import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.emate.matefront.member.MemberNotFountException;
@@ -19,43 +26,39 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import java.util.List;
-import java.util.Objects;
-
-import static me.emate.matefront.utils.JwtUtils.*;
-
 @Service
 @Slf4j
 @RequiredArgsConstructor
 public class CustomUserDetailService implements UserDetailsService {
-    private final MemberAdaptor memberAdaptor;
-    private final RedisTemplate<String, AuthDto> redisTemplate;
 
-    @Override
-    public UserDetails loadUserByUsername(String accessToken) throws UsernameNotFoundException {
-        ServletRequestAttributes servletRequestAttributes
-                = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-        HttpServletRequest request = servletRequestAttributes.getRequest();
-        HttpServletResponse response = servletRequestAttributes.getResponse();
+  private final MemberAdaptor memberAdaptor;
+  private final RedisTemplate<String, AuthDto> redisTemplate;
 
-        String sessionId = request.getSession().getId();
+  @Override
+  public UserDetails loadUserByUsername(String accessToken) throws UsernameNotFoundException {
+    ServletRequestAttributes servletRequestAttributes
+        = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+    HttpServletRequest request = servletRequestAttributes.getRequest();
+    HttpServletResponse response = servletRequestAttributes.getResponse();
 
-        CookieUtils.makeCookie(response, SESSION_COOKIE, sessionId);
+    String sessionId = request.getSession().getId();
 
-        MemberDetailResponseDto member
-                = memberAdaptor.requestAuthMemberInfo(accessToken);
+    CookieUtils.makeCookie(response, SESSION_COOKIE, sessionId);
 
-        if (Objects.isNull(member)) {
-            throw new MemberNotFountException();
-        }
+    MemberDetailResponseDto member
+        = memberAdaptor.requestAuthMemberInfo(accessToken);
 
-        List<SimpleGrantedAuthority> authorities =
-                makeAuthorities(member.getAuthorities());
-
-        redisTemplate.opsForHash().put(AUTHENTICATION, sessionId, member);
-
-        return new User(member.getMemberNo().toString(),
-                "dummy",
-                authorities);
+    if (Objects.isNull(member)) {
+      throw new MemberNotFountException();
     }
+
+    List<SimpleGrantedAuthority> authorities =
+        makeAuthorities(member.getAuthorities());
+
+    redisTemplate.opsForHash().put(AUTHENTICATION, sessionId, member);
+
+    return new User(member.getMemberNo().toString(),
+        "dummy",
+        authorities);
+  }
 }

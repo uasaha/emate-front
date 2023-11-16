@@ -1,43 +1,49 @@
 package me.emate.matefront.exception.advice;
 
-import me.emate.matefront.exception.exceptions.*;
+import me.emate.matefront.exception.exceptions.BadGatewayException;
+import me.emate.matefront.exception.exceptions.BadRequestException;
+import me.emate.matefront.exception.exceptions.NotFoundException;
+import me.emate.matefront.exception.exceptions.NotLoginException;
+import me.emate.matefront.exception.exceptions.ServerErrorException;
+import me.emate.matefront.exception.exceptions.UnAuthorizedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class CustomExceptionAdvice {
-    @ExceptionHandler(BadRequestException.class)
-    public String error400() {
-        return "error/400";
-    }
 
-    @ExceptionHandler(NotFoundException.class)
-    public String error404() {
-        return "error/404";
-    }
+  @ExceptionHandler(BadRequestException.class)
+  public String error400() {
+    return "error/400";
+  }
 
-    @ExceptionHandler(NotLoginException.class)
-    public String errorLogin() {
-        return "redirect:/login";
-    }
+  @ExceptionHandler(NotFoundException.class)
+  public String error404() {
+    return "error/404";
+  }
 
-    @ExceptionHandler(UnAuthorizedException.class)
-    public String error401() {
-        return "error/401";
-    }
+  @ExceptionHandler(NotLoginException.class)
+  public String errorLogin() {
+    return "redirect:/login";
+  }
 
-    @ExceptionHandler(ServerErrorException.class)
-    public String error500() {
-        return "error/500";
-    }
+  @ExceptionHandler(UnAuthorizedException.class)
+  public String error401() {
+    return "error/401";
+  }
 
-    @ExceptionHandler(BadGatewayException.class)
-    public String error502() {
-        return "error/502";
-    }
+  @ExceptionHandler(ServerErrorException.class)
+  public String error500() {
+    return "error/500";
+  }
 
-    @ExceptionHandler(RuntimeException.class)
-    public String errorOther() {
-        return "error/500";
-    }
+  @ExceptionHandler(BadGatewayException.class)
+  public String error502() {
+    return "error/502";
+  }
+
+  @ExceptionHandler(RuntimeException.class)
+  public String errorOther() {
+    return "error/500";
+  }
 }
