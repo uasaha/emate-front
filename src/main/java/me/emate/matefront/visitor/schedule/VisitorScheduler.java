@@ -27,7 +27,7 @@ public class VisitorScheduler {
   private final RedisTemplate<String, String> redisTemplate;
   private final ToBackConfig toBackConfig;
   private final RestTemplate restTemplate;
-  private static final String VISITOR_URL = "/visitor";
+  private static final String VISITOR_URL = "/visitors";
   private static final String TODAY_KEY = "today";
 
   @Scheduled(cron = "55 59 23 1/1 * ?", zone = "Asia/Seoul")
