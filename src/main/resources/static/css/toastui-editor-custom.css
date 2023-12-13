@@ -59,12 +59,12 @@
 
 .toastui-editor-md-code-block-line-background {
   font-family: 'Nanum Gothic', sans-serif;
-  background-color: #353535 !important;
+  background-color: #303030 !important;
 }
 
 .toastui-editor-contents pre {
   font-family: 'Nanum Gothic Coding', sans-serif;
-  background-color: #353535 !important;
+  background-color: #303030 !important;
   color: #DDDDDD !important;
   margin-top: 1em;
   border-radius: 0.5rem;
@@ -78,13 +78,13 @@
 
 .language-css .token.string, .style .token.string, .token.entity, .token.url {
   font-family: 'Nanum Gothic Coding', sans-serif;
-  background: #353535 !important;
+  background: #303030 !important;
 }
 
 .token.operator {
   font-family: 'Nanum Gothic Coding', sans-serif;
   color: #DDDDDD !important;
-  background-color: #353535 !important;
+  background-color: #303030 !important;
 }
 
 .token.number {

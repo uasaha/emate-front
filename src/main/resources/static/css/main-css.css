@@ -74,7 +74,7 @@
 
 .main-body {
   font-family: 'Nanum Gothic', sans-serif;
-  background-color: #252525;
+  background-color: #202020;
   max-width: 100em;
   margin: auto !important;
 }
@@ -154,11 +154,11 @@
 }
 
 .background-353535 {
-  background-color: #353535 !important;
+  background-color: #303030 !important;
 }
 
 .background-252525 {
-  background-color: #252525 !important;
+  background-color: #202020 !important;
 }
 
 .list-content-subject {
@@ -245,7 +245,7 @@ a:hover {
 }
 
 .comment-text-box {
-  background-color: #252525;
+  background-color: #202020;
   border-top: none;
   border-left: none;
   border-right: none;
@@ -262,8 +262,8 @@ a:hover {
 .comment-text-box:-webkit-autofill:focus,
 .comment-text-box:-webkit-autofill:active {
   -webkit-text-fill-color: #DDDDDD;
-  -webkit-box-shadow: 0 0 0px 1000px #252525 inset;
-  box-shadow: 0 0 0px 1000px #252525 inset;
+  -webkit-box-shadow: 0 0 0px 1000px #202020 inset;
+  box-shadow: 0 0 0px 1000px #202020 inset;
   transition: background-color 5000s ease-in-out 0s;
 }
 
@@ -272,8 +272,8 @@ a:hover {
 .comment-text-box:autofill:focus,
 .comment-text-box:autofill:active {
   -webkit-text-fill-color: #DDDDDD;
-  -webkit-box-shadow: 0 0 0px 1000px #252525 inset;
-  box-shadow: 0 0 0px 1000px #252525 inset;
+  -webkit-box-shadow: 0 0 0px 1000px #202020 inset;
+  box-shadow: 0 0 0px 1000px #202020 inset;
   transition: background-color 5000s ease-in-out 0s;
 }
 
