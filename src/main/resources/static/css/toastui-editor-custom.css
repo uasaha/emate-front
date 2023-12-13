@@ -1,6 +1,6 @@
 .toastui-editor-contents p {
   font-family: 'Nanum Gothic', sans-serif;
-  color: #DDDDDD !important;
+  color: #EEEEEE !important;
   font-size: 14px !important;
 }
 
@@ -54,7 +54,7 @@
 
 .toastui-editor-defaultUI .ProseMirror {
   font-family: 'Nanum Gothic', sans-serif;
-  color: #DDDDDD !important;
+  color: #EEEEEE !important;
 }
 
 .toastui-editor-md-code-block-line-background {
@@ -65,7 +65,7 @@
 .toastui-editor-contents pre {
   font-family: 'Nanum Gothic Coding', sans-serif;
   background-color: #303030 !important;
-  color: #DDDDDD !important;
+  color: #EEEEEE !important;
   margin-top: 1em;
   border-radius: 0.5rem;
 !important;
@@ -83,7 +83,7 @@
 
 .token.operator {
   font-family: 'Nanum Gothic Coding', sans-serif;
-  color: #DDDDDD !important;
+  color: #EEEEEE !important;
   background-color: #303030 !important;
 }
 
@@ -95,13 +95,13 @@
 .toastui-editor-contents table td, .toastui-editor-contents table th {
   font-family: 'Nanum Gothic', sans-serif;
   border: 1px solid white !important;
-  color: #DDDDDD !important;
+  color: #EEEEEE !important;
 }
 
 .toastui-editor-contents code {
   font-family: 'Nanum Gothic Coding', sans-serif;
   background-color: teal;
-  color: #DDDDDD;
+  color: #EEEEEE;
   font-size: 14px;
 }
 
@@ -114,7 +114,7 @@
 }
 
 .toastui-editor-contents ul > li:before {
-  background-color: #DDDDDD !important;
+  background-color: #EEEEEE !important;
   margin-top: 9px !important;
   height: 5px !important;
   width: 5px !important;
