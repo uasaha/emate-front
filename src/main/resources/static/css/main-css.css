@@ -22,7 +22,7 @@
   font-size: 14px;
   text-decoration: none;
   padding: 5px 12px;
-  color: #fff;
+  color: #DDDDDD;
   border: 1px solid transparent;
   margin-left: 3px;
   width: 3em;
@@ -32,12 +32,12 @@
 
   &:hover {
     background-color: #404040;
-    color: white;
+    color: #DDDDDD;
   }
 
   &.active, &:active {
     background-color: #404040;
-    color: white;
+    color: #DDDDDD;
   }
 
   &.active {
@@ -50,7 +50,7 @@
 }
 
 .today-count-div {
-  border: 1px solid white;
+  border: 1px solid #DDDDDD;
   margin-top: 2em;
   border-radius: 0.5rem;
 }
@@ -100,17 +100,17 @@
 }
 
 .main-sidebar-intro {
-  color: white
+  color: #DDDDDD;
 }
 
 .main-sidebar-card {
-  color: white;
+  color: #DDDDDD;
   border: none !important;
   cursor: pointer;
 }
 
 .color-white {
-  color: white;
+  color: #DDDDDD;
 }
 
 .font-15 {
@@ -138,7 +138,7 @@
 }
 
 .border-white {
-  border: solid 1px white;
+  border: solid 1px #DDDDDD;
 }
 
 .margin-bottom-2 {
@@ -170,7 +170,7 @@
 .content-subject-no-thumb {
   text-align: center;
   position: absolute;
-  color: white;
+  color: #DDDDDD;
   transform: translate(-50%, -50%);
   top: 37%;
   left: 50%;
@@ -199,11 +199,11 @@
 
 .text-deco-none {
   text-decoration: none !important;
-  text-decoration-color: white !important;
+  text-decoration-color: #DDDDDD !important;
 }
 
 a:hover {
-  color: white;
+  color: #DDDDDD;
 }
 
 .overflow-auto {
@@ -254,14 +254,14 @@ a:hover {
 
 .comment-text-box:focus {
   outline: none;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid #DDDDDD;
 }
 
 .comment-text-box:-webkit-autofill,
 .comment-text-box:-webkit-autofill:hover,
 .comment-text-box:-webkit-autofill:focus,
 .comment-text-box:-webkit-autofill:active {
-  -webkit-text-fill-color: white;
+  -webkit-text-fill-color: #DDDDDD;
   -webkit-box-shadow: 0 0 0px 1000px #252525 inset;
   box-shadow: 0 0 0px 1000px #252525 inset;
   transition: background-color 5000s ease-in-out 0s;
@@ -271,7 +271,7 @@ a:hover {
 .comment-text-box:autofill:hover,
 .comment-text-box:autofill:focus,
 .comment-text-box:autofill:active {
-  -webkit-text-fill-color: white;
+  -webkit-text-fill-color: #DDDDDD;
   -webkit-box-shadow: 0 0 0px 1000px #252525 inset;
   box-shadow: 0 0 0px 1000px #252525 inset;
   transition: background-color 5000s ease-in-out 0s;
@@ -319,7 +319,7 @@ a:hover {
 }
 
 .border-bottom-white {
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid #DDDDDD;
 }
 
 .placeholder-red::placeholder {
