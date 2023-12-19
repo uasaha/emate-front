@@ -101,6 +101,7 @@
 
 .main-sidebar-intro {
   color: #EEEEEE;
+  white-space: pre-wrap;
 }
 
 .main-sidebar-card {
